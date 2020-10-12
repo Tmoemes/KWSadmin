@@ -1,0 +1,125 @@
+{
+  "version": 3,
+  "targets": {
+    ".NETCoreApp,Version=v3.1": {
+      "KWSAdmin.DALFactory/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "compile": {
+          "bin/placeholder/KWSAdmin.DALFactory.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/KWSAdmin.DALFactory.dll": {}
+        }
+      },
+      "KWSAdmin.persistence.Interface/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "compile": {
+          "bin/placeholder/KWSAdmin.persistence.Interface.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/KWSAdmin.persistence.Interface.dll": {}
+        }
+      },
+      "KWSAdminApplication/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "dependencies": {
+          "KWSAdmin.DALFactory": "1.0.0",
+          "KWSAdmin.persistence.Interface": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/KWSAdminApplication.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/KWSAdminApplication.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "KWSAdmin.DALFactory/1.0.0": {
+      "type": "project",
+      "path": "../Factory/KWSAdmin.DALFactory.csproj",
+      "msbuildProject": "../Factory/KWSAdmin.DALFactory.csproj"
+    },
+    "KWSAdmin.persistence.Interface/1.0.0": {
+      "type": "project",
+      "path": "../Interface/KWSAdmin.persistence.Interface.csproj",
+      "msbuildProject": "../Interface/KWSAdmin.persistence.Interface.csproj"
+    },
+    "KWSAdminApplication/1.0.0": {
+      "type": "project",
+      "path": "../KWSAdmin/KWSAdminApplication.csproj",
+      "msbuildProject": "../KWSAdmin/KWSAdminApplication.csproj"
+    }
+  },
+  "projectFileDependencyGroups": {
+    ".NETCoreApp,Version=v3.1": [
+      "KWSAdminApplication >= 1.0.0"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\meesv\\.nuget\\packages\\": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "E:\\VSRepos\\KWSAdmin\\View\\View.csproj",
+      "projectName": "View",
+      "projectPath": "E:\\VSRepos\\KWSAdmin\\View\\View.csproj",
+      "packagesPath": "C:\\Users\\meesv\\.nuget\\packages\\",
+      "outputPath": "E:\\VSRepos\\KWSAdmin\\View\\obj\\",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "C:\\Users\\meesv\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+      ],
+      "originalTargetFrameworks": [
+        "netcoreapp3.1"
+      ],
+      "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "projectReferences": {
+            "E:\\VSRepos\\KWSAdmin\\KWSAdmin\\KWSAdminApplication.csproj": {
+              "projectPath": "E:\\VSRepos\\KWSAdmin\\KWSAdmin\\KWSAdminApplication.csproj"
+            }
+          }
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      }
+    },
+    "frameworks": {
+      "netcoreapp3.1": {
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "frameworkReferences": {
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          },
+          "Microsoft.WindowsDesktop.App.WindowsForms": {
+            "privateAssets": "none"
+          }
+        },
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}
