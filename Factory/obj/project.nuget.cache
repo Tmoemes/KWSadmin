@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "fOlME7ape58e3xAesGtNrfK2dUOsTFEqvREFjNUlqs53xE4QsxDR7b3Ru5NnfLu1rKI32nUnvNjN3KZrcX3ijQ==",
+  "dgSpecHash": "DLf/SDdeh9thaGZowo5k1iH4BVQ/h6vZeCSex0nhGnwMzjoGcqh1oaakQLUoQUCZT7N4YIINtryk2WQoxhS6kg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\meesv\\source\\repos\\Tmoemes\\KWSadmin\\Factory\\KWSAdmin.DALFactory.csproj",
+  "projectFilePath": "C:\\Users\\meesv\\Source\\Repos\\Tmoemes\\KWSadmin\\Factory\\KWSAdmin.DALFactory.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\meesv\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "C:\\Users\\meesv\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"

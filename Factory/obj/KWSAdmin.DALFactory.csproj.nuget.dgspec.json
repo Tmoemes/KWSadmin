@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\meesv\\source\\repos\\Tmoemes\\KWSadmin\\Factory\\KWSAdmin.DALFactory.csproj": {}
+    "C:\\Users\\meesv\\Source\\Repos\\Tmoemes\\KWSadmin\\Factory\\KWSAdmin.DALFactory.csproj": {}
   },
   "projects": {
-    "C:\\Users\\meesv\\source\\repos\\Tmoemes\\KWSadmin\\Factory\\KWSAdmin.DALFactory.csproj": {
+    "C:\\Users\\meesv\\Source\\Repos\\Tmoemes\\KWSadmin\\Factory\\KWSAdmin.DALFactory.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\meesv\\source\\repos\\Tmoemes\\KWSadmin\\Factory\\KWSAdmin.DALFactory.csproj",
+        "projectUniqueName": "C:\\Users\\meesv\\Source\\Repos\\Tmoemes\\KWSadmin\\Factory\\KWSAdmin.DALFactory.csproj",
         "projectName": "KWSAdmin.DALFactory",
-        "projectPath": "C:\\Users\\meesv\\source\\repos\\Tmoemes\\KWSadmin\\Factory\\KWSAdmin.DALFactory.csproj",
+        "projectPath": "C:\\Users\\meesv\\Source\\Repos\\Tmoemes\\KWSadmin\\Factory\\KWSAdmin.DALFactory.csproj",
         "packagesPath": "C:\\Users\\meesv\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\meesv\\source\\repos\\Tmoemes\\KWSadmin\\Factory\\obj\\",
+        "outputPath": "C:\\Users\\meesv\\Source\\Repos\\Tmoemes\\KWSadmin\\Factory\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\meesv\\AppData\\Roaming\\NuGet\\NuGet.Config",

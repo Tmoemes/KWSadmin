@@ -48,11 +48,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\meesv\\source\\repos\\Tmoemes\\KWSadmin\\KWSAdmin\\KWSAdminApplication.csproj",
+      "projectUniqueName": "C:\\Users\\meesv\\Source\\Repos\\Tmoemes\\KWSadmin\\KWSAdmin\\KWSAdminApplication.csproj",
       "projectName": "KWSAdminApplication",
-      "projectPath": "C:\\Users\\meesv\\source\\repos\\Tmoemes\\KWSadmin\\KWSAdmin\\KWSAdminApplication.csproj",
+      "projectPath": "C:\\Users\\meesv\\Source\\Repos\\Tmoemes\\KWSadmin\\KWSAdmin\\KWSAdminApplication.csproj",
       "packagesPath": "C:\\Users\\meesv\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\meesv\\source\\repos\\Tmoemes\\KWSadmin\\KWSAdmin\\obj\\",
+      "outputPath": "C:\\Users\\meesv\\Source\\Repos\\Tmoemes\\KWSadmin\\KWSAdmin\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\meesv\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -68,11 +68,11 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "C:\\Users\\meesv\\source\\repos\\Tmoemes\\KWSadmin\\Factory\\KWSAdmin.DALFactory.csproj": {
-              "projectPath": "C:\\Users\\meesv\\source\\repos\\Tmoemes\\KWSadmin\\Factory\\KWSAdmin.DALFactory.csproj"
+            "C:\\Users\\meesv\\Source\\Repos\\Tmoemes\\KWSadmin\\Factory\\KWSAdmin.DALFactory.csproj": {
+              "projectPath": "C:\\Users\\meesv\\Source\\Repos\\Tmoemes\\KWSadmin\\Factory\\KWSAdmin.DALFactory.csproj"
             },
-            "C:\\Users\\meesv\\source\\repos\\Tmoemes\\KWSadmin\\Interface\\KWSAdmin.persistence.Interface.csproj": {
-              "projectPath": "C:\\Users\\meesv\\source\\repos\\Tmoemes\\KWSadmin\\Interface\\KWSAdmin.persistence.Interface.csproj"
+            "C:\\Users\\meesv\\Source\\Repos\\Tmoemes\\KWSadmin\\Interface\\KWSAdmin.persistence.Interface.csproj": {
+              "projectPath": "C:\\Users\\meesv\\Source\\Repos\\Tmoemes\\KWSadmin\\Interface\\KWSAdmin.persistence.Interface.csproj"
             }
           }
         }

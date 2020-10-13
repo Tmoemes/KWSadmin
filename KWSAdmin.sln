@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30523.141
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KWSAdminApplication", "KWSAdmin\KWSAdminApplication.csproj", "{CC5A709C-A1BB-43BF-A30B-7F935E16E921}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KWSAdmin.percistence", "DAL\KWSAdmin.percistence.csproj", "{FDF81AF7-60D7-4677-B3AD-F27C1B951676}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KWSAdmin.persistence", "DAL\KWSAdmin.persistence.csproj", "{FDF81AF7-60D7-4677-B3AD-F27C1B951676}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "View", "View\View.csproj", "{87EB42C5-1FBB-4873-9DED-397FE7619472}"
 EndProject
