@@ -185,11 +185,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\VSRepos\\KWSAdmin\\Factory\\KWSAdmin.DALFactory.csproj",
+      "projectUniqueName": "C:\\Users\\meesv\\Source\\Repos\\Tmoemes\\KWSadmin\\Factory\\KWSAdmin.DALFactory.csproj",
       "projectName": "KWSAdmin.DALFactory",
-      "projectPath": "E:\\VSRepos\\KWSAdmin\\Factory\\KWSAdmin.DALFactory.csproj",
+      "projectPath": "C:\\Users\\meesv\\Source\\Repos\\Tmoemes\\KWSadmin\\Factory\\KWSAdmin.DALFactory.csproj",
       "packagesPath": "C:\\Users\\meesv\\.nuget\\packages\\",
-      "outputPath": "E:\\VSRepos\\KWSAdmin\\Factory\\obj\\",
+      "outputPath": "C:\\Users\\meesv\\Source\\Repos\\Tmoemes\\KWSadmin\\Factory\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\meesv\\AppData\\Roaming\\NuGet\\NuGet.Config",
