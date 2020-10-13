@@ -48,11 +48,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\VSRepos\\KWSAdmin\\KWSAdmin\\KWSAdminApplication.csproj",
+      "projectUniqueName": "C:\\Users\\meesv\\source\\repos\\Tmoemes\\KWSadmin\\KWSAdmin\\KWSAdminApplication.csproj",
       "projectName": "KWSAdminApplication",
-      "projectPath": "E:\\VSRepos\\KWSAdmin\\KWSAdmin\\KWSAdminApplication.csproj",
+      "projectPath": "C:\\Users\\meesv\\source\\repos\\Tmoemes\\KWSadmin\\KWSAdmin\\KWSAdminApplication.csproj",
       "packagesPath": "C:\\Users\\meesv\\.nuget\\packages\\",
-      "outputPath": "E:\\VSRepos\\KWSAdmin\\KWSAdmin\\obj\\",
+      "outputPath": "C:\\Users\\meesv\\source\\repos\\Tmoemes\\KWSadmin\\KWSAdmin\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\meesv\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -68,11 +68,11 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "E:\\VSRepos\\KWSAdmin\\Factory\\KWSAdmin.DALFactory.csproj": {
-              "projectPath": "E:\\VSRepos\\KWSAdmin\\Factory\\KWSAdmin.DALFactory.csproj"
+            "C:\\Users\\meesv\\source\\repos\\Tmoemes\\KWSadmin\\Factory\\KWSAdmin.DALFactory.csproj": {
+              "projectPath": "C:\\Users\\meesv\\source\\repos\\Tmoemes\\KWSadmin\\Factory\\KWSAdmin.DALFactory.csproj"
             },
-            "E:\\VSRepos\\KWSAdmin\\Interface\\KWSAdmin.persistence.Interface.csproj": {
-              "projectPath": "E:\\VSRepos\\KWSAdmin\\Interface\\KWSAdmin.persistence.Interface.csproj"
+            "C:\\Users\\meesv\\source\\repos\\Tmoemes\\KWSadmin\\Interface\\KWSAdmin.persistence.Interface.csproj": {
+              "projectPath": "C:\\Users\\meesv\\source\\repos\\Tmoemes\\KWSadmin\\Interface\\KWSAdmin.persistence.Interface.csproj"
             }
           }
         }

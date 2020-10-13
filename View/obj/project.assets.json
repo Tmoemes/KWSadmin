@@ -66,11 +66,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\VSRepos\\KWSAdmin\\View\\View.csproj",
+      "projectUniqueName": "C:\\Users\\meesv\\source\\repos\\Tmoemes\\KWSadmin\\View\\View.csproj",
       "projectName": "View",
-      "projectPath": "E:\\VSRepos\\KWSAdmin\\View\\View.csproj",
+      "projectPath": "C:\\Users\\meesv\\source\\repos\\Tmoemes\\KWSadmin\\View\\View.csproj",
       "packagesPath": "C:\\Users\\meesv\\.nuget\\packages\\",
-      "outputPath": "E:\\VSRepos\\KWSAdmin\\View\\obj\\",
+      "outputPath": "C:\\Users\\meesv\\source\\repos\\Tmoemes\\KWSadmin\\View\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\meesv\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -86,8 +86,8 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "E:\\VSRepos\\KWSAdmin\\KWSAdmin\\KWSAdminApplication.csproj": {
-              "projectPath": "E:\\VSRepos\\KWSAdmin\\KWSAdmin\\KWSAdminApplication.csproj"
+            "C:\\Users\\meesv\\source\\repos\\Tmoemes\\KWSadmin\\KWSAdmin\\KWSAdminApplication.csproj": {
+              "projectPath": "C:\\Users\\meesv\\source\\repos\\Tmoemes\\KWSadmin\\KWSAdmin\\KWSAdminApplication.csproj"
             }
           }
         }
