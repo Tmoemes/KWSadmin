@@ -4,7 +4,7 @@ using System.Text;
 
 namespace KWSAdminApplication
 {
-    class Order
+    public class Order
     {
     }
 }

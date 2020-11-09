@@ -185,11 +185,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\meesv\\Source\\Repos\\Tmoemes\\KWSadmin\\Interface\\KWSAdmin.persistence.Interface.csproj",
-      "projectName": "KWSAdmin.persistence.Interface",
-      "projectPath": "C:\\Users\\meesv\\Source\\Repos\\Tmoemes\\KWSadmin\\Interface\\KWSAdmin.persistence.Interface.csproj",
+      "projectUniqueName": "C:\\Users\\meesv\\source\\repos\\Tmoemes\\KWSadmin\\Interface\\KWSAdmin.persistence.Interface1.csproj",
+      "projectName": "KWSAdmin.persistence.Interface1",
+      "projectPath": "C:\\Users\\meesv\\source\\repos\\Tmoemes\\KWSadmin\\Interface\\KWSAdmin.persistence.Interface1.csproj",
       "packagesPath": "C:\\Users\\meesv\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\meesv\\Source\\Repos\\Tmoemes\\KWSadmin\\Interface\\obj\\",
+      "outputPath": "C:\\Users\\meesv\\source\\repos\\Tmoemes\\KWSadmin\\Interface\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\meesv\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -233,7 +233,7 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.403\\RuntimeIdentifierGraph.json"
       }
     }
   }
