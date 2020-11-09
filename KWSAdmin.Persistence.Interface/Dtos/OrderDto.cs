@@ -1,5 +1,4 @@
 ﻿using KWSAdmin.Persistence.Interface.Dtos;
-using System;
 
 namespace Interface
 {
@@ -11,6 +10,9 @@ namespace Interface
         public UserDto creator { get; private set; }
         public AccuDto accu { get; private set; }
 
+        public OrderDto()
+        {
 
+        }
     }
 }

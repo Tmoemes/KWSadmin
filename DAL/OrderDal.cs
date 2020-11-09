@@ -1,5 +1,5 @@
-﻿using KWSAdmin.persistence.Interface.Interfaces;
-using KWSAdmin.persistence.Interface.Dtos;
+﻿using KWSAdmin.Persistence.Interface.Interfaces;
+using KWSAdmin.Persistence.Interface.Dtos;
 using Interface;
 
 namespace KWSAdmin.Persistence

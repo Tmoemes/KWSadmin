@@ -4,7 +4,7 @@ using System.Text;
 using KWSAdmin;
 using KWSAdmin.Persistence.Interface.Dtos;
 
-namespace KWSAdminApplication
+namespace KWSAdminApplication 
 {
     public class Accu
     {
