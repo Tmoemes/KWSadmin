@@ -4,7 +4,7 @@ using System.Text;
 
 namespace KWSAdmin.Persistence.Interface.Dtos
 {
-    public class UserDto
+    public class ClientDto
     {
     }
 }

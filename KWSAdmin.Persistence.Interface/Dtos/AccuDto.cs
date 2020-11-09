@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace KWSAdmin.persistence.Interface.Dtos
+namespace KWSAdmin.Persistence.Interface.Dtos
 {
-    class AccuDto
+    public class AccuDto
     {
     }
 }

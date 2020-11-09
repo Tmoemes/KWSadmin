@@ -5,8 +5,11 @@ namespace Interface
 {
     public class OrderDto
     {
-        public int ClientId { get; private set; }
-        public Location Location { get; private set; }
+        public int id { get; private set; }
+        public ClientDto client { get; private set; }
+        public Location location { get; private set; }
+        public UserDto creator { get; private set; }
+        public AccuDto accu { get; private set; }
 
 
     }

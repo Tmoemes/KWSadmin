@@ -1,8 +1,8 @@
 ﻿using Interface;
-using KWSAdmin.persistence.Interface.Dtos;
+using KWSAdmin.Persistence.Interface.Dtos;
 
 
-namespace KWSAdmin.persistence.Interface.Interfaces
+namespace KWSAdmin.Persistence.Interface.Interfaces
 {
     public interface IOrderDal
     {
