@@ -4,19 +4,19 @@ using Interface;
 
 namespace KWSAdmin.Persistence
 {
-    public class OrderDal : IOrderDal
+    public class ClientDal : IClientDal
     {
-        public void Add(OrderDto order)
+        public void Add(ClientDto order)
         {
             throw new System.NotImplementedException();
         }
 
-        public OrderDto GetById(int id)
+        public ClientDto GetById(int id)
         {
             throw new System.NotImplementedException();
         }
 
-        public void updateorder(OrderDto order)
+        public void updateclient(ClientDto order)
         {
             throw new System.NotImplementedException();
         }

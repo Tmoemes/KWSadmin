@@ -1,7 +1,6 @@
 ﻿using Interface;
 using KWSAdmin.Persistence.Interface.Dtos;
 
-
 namespace KWSAdmin.Persistence.Interface.Interfaces
 {
     public interface IOrderDal
@@ -9,5 +8,7 @@ namespace KWSAdmin.Persistence.Interface.Interfaces
         OrderDto GetById(int id);
 
         void Add(OrderDto order);
+
+        void updateorder(OrderDto order);
     }
 }

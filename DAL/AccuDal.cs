@@ -4,19 +4,19 @@ using Interface;
 
 namespace KWSAdmin.Persistence
 {
-    public class OrderDal : IOrderDal
+    public class AccuDal : IAccuDal
     {
-        public void Add(OrderDto order)
+        public void Add(AccuDto order)
         {
             throw new System.NotImplementedException();
         }
 
-        public OrderDto GetById(int id)
+        public AccuDto GetById(int id)
         {
             throw new System.NotImplementedException();
         }
 
-        public void updateorder(OrderDto order)
+        public void updateaccu(AccuDto order)
         {
             throw new System.NotImplementedException();
         }
