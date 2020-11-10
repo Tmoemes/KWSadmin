@@ -5,13 +5,13 @@ VisualStudioVersion = 16.0.30523.141
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KWSAdminApplication", "KWSAdmin\KWSAdminApplication.csproj", "{CC5A709C-A1BB-43BF-A30B-7F935E16E921}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KWSAdmin.persistence", "DAL\KWSAdmin.persistence.csproj", "{FDF81AF7-60D7-4677-B3AD-F27C1B951676}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KWSAdmin.Persistence", "DAL\KWSAdmin.Persistence.csproj", "{FDF81AF7-60D7-4677-B3AD-F27C1B951676}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "View", "View\View.csproj", "{87EB42C5-1FBB-4873-9DED-397FE7619472}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KWSAdmin.persistence.Interface", "Interface\KWSAdmin.persistence.Interface.csproj", "{8FBD94F5-1EE6-4823-A9AD-C8D264309B43}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KWSAdmin.Persistence.Interface", "KWSAdmin.Persistence.Interface\KWSAdmin.Persistence.Interface.csproj", "{339D3D65-2444-429B-805F-0C750F7F842B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KWSAdmin.DALFactory", "Factory\KWSAdmin.DALFactory.csproj", "{42D3C524-9831-4A57-B99C-51AC60BFC531}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KWSAdmin.DALFactory", "KWSAdmin.DALFactory\KWSAdmin.DALFactory.csproj", "{817BBE20-91AE-4D0C-AF72-321B30E546EF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,14 +31,14 @@ Global
 		{87EB42C5-1FBB-4873-9DED-397FE7619472}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{87EB42C5-1FBB-4873-9DED-397FE7619472}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{87EB42C5-1FBB-4873-9DED-397FE7619472}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8FBD94F5-1EE6-4823-A9AD-C8D264309B43}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8FBD94F5-1EE6-4823-A9AD-C8D264309B43}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8FBD94F5-1EE6-4823-A9AD-C8D264309B43}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8FBD94F5-1EE6-4823-A9AD-C8D264309B43}.Release|Any CPU.Build.0 = Release|Any CPU
-		{42D3C524-9831-4A57-B99C-51AC60BFC531}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{42D3C524-9831-4A57-B99C-51AC60BFC531}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{42D3C524-9831-4A57-B99C-51AC60BFC531}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{42D3C524-9831-4A57-B99C-51AC60BFC531}.Release|Any CPU.Build.0 = Release|Any CPU
+		{339D3D65-2444-429B-805F-0C750F7F842B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{339D3D65-2444-429B-805F-0C750F7F842B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{339D3D65-2444-429B-805F-0C750F7F842B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{339D3D65-2444-429B-805F-0C750F7F842B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{817BBE20-91AE-4D0C-AF72-321B30E546EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{817BBE20-91AE-4D0C-AF72-321B30E546EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{817BBE20-91AE-4D0C-AF72-321B30E546EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{817BBE20-91AE-4D0C-AF72-321B30E546EF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

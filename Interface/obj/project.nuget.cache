@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "HZKLYjBD23ac/mxWnQ2sXlTQjtx0LVo5zV0DkqwYkI/LI+g0B7Uye84BZDasYKIOw8lVdg9U2Gv/avobtuR1HQ==",
+  "dgSpecHash": "ZlIqGU74vhHf4WqWv9tgM8CYa3H10fJZ28p/Nab04OXxAV+WU+gAsYd7j90E2sqSFJzz/BrX48g+bBcvCqIHCw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\meesv\\Source\\Repos\\Tmoemes\\KWSadmin\\Interface\\KWSAdmin.persistence.Interface.csproj",
+  "projectFilePath": "C:\\Users\\meesv\\source\\repos\\Tmoemes\\KWSadmin\\Interface\\KWSAdmin.persistence.Interface1.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\meesv\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "C:\\Users\\meesv\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"

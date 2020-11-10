@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "XbJ4JDi2HL7STquz2gxlQL1pOkR4+EEY59ivfIRP+95k8iXP1WiDwfc8pqInBbeO0m3HUTws/3PZbpOZiTl+Ug==",
+  "dgSpecHash": "qEHIxeqRjyiPOqwarSEpKwJEDEn5SklFz/tROetitbMNDBBSDfUWxN3mQIUlqPhYMLG95tdXoWU6oirt/u9AQA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\meesv\\Source\\Repos\\Tmoemes\\KWSadmin\\DAL\\KWSAdmin.persistence.csproj",
+  "projectFilePath": "C:\\Users\\meesv\\source\\repos\\Tmoemes\\KWSadmin\\DAL\\KWSAdmin.Persistence.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DAL
+namespace ConsoleApp1
 {
     class Program
     {
