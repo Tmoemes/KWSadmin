@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Text;
 using KWSAdmin.Persistence.Interface.Dtos;
 
@@ -14,8 +15,14 @@ namespace KWSAdminApplication
         public string EMail { get; private set; }
         public string Adres { get; private set; }
 
-        public Client()
+        public Client(ClientDto client)
         {
+            this.id = client.id;
+            this.FName = client.FName;
+            this.LName = client.LName;
+            this.Phone = client.Phone;
+            this.EMail = client.EMail;
+            this.Adres = client.Adres;
 
         }
 

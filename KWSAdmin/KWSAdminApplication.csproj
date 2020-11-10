@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\KWSAdmin.DALFactory\KWSAdmin.DALFactory.csproj" />
     <ProjectReference Include="..\KWSAdmin.Persistence.Interface\KWSAdmin.Persistence.Interface.csproj" />
   </ItemGroup>
 

@@ -11,13 +11,29 @@ namespace KWSAdmin
     public class User 
     {
         public int id { get; private set; }
-        public string UserName { get; private set; }
-        public string PassWord { get; private set; }
-        public DateTime RegisterDate { get; private set; }
+        public string username { get; private set; }
+        public string password { get; private set; }
+        public DateTime registerDate { get; private set; }
 
-        public User()
+        public User(UserDto user)
         {
+            this.id = user.id;
+            this.username = user.username;
+            this.password = user.password;
+            this.registerDate = user.registerDate;
+        }
 
+        public bool verifyLogin(string username, string password)
+        {
+            if (username == this.username)
+            {
+                if (password == this.password)
+                {
+                    return true;
+                }
+                else throw new Exception("Username or Password is not correct");
+            }
+            return false;
         }
     }
 }
