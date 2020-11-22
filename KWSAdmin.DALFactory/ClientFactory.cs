@@ -5,11 +5,11 @@ using KWSAdmin.Persistence;
 
 namespace KWSAdmin.DALFactory
 {
-    public class UserFactory
+    class ClientFactory
     {
-        public static UserDal GetUserDal()
+        public static ClientDal GetUserDal()
         {
-            return new UserDal();
+            return new ClientDal();
         }
     }
 }

@@ -13,8 +13,12 @@ namespace KWSAdminApplication
         public User Creator { get; private set; }
         public string[] Specs { get; private set; }
 
-        public Accu()
+        public Accu(AccuDto accu)
         {
+            this.id = accu.id;
+            this.Name = accu.Name;
+            this.Creator = new User(accu.Creator);
+            this.Specs = accu.Specs;
 
         }
     }

@@ -9,9 +9,12 @@ namespace KWSAdmin.Persistence.Interface.Dtos
         public string password { get; private set; }
         public DateTime registerDate { get; private set; }
 
-        public UserDto()
+        public UserDto(int id, string username, string password, DateTime date)
         {
-
+            this.id = id;
+            this.username = username;
+            this.password = password;
+            this.registerDate = date;
         }
     }
 }

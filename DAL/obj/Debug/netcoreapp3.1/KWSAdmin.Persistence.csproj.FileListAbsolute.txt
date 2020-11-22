@@ -1,0 +1,4 @@
+C:\Users\meesv\source\repos\Tmoemes\KWSadmin\DAL\bin\Debug\netcoreapp3.1\KWSAdmin.Persistence.Interface.dll
+C:\Users\meesv\source\repos\Tmoemes\KWSadmin\DAL\obj\Debug\netcoreapp3.1\KWSAdmin.Persistence.csprojAssemblyReference.cache
+C:\Users\meesv\source\repos\Tmoemes\KWSadmin\DAL\obj\Debug\netcoreapp3.1\KWSAdmin.Persistence.AssemblyInfoInputs.cache
+C:\Users\meesv\source\repos\Tmoemes\KWSadmin\DAL\obj\Debug\netcoreapp3.1\KWSAdmin.Persistence.AssemblyInfo.cs
