@@ -10,7 +10,7 @@ namespace KWSAdmin.DALFactory
     {
         public static IOrderDal GetOrderDal()
         {
-            return new OrderDal();
+            return new OrderDal(new DbConnection());
         }
     }
 }

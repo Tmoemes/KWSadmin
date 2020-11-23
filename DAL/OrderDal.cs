@@ -31,8 +31,8 @@ namespace KWSAdmin.Persistence
             {
                 _db.SqlConnection.Open();
 
-                var cmd = new SqlCommand("SELECT [locationid],[clientid],[accuid],[creatorid] FROM [Orders] WHERE [id] = @id", _db.SqlConnection);
-                cmd.Parameters.Add(new SqlParameter("id", id));
+                var cmd = new SqlCommand("SELECT locationid,clientid,accuid,creatorid FROM Order WHERE id = @id", _db.SqlConnection);
+                cmd.Parameters.AddWithValue("id", id);
 
                 var reader = cmd.ExecuteReader();
 
@@ -58,13 +58,29 @@ namespace KWSAdmin.Persistence
 
         }
 
-        public void updateorder(OrderDto order)
+        public void UpdateOrder(OrderDto order)
         {
 
             try
             {
                 _db.SqlConnection.Open();
-                var cmd = new SqlCommand("update [Orders] SET ");
+                var cmd = new SqlCommand(
+                    "UPDATE Order SET locationid = @locationid, clientid = @clientid, accuid = @accuid, creatorid = @creatorid WHERE id = @id");
+                cmd.Parameters.AddWithValue("locationid", (int) order.location);
+                cmd.Parameters.AddWithValue("clientid", order.client.id);
+                cmd.Parameters.AddWithValue("accuid", order.accu.id);
+                cmd.Parameters.AddWithValue("creatorid", order.creator.id);
+
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+            finally
+            {
+                _db.SqlConnection.Close();
             }
 
             throw new System.NotImplementedException();
