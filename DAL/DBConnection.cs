@@ -1,31 +1,21 @@
-﻿using System.Data.SqlClient;
-using System.IO;
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Text;
+﻿using System;
+using System.Data.SqlClient;
 
 namespace KWSAdmin.Persistence
 {
-    class DBConnection
+    public class DbConnection
     {
-        
-        private static void OpenSqlConnection()
+        string connectionString = "Persist Security Info=False;" +
+            "User ID=KwsDatabase;" +
+            "Password=KwsDatabase123;" +
+            "Initial Catalog=KwsAdmin;" +
+            "Server=84.29.154.210";
+
+        public DbConnection()
         {
-            string connectionString = "Data Source = 84.29.154.210; " +
-                  "Initial Catalog=KwsAdmin;" +
-                  "User id=KwsDatabase;" +
-                  "Password=KwsDatabase123;";
-            
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                connection.Open();
-                Console.WriteLine("ServerVersion: {0}", connection.ServerVersion);
-                Console.WriteLine("State: {0}", connection.State);
-            }
-
-
-
+            SqlConnection = new SqlConnection(connectionString);
         }
+
+        internal SqlConnection SqlConnection { get; }
     }
 }
