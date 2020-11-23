@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using System.Text;
 using KWSAdmin.Persistence;
-using KWSAdmin.Persistence.Interface.Interfaces;
 
 namespace KWSAdmin.DALFactory
 {
-    public class UserFactory
+    class AccuFactory
     {
-        public static IUserDal GetUserDal()
+        public static AccuDal GetUserDal()
         {
-            return new UserDal();
+            return new AccuDal();
         }
+
     }
 }

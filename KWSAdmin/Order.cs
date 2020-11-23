@@ -20,10 +20,10 @@ namespace KWSAdminApplication
         public Order(OrderDto order)
         {
             this.id = order.id;
-            //this.client = order.client; // get client object from id
-            this.location = (Location) order.locationid;
-            //this.creator = order.creator; // get user object from id
-            //this.accu = order.accu; // get accu object from id
+            this.client = new Client(order.client); 
+            this.location = order.location;
+            this.creator = new User(order.creator); 
+            this.accu = new Accu(order.accu); 
         }
 
 

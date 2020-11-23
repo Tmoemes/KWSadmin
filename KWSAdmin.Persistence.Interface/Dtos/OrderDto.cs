@@ -6,18 +6,18 @@ namespace Interface
     {
 
         public int id { get; private set; }
-        public int clientid { get; private set; }
-        public int locationid { get; private set; }
-        public int creatorid { get; private set; }
-        public int accuid { get; private set; }
+        public ClientDto client { get; private set; }
+        public Location location { get; private set; }
+        public UserDto creator { get; private set; }
+        public AccuDto accu { get; private set; }
 
-        public OrderDto(int id, int client, int location, int creator, int accu) 
+        public OrderDto(int id, ClientDto client, Location location, UserDto creator, AccuDto accu) 
         {
             this.id = id;
-            this.clientid = client;
-            this.locationid = location;
-            this.creatorid = creator;
-            this.accuid = accu;
+            this.client =  client;
+            this.location = (Location) location;
+            this.creator = creator;
+            this.accu =  accu;
         }
     }
 }
