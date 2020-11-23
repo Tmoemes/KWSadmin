@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\meesv\\source\\repos\\Tmoemes\\KWSadmin\\DAL\\KWSAdmin.Persistence.csproj": {}
+    "C:\\Users\\meesv\\Source\\Repos\\Tmoemes\\KWSadmin\\DAL\\KWSAdmin.Persistence.csproj": {}
   },
   "projects": {
-    "C:\\Users\\meesv\\source\\repos\\Tmoemes\\KWSadmin\\DAL\\KWSAdmin.Persistence.csproj": {
+    "C:\\Users\\meesv\\Source\\Repos\\Tmoemes\\KWSadmin\\DAL\\KWSAdmin.Persistence.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\meesv\\source\\repos\\Tmoemes\\KWSadmin\\DAL\\KWSAdmin.Persistence.csproj",
+        "projectUniqueName": "C:\\Users\\meesv\\Source\\Repos\\Tmoemes\\KWSadmin\\DAL\\KWSAdmin.Persistence.csproj",
         "projectName": "KWSAdmin.Persistence",
-        "projectPath": "C:\\Users\\meesv\\source\\repos\\Tmoemes\\KWSadmin\\DAL\\KWSAdmin.Persistence.csproj",
+        "projectPath": "C:\\Users\\meesv\\Source\\Repos\\Tmoemes\\KWSadmin\\DAL\\KWSAdmin.Persistence.csproj",
         "packagesPath": "C:\\Users\\meesv\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\meesv\\source\\repos\\Tmoemes\\KWSadmin\\DAL\\obj\\",
+        "outputPath": "C:\\Users\\meesv\\Source\\Repos\\Tmoemes\\KWSadmin\\DAL\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\meesv\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -27,8 +27,8 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "C:\\Users\\meesv\\source\\repos\\Tmoemes\\KWSadmin\\KWSAdmin.Persistence.Interface\\KWSAdmin.Persistence.Interface.csproj": {
-                "projectPath": "C:\\Users\\meesv\\source\\repos\\Tmoemes\\KWSadmin\\KWSAdmin.Persistence.Interface\\KWSAdmin.Persistence.Interface.csproj"
+              "C:\\Users\\meesv\\Source\\Repos\\Tmoemes\\KWSadmin\\KWSAdmin.Persistence.Interface\\KWSAdmin.Persistence.Interface.csproj": {
+                "projectPath": "C:\\Users\\meesv\\Source\\Repos\\Tmoemes\\KWSadmin\\KWSAdmin.Persistence.Interface\\KWSAdmin.Persistence.Interface.csproj"
               }
             }
           }
@@ -41,6 +41,12 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "dependencies": {
+            "System.Data.SqlClient": {
+              "target": "Package",
+              "version": "[4.8.2, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -60,14 +66,14 @@
         }
       }
     },
-    "C:\\Users\\meesv\\source\\repos\\Tmoemes\\KWSadmin\\KWSAdmin.Persistence.Interface\\KWSAdmin.Persistence.Interface.csproj": {
+    "C:\\Users\\meesv\\Source\\Repos\\Tmoemes\\KWSadmin\\KWSAdmin.Persistence.Interface\\KWSAdmin.Persistence.Interface.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\meesv\\source\\repos\\Tmoemes\\KWSadmin\\KWSAdmin.Persistence.Interface\\KWSAdmin.Persistence.Interface.csproj",
+        "projectUniqueName": "C:\\Users\\meesv\\Source\\Repos\\Tmoemes\\KWSadmin\\KWSAdmin.Persistence.Interface\\KWSAdmin.Persistence.Interface.csproj",
         "projectName": "KWSAdmin.Persistence.Interface",
-        "projectPath": "C:\\Users\\meesv\\source\\repos\\Tmoemes\\KWSadmin\\KWSAdmin.Persistence.Interface\\KWSAdmin.Persistence.Interface.csproj",
+        "projectPath": "C:\\Users\\meesv\\Source\\Repos\\Tmoemes\\KWSadmin\\KWSAdmin.Persistence.Interface\\KWSAdmin.Persistence.Interface.csproj",
         "packagesPath": "C:\\Users\\meesv\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\meesv\\source\\repos\\Tmoemes\\KWSadmin\\KWSAdmin.Persistence.Interface\\obj\\",
+        "outputPath": "C:\\Users\\meesv\\Source\\Repos\\Tmoemes\\KWSadmin\\KWSAdmin.Persistence.Interface\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\meesv\\AppData\\Roaming\\NuGet\\NuGet.Config",

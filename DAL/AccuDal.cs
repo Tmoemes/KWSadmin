@@ -1,6 +1,7 @@
 ﻿using KWSAdmin.Persistence.Interface.Interfaces;
 using KWSAdmin.Persistence.Interface.Dtos;
 using Interface;
+using System.Data.SqlClient;
 
 namespace KWSAdmin.Persistence
 {
@@ -20,5 +21,7 @@ namespace KWSAdmin.Persistence
         {
             throw new System.NotImplementedException();
         }
+
+
     }
 }

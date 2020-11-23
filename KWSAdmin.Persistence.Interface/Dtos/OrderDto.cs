@@ -4,6 +4,7 @@ namespace Interface
 {
     public class OrderDto
     {
+
         public int id { get; private set; }
         public int clientid { get; private set; }
         public int locationid { get; private set; }

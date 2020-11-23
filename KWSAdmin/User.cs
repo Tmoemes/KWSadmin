@@ -23,7 +23,7 @@ namespace KWSAdmin
             this.registerDate = user.registerDate;
         }
 
-        public bool verifyLogin(string username, string password)
+/*        public bool verifyLogin(string username, string password)
         {
             if (username == this.username)
             {
@@ -34,6 +34,6 @@ namespace KWSAdmin
                 else throw new Exception("Username or Password is not correct");
             }
             return false;
-        }
+        }*/
     }
 }
