@@ -13,14 +13,12 @@ namespace KWSAdmin
         public int id { get; private set; }
         public string username { get; private set; }
         public string password { get; private set; }
-        public DateTime registerDate { get; private set; }
 
         public User(UserDto user)
         {
             this.id = user.id;
             this.username = user.username;
             this.password = user.password;
-            this.registerDate = user.registerDate;
         }
 
 /*        public bool verifyLogin(string username, string password)

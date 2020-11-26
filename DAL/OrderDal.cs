@@ -22,7 +22,29 @@ namespace KWSAdmin.Persistence
 
         public void Add(OrderDto order)
         {
-            throw new System.NotImplementedException();
+
+            try
+            {
+                _db.SqlConnection.Open();
+
+                var cmd = new SqlCommand("INSERT INTO Order (id, locationid, clientid, creatorid, accuid, info) VALUES (@id, @locationid, @clientid, @creatorid, @accuid, @info)", _db.SqlConnection);
+                cmd.Parameters.AddWithValue("id", order.id);
+                cmd.Parameters.AddWithValue("locationid", (int)order.location);
+                cmd.Parameters.AddWithValue("clientid", order.client.id);
+                cmd.Parameters.AddWithValue("accuid", order.accu.id);
+                cmd.Parameters.AddWithValue("creatorid", order.creator.id);
+                cmd.Parameters.AddWithValue("info", order.info);
+
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+            finally
+            {
+                _db.SqlConnection.Close();
+            }
         }
 
         public OrderDto GetById(int id)
@@ -31,14 +53,14 @@ namespace KWSAdmin.Persistence
             {
                 _db.SqlConnection.Open();
 
-                var cmd = new SqlCommand("SELECT locationid,clientid,accuid,creatorid FROM Order WHERE id = @id", _db.SqlConnection);
+                var cmd = new SqlCommand("SELECT locationid,clientid,accuid,creatorid,info FROM Order WHERE id = @id", _db.SqlConnection);
                 cmd.Parameters.AddWithValue("id", id);
 
                 var reader = cmd.ExecuteReader();
 
                 while (reader.Read())
                 {
-                    var order = new OrderDto((int)reader["id"], clientDal.GetById((int)reader["clientid"]), (Location)reader["locationid"], userDal.GetById((int)reader["creatorid"]), accuDal.GetById((int)reader["accuid"]));
+                    var order = new OrderDto((int)reader["id"], clientDal.GetById((int)reader["clientid"]), (Location)reader["locationid"], userDal.GetById((int)reader["creatorid"]), accuDal.GetById((int)reader["accuid"]), reader["info"].ToString());
 
                     return order;
                 }
@@ -65,11 +87,13 @@ namespace KWSAdmin.Persistence
             {
                 _db.SqlConnection.Open();
                 var cmd = new SqlCommand(
-                    "UPDATE Order SET locationid = @locationid, clientid = @clientid, accuid = @accuid, creatorid = @creatorid WHERE id = @id");
+                    "UPDATE Order SET locationid = @locationid, clientid = @clientid, accuid = @accuid, creatorid = @creatorid, info = @info WHERE id = @id");
+                cmd.Parameters.AddWithValue("id", order.id);
                 cmd.Parameters.AddWithValue("locationid", (int) order.location);
                 cmd.Parameters.AddWithValue("clientid", order.client.id);
                 cmd.Parameters.AddWithValue("accuid", order.accu.id);
                 cmd.Parameters.AddWithValue("creatorid", order.creator.id);
+                cmd.Parameters.AddWithValue("info", order.info);
 
                 cmd.ExecuteNonQuery();
             }
@@ -83,7 +107,6 @@ namespace KWSAdmin.Persistence
                 _db.SqlConnection.Close();
             }
 
-            throw new System.NotImplementedException();
         }
     }
 }

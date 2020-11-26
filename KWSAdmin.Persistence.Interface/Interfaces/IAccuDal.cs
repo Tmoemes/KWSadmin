@@ -9,6 +9,6 @@ namespace KWSAdmin.Persistence.Interface.Interfaces
 
         void Add(AccuDto order);
 
-        void updateaccu(AccuDto order);
+        void UpdateAccu(AccuDto order);
     }
 }

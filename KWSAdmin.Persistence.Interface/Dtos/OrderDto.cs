@@ -10,14 +10,16 @@ namespace Interface
         public Location location { get; private set; }
         public UserDto creator { get; private set; }
         public AccuDto accu { get; private set; }
+        public string info { get; private set; }
 
-        public OrderDto(int id, ClientDto client, Location location, UserDto creator, AccuDto accu) 
+        public OrderDto(int id, ClientDto client, Location location, UserDto creator, AccuDto accu, string info) 
         {
             this.id = id;
             this.client =  client;
             this.location = (Location) location;
             this.creator = creator;
             this.accu =  accu;
+            this.info = info;
         }
     }
 }

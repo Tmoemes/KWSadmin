@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "bmUl30I7P0KyGB/aS/uEOHp4hVez1NM1RdVOWK6LFT17Eh4S0uPHwM7DJvSWhWOnawyQZGLNVu4eJAjuoDe1eQ==",
+  "dgSpecHash": "qKEHO+HuiF7Du05wPtT69j0SaL1CaUmTox6dgsI+4D3tQzFg1MPFjNLpQkUZysLr6t1xBdJPooWJNC5Bo5itcA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\meesv\\Source\\Repos\\Tmoemes\\KWSadmin\\KWSAdmin\\KWSAdminApplication.csproj",
+  "projectFilePath": "C:\\Users\\meesv\\source\\repos\\Tmoemes\\KWSadmin\\KWSAdmin\\KWSAdminApplication.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\meesv\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\meesv\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",

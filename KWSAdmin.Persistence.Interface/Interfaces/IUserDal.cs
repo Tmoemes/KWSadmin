@@ -9,6 +9,6 @@ namespace KWSAdmin.Persistence.Interface.Interfaces
 
         void Add(UserDto order);
 
-        void updatuser(UserDto order);
+        void UpdateUser(UserDto order);
     }
 }

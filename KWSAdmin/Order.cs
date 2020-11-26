@@ -16,6 +16,7 @@ namespace KWSAdminApplication
         public Location location { get; private set; }
         public User creator { get; private set; }
         public Accu accu { get; private set; }
+        public string info { get; private set; }
 
         public Order(OrderDto order)
         {
@@ -23,7 +24,8 @@ namespace KWSAdminApplication
             this.client = new Client(order.client); 
             this.location = order.location;
             this.creator = new User(order.creator); 
-            this.accu = new Accu(order.accu); 
+            this.accu = new Accu(order.accu);
+            this.info = order.info;
         }
 
 
