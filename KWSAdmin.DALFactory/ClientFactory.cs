@@ -7,9 +7,9 @@ namespace KWSAdmin.DALFactory
 {
     class ClientFactory
     {
-        public static ClientDal GetUserDal()
+        public static ClientDal GetClientDal()
         {
-            return new ClientDal();
+            return new ClientDal(new DbConnection());
         }
     }
 }

@@ -5,9 +5,8 @@ namespace KWSAdmin.Persistence
 {
     public class DbConnection
     {
-        // old connectionstring readonly string connectionString = "Persist Security Info=False;" + "User ID=KwsDatabase;" + "Password=KwsDatabase123;" + "Initial Catalog=KwsAdmin;" + "Server=84.29.154.210";
         private readonly string connectionString =
-            "Server=LAPTOP-GD4GJOLQ;Database=KwsAdmin;User Id=Kws;Password=Kws123;";
+            "Data Source=LAPTOP-GD4GJOLQ;Initial Catalog=KwsAdmin;Integrated Security=True";
 
         public DbConnection()
         {

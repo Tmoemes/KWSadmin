@@ -23,13 +23,14 @@ namespace KWSAdmin.Persistence
             {
                 _db.SqlConnection.Open();
 
-                var cmd = new SqlCommand("INSERT INTO Client (id, fname, lname, phone, email, adres) VALUES (@id, @fname, @lname, @phone, @email, @adres)", _db.SqlConnection);
-                cmd.Parameters.AddWithValue("id", client.id);
-                cmd.Parameters.AddWithValue("fname", client.FName);
-                cmd.Parameters.AddWithValue("lname", client.LName);
-                cmd.Parameters.AddWithValue("phone", client.Phone);
-                cmd.Parameters.AddWithValue("email", client.EMail);
-                cmd.Parameters.AddWithValue("adres", client.Adres);
+                var cmd = new SqlCommand(
+                    "INSERT INTO Client (fname, lname, phone, email, adres) VALUES (@fname, @lname, @phone, @email, @adres)",
+                    _db.SqlConnection);
+                cmd.Parameters.AddWithValue("@fname", client.FName);
+                cmd.Parameters.AddWithValue("@lname", client.LName);
+                cmd.Parameters.AddWithValue("@phone", client.Phone);
+                cmd.Parameters.AddWithValue("@email", client.EMail);
+                cmd.Parameters.AddWithValue("@adres", client.Adres);
 
                 cmd.ExecuteNonQuery();
             }
@@ -50,7 +51,7 @@ namespace KWSAdmin.Persistence
                 _db.SqlConnection.Open();
 
                 var cmd = new SqlCommand("SELECT fname,lname,phone,email,adres FROM Client WHERE id = @id", _db.SqlConnection);
-                cmd.Parameters.AddWithValue("id", id);
+                cmd.Parameters.AddWithValue("@id", id);
 
                 var reader = cmd.ExecuteReader();
 
@@ -84,12 +85,12 @@ namespace KWSAdmin.Persistence
                 _db.SqlConnection.Open();
                 var cmd = new SqlCommand(
                     "UPDATE Client SET fname = @fname, lname = @lname, phone = @phone, email = @email, adres = @adres WHERE id = @id");
-                cmd.Parameters.AddWithValue("id", client.id);
-                cmd.Parameters.AddWithValue("fname", client.FName);
-                cmd.Parameters.AddWithValue("lname", client.LName);
-                cmd.Parameters.AddWithValue("phone", client.Phone);
-                cmd.Parameters.AddWithValue("email", client.EMail);
-                cmd.Parameters.AddWithValue("adres", client.Adres);
+                cmd.Parameters.AddWithValue("@id", client.id);
+                cmd.Parameters.AddWithValue("@fname", client.FName);
+                cmd.Parameters.AddWithValue("@lname", client.LName);
+                cmd.Parameters.AddWithValue("@phone", client.Phone);
+                cmd.Parameters.AddWithValue("@email", client.EMail);
+                cmd.Parameters.AddWithValue("@adres", client.Adres);
 
                 cmd.ExecuteNonQuery();
             }

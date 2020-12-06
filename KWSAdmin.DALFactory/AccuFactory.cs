@@ -7,9 +7,9 @@ namespace KWSAdmin.DALFactory
 {
     class AccuFactory
     {
-        public static AccuDal GetUserDal()
+        public static AccuDal GetAccuDal()
         {
-            return new AccuDal();
+            return new AccuDal(new DbConnection());
         }
 
     }

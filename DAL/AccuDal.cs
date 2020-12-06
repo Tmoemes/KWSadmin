@@ -23,11 +23,10 @@ namespace KWSAdmin.Persistence
             {
                 _db.SqlConnection.Open();
 
-                var cmd = new SqlCommand("INSERT INTO Accu (id, name, creatorid, specs) VALUES (@id, @name, @creatorid, @specs)", _db.SqlConnection);
-                cmd.Parameters.AddWithValue("id", accu.id);
-                cmd.Parameters.AddWithValue("name", accu.Name);
-                cmd.Parameters.AddWithValue("creatorid", accu.Creator.id);
-                cmd.Parameters.AddWithValue("specs", string.Join(",", accu.Specs));
+                var cmd = new SqlCommand("INSERT INTO Accu (name, creatorid, specs) VALUES (@name, @creatorid, @specs)", _db.SqlConnection);
+                cmd.Parameters.AddWithValue("@name", accu.Name);
+                cmd.Parameters.AddWithValue("@creatorid", accu.Creator.id);
+                cmd.Parameters.AddWithValue("@specs", string.Join(",", accu.Specs));
 
                 cmd.ExecuteNonQuery();
             }
@@ -48,7 +47,7 @@ namespace KWSAdmin.Persistence
                 _db.SqlConnection.Open();
 
                 var cmd = new SqlCommand("SELECT name,creatorid,specs FROM Accu WHERE id = @id", _db.SqlConnection);
-                cmd.Parameters.AddWithValue("id", id);
+                cmd.Parameters.AddWithValue("@id", id);
 
                 var reader = cmd.ExecuteReader();
 
@@ -82,10 +81,10 @@ namespace KWSAdmin.Persistence
                 _db.SqlConnection.Open();
                 var cmd = new SqlCommand(
                     "UPDATE Accu SET name = @name, creatorid = @creatorid, specs = @specs WHERE id = @id");
-                cmd.Parameters.AddWithValue("id", accu.id);
-                cmd.Parameters.AddWithValue("name", accu.Name);
-                cmd.Parameters.AddWithValue("creatorid", accu.Creator.id);
-                cmd.Parameters.AddWithValue("specs", string.Join(",", accu.Specs));
+                cmd.Parameters.AddWithValue("@id", accu.id);
+                cmd.Parameters.AddWithValue("@name", accu.Name);
+                cmd.Parameters.AddWithValue("@creatorid", accu.Creator.id);
+                cmd.Parameters.AddWithValue("@specs", string.Join(",", accu.Specs));
 
                 cmd.ExecuteNonQuery();
             }

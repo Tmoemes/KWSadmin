@@ -10,7 +10,7 @@ namespace KWSAdmin.DALFactory
     {
         public static IUserDal GetUserDal()
         {
-            return new UserDal();
+            return new UserDal(new DbConnection());
         }
     }
 }

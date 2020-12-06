@@ -5,7 +5,10 @@ using System.Text;
 
 namespace KWSAdminApplication
 {
-    class AdminUser 
+    class AdminUser
     {
+
+
+        //kan met asp authorization
     }
 }
