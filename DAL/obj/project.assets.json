@@ -2,6 +2,40 @@
   "version": 3,
   "targets": {
     ".NETCoreApp,Version=v3.1": {
+      "Microsoft.Extensions.Configuration/5.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.Configuration.Abstractions": "5.0.0",
+          "Microsoft.Extensions.Primitives": "5.0.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.Extensions.Configuration.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.Extensions.Configuration.dll": {}
+        }
+      },
+      "Microsoft.Extensions.Configuration.Abstractions/5.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.Primitives": "5.0.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.Extensions.Configuration.Abstractions.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.Extensions.Configuration.Abstractions.dll": {}
+        }
+      },
+      "Microsoft.Extensions.Primitives/5.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/netcoreapp3.0/Microsoft.Extensions.Primitives.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/Microsoft.Extensions.Primitives.dll": {}
+        }
+      },
       "Microsoft.NETCore.Platforms/3.1.0": {
         "type": "package",
         "compile": {
@@ -144,6 +178,68 @@
     }
   },
   "libraries": {
+    "Microsoft.Extensions.Configuration/5.0.0": {
+      "sha512": "LN322qEKHjuVEhhXueTUe7RNePooZmS8aGid5aK2woX3NPjSnONFyKUc6+JknOS6ce6h2tCLfKPTBXE3mN/6Ag==",
+      "type": "package",
+      "path": "microsoft.extensions.configuration/5.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net461/Microsoft.Extensions.Configuration.dll",
+        "lib/net461/Microsoft.Extensions.Configuration.xml",
+        "lib/netstandard2.0/Microsoft.Extensions.Configuration.dll",
+        "lib/netstandard2.0/Microsoft.Extensions.Configuration.xml",
+        "microsoft.extensions.configuration.5.0.0.nupkg.sha512",
+        "microsoft.extensions.configuration.nuspec",
+        "useSharedDesignerContext.txt",
+        "version.txt"
+      ]
+    },
+    "Microsoft.Extensions.Configuration.Abstractions/5.0.0": {
+      "sha512": "ETjSBHMp3OAZ4HxGQYpwyGsD8Sw5FegQXphi0rpoGMT74S4+I2mm7XJEswwn59XAaKOzC15oDSOWEE8SzDCd6Q==",
+      "type": "package",
+      "path": "microsoft.extensions.configuration.abstractions/5.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net461/Microsoft.Extensions.Configuration.Abstractions.dll",
+        "lib/net461/Microsoft.Extensions.Configuration.Abstractions.xml",
+        "lib/netstandard2.0/Microsoft.Extensions.Configuration.Abstractions.dll",
+        "lib/netstandard2.0/Microsoft.Extensions.Configuration.Abstractions.xml",
+        "microsoft.extensions.configuration.abstractions.5.0.0.nupkg.sha512",
+        "microsoft.extensions.configuration.abstractions.nuspec",
+        "useSharedDesignerContext.txt",
+        "version.txt"
+      ]
+    },
+    "Microsoft.Extensions.Primitives/5.0.0": {
+      "sha512": "cI/VWn9G1fghXrNDagX9nYaaB/nokkZn0HYAawGaELQrl8InSezfe9OnfPZLcJq3esXxygh3hkq2c3qoV3SDyQ==",
+      "type": "package",
+      "path": "microsoft.extensions.primitives/5.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net461/Microsoft.Extensions.Primitives.dll",
+        "lib/net461/Microsoft.Extensions.Primitives.xml",
+        "lib/netcoreapp3.0/Microsoft.Extensions.Primitives.dll",
+        "lib/netcoreapp3.0/Microsoft.Extensions.Primitives.xml",
+        "lib/netstandard2.0/Microsoft.Extensions.Primitives.dll",
+        "lib/netstandard2.0/Microsoft.Extensions.Primitives.xml",
+        "microsoft.extensions.primitives.5.0.0.nupkg.sha512",
+        "microsoft.extensions.primitives.nuspec",
+        "useSharedDesignerContext.txt",
+        "version.txt"
+      ]
+    },
     "Microsoft.NETCore.Platforms/3.1.0": {
       "sha512": "z7aeg8oHln2CuNulfhiLYxCVMPEwBl3rzicjvIX+4sUuCwvXw5oXQEtbiU2c0z4qYL5L3Kmx0mMA/+t/SbY67w==",
       "type": "package",
@@ -466,6 +562,7 @@
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
       "KWSAdmin.Persistence.Interface >= 1.0.0",
+      "Microsoft.Extensions.Configuration >= 5.0.0",
       "System.Data.SqlClient >= 4.8.2"
     ]
   },
@@ -475,11 +572,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\meesv\\Source\\Repos\\Tmoemes\\KWSadmin\\DAL\\KWSAdmin.Persistence.csproj",
+      "projectUniqueName": "C:\\Users\\meesv\\source\\repos\\Tmoemes\\KWSadmin\\DAL\\KWSAdmin.Persistence.csproj",
       "projectName": "KWSAdmin.Persistence",
-      "projectPath": "C:\\Users\\meesv\\Source\\Repos\\Tmoemes\\KWSadmin\\DAL\\KWSAdmin.Persistence.csproj",
+      "projectPath": "C:\\Users\\meesv\\source\\repos\\Tmoemes\\KWSadmin\\DAL\\KWSAdmin.Persistence.csproj",
       "packagesPath": "C:\\Users\\meesv\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\meesv\\Source\\Repos\\Tmoemes\\KWSadmin\\DAL\\obj\\",
+      "outputPath": "C:\\Users\\meesv\\source\\repos\\Tmoemes\\KWSadmin\\DAL\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\meesv\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -495,8 +592,8 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "C:\\Users\\meesv\\Source\\Repos\\Tmoemes\\KWSadmin\\KWSAdmin.Persistence.Interface\\KWSAdmin.Persistence.Interface.csproj": {
-              "projectPath": "C:\\Users\\meesv\\Source\\Repos\\Tmoemes\\KWSadmin\\KWSAdmin.Persistence.Interface\\KWSAdmin.Persistence.Interface.csproj"
+            "C:\\Users\\meesv\\source\\repos\\Tmoemes\\KWSadmin\\KWSAdmin.Persistence.Interface\\KWSAdmin.Persistence.Interface.csproj": {
+              "projectPath": "C:\\Users\\meesv\\source\\repos\\Tmoemes\\KWSadmin\\KWSAdmin.Persistence.Interface\\KWSAdmin.Persistence.Interface.csproj"
             }
           }
         }
@@ -510,6 +607,10 @@
     "frameworks": {
       "netcoreapp3.1": {
         "dependencies": {
+          "Microsoft.Extensions.Configuration": {
+            "target": "Package",
+            "version": "[5.0.0, )"
+          },
           "System.Data.SqlClient": {
             "target": "Package",
             "version": "[4.8.2, )"
@@ -530,7 +631,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.403\\RuntimeIdentifierGraph.json"
       }
     }
   }

@@ -9,7 +9,7 @@ namespace KWSAdmin.Persistence
     public class AccuDal : IAccuDal
     {
         private readonly DbConnection _db;
-        UserDal userDal;
+        AccountDal userDal;
 
         public AccuDal(DbConnection db)
         {

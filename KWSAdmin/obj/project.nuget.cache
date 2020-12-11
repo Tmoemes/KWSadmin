@@ -1,9 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "bmUl30I7P0KyGB/aS/uEOHp4hVez1NM1RdVOWK6LFT17Eh4S0uPHwM7DJvSWhWOnawyQZGLNVu4eJAjuoDe1eQ==",
+  "dgSpecHash": "sh/HlkemBD5CZzDZFBc/ZeTxpWcVkQz2OmqNRPXI8fVqgaDh6tKHoj6FTZrF+G0kR+t3Utz6Tl3GoIaiqUudxw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\meesv\\Source\\Repos\\Tmoemes\\KWSadmin\\KWSAdmin\\KWSAdminApplication.csproj",
+  "projectFilePath": "C:\\Users\\meesv\\source\\repos\\Tmoemes\\KWSadmin\\KWSAdmin\\KWSAdmin.Application.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\meesv\\.nuget\\packages\\microsoft.extensions.configuration\\5.0.0\\microsoft.extensions.configuration.5.0.0.nupkg.sha512",
+    "C:\\Users\\meesv\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\5.0.0\\microsoft.extensions.configuration.abstractions.5.0.0.nupkg.sha512",
+    "C:\\Users\\meesv\\.nuget\\packages\\microsoft.extensions.primitives\\5.0.0\\microsoft.extensions.primitives.5.0.0.nupkg.sha512",
     "C:\\Users\\meesv\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\meesv\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Users\\meesv\\.nuget\\packages\\runtime.native.system.data.sqlclient.sni\\4.7.0\\runtime.native.system.data.sqlclient.sni.4.7.0.nupkg.sha512",

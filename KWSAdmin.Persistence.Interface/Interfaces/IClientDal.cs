@@ -9,8 +9,12 @@ namespace KWSAdmin.Persistence.Interface.Interfaces
 
         ClientDto GetById(int id);
 
+        ClientDto GetByLName(string name);
+
         void Add(ClientDto order);
 
         void UpdateClient(ClientDto order);
+
+        
     }
 }

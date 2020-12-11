@@ -7,14 +7,14 @@ using KWSAdmin.Persistence.Interface.Dtos;
 using KWSAdmin.Persistence.Interface.Interfaces;
 using KWSAdmin.DALFactory;
 
-namespace KWSAdminApplication
+namespace KWSAdmin.Application
 {
     public class Order
     {
         public int id { get; private set; }
         public Client client { get; private set; } 
         public Location location { get; private set; }
-        public User creator { get; private set; }
+        public Account creator { get; private set; }
         public Accu accu { get; private set; }
         public string info { get; private set; }
 
@@ -23,7 +23,7 @@ namespace KWSAdminApplication
             this.id = order.id;
             this.client = new Client(order.client); 
             this.location = order.location;
-            this.creator = new User(order.creator); 
+            this.creator = new Account(order.creator); 
             this.accu = new Accu(order.accu);
             this.info = order.info;
         }

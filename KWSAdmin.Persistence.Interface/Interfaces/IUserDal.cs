@@ -7,8 +7,10 @@ namespace KWSAdmin.Persistence.Interface.Interfaces
     {
         UserDto GetById(int id);
 
-        void Add(UserDto order);
+        void Add(UserDto user);
 
-        void UpdateUser(UserDto order);
+        void UpdateUser(UserDto user);
+
+        UserDto GetByName(string name);
     }
 }

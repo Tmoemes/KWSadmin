@@ -22,3 +22,6 @@ C:\Users\meesv\source\repos\Tmoemes\KWSadmin\dbtest\obj\Debug\netcoreapp3.1\dbte
 C:\Users\meesv\source\repos\Tmoemes\KWSadmin\dbtest\obj\Debug\netcoreapp3.1\dbtest.pdb
 C:\Users\meesv\source\repos\Tmoemes\KWSadmin\dbtest\obj\Debug\netcoreapp3.1\dbtest.genruntimeconfig.cache
 C:\Users\meesv\source\repos\Tmoemes\KWSadmin\dbtest\obj\Debug\netcoreapp3.1\dbtest.csprojAssemblyReference.cache
+C:\Users\meesv\source\repos\Tmoemes\KWSadmin\dbtest\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.dll
+C:\Users\meesv\source\repos\Tmoemes\KWSadmin\dbtest\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.Abstractions.dll
+C:\Users\meesv\source\repos\Tmoemes\KWSadmin\dbtest\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Primitives.dll

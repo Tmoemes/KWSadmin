@@ -5,8 +5,8 @@ using KWSAdmin.Persistence;
 
 namespace KWSAdmin.DALFactory
 {
-    class ClientFactory
-    {
+    public class ClientFactory
+        {
         public static ClientDal GetClientDal()
         {
             return new ClientDal(new DbConnection());

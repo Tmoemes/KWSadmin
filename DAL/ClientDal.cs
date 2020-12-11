@@ -77,6 +77,39 @@ namespace KWSAdmin.Persistence
 
         }
 
+        public ClientDto GetByLName(string name)
+        {
+            try
+            {
+                _db.SqlConnection.Open();
+
+                var cmd = new SqlCommand("SELECT id,fname,phone,email,adres FROM Client WHERE lname = @lname", _db.SqlConnection);
+                cmd.Parameters.AddWithValue("@lname", name);
+
+                var reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    var client = new ClientDto((int)reader["id"], reader["fname"].ToString(), name, reader["phone"].ToString(), reader["email"].ToString(), reader["adres"].ToString());
+
+                    return client;
+                }
+
+                return null;
+            }
+
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+            finally
+            {
+                _db.SqlConnection.Close();
+            }
+
+        }
+
         public void UpdateClient(ClientDto client)
         {
 

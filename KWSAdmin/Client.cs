@@ -1,18 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Net.Http;
 using System.Text;
 using KWSAdmin.Persistence.Interface.Dtos;
+using KWSAdmin.Persistence.Interface.Interfaces;
+using KWSAdmin.DALFactory;
+using System.ComponentModel.DataAnnotations;
 
-namespace KWSAdminApplication
+namespace KWSAdmin.Application
 {
     public class Client
     {
         public int id { get; private set; }
         public string FName { get; private set; }
-        public string LName { get; private set; }
+        [Required] public string LName { get; private set; }
         public string Phone { get; private set; }
-        public string EMail { get; private set; }
+        [Required] public string EMail { get; private set; }
         public string Adres { get; private set; }
 
         public Client(ClientDto client)
@@ -25,6 +29,21 @@ namespace KWSAdminApplication
             this.Adres = client.Adres;
 
         }
+
+        public static IClientDal dal = ClientFactory.GetClientDal();
+
+        public static Client GetByLName(string name)
+        {
+            return new Client(dal.GetByLName(name));
+        }
+
+        public static int AddClient(Client client)
+        {
+            dal.Add(new ClientDto(0,client.FName,client.LName,client.Phone,client.EMail,client.Adres));
+
+            return dal.GetByLName(client.LName).id;
+        }
+
 
     }
 }

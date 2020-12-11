@@ -10,7 +10,7 @@ namespace KWSAdmin.Persistence
     {
         private readonly DbConnection _db;
         ClientDal clientDal;
-        UserDal userDal;
+        AccountDal userDal;
         AccuDal accuDal;
 
 
