@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Data.SqlClient;
+using Microsoft.Extensions.Configuration;
+
 
 namespace KWSAdmin.Persistence
 {
     public class DbConnection
     {
-        // old connectionstring readonly string connectionString = "Persist Security Info=False;" + "User ID=KwsDatabase;" + "Password=KwsDatabase123;" + "Initial Catalog=KwsAdmin;" + "Server=84.29.154.210";
-        private readonly string connectionString =
-            "Server=LAPTOP-GD4GJOLQ;Database=KwsAdmin;User Id=Kws;Password=Kws123;";
+        private readonly string connectionString = 
+            "Data Source=Desktop-FG0G0NE;Initial Catalog=KwsAdmin;Integrated Security=True"; //todo deze uit appsetting halen
+
 
         public DbConnection()
         {
