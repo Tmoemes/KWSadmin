@@ -23,7 +23,7 @@ namespace AspView.Controllers
     public class AccountController : Controller
     {
 
-        [Route("Account")]
+        [Route("AccountPage")]
         public IActionResult Account()
         {
             return View();
@@ -31,12 +31,9 @@ namespace AspView.Controllers
 
 
         [AllowAnonymous]
-        [Route("Login")]
-        public IActionResult Login(string returnUrl)
+        public IActionResult Login()
         {
-            LoginViewModel login = new LoginViewModel();
-            login.ReturnUrl = returnUrl;
-            return View(login);
+            return View();
         }
 
 
@@ -70,7 +67,7 @@ namespace AspView.Controllers
              var claimsIdentity = new ClaimsIdentity(CookieAuthenticationDefaults.AuthenticationScheme, ClaimTypes.Name,ClaimTypes.Role);
 
              claimsIdentity.AddClaim(new Claim(ClaimTypes.Name , model.Username));
-            claimsIdentity.AddClaim(new Claim(ClaimTypes.Name, "User"));
+             claimsIdentity.AddClaim(new Claim(ClaimTypes.Name, "User"));
 
             var principal = new ClaimsPrincipal(claimsIdentity);
 
@@ -96,7 +93,7 @@ namespace AspView.Controllers
         [Route("Logout")]
         public async Task<IActionResult> Logout()
         {
-            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            await HttpContext.SignOutAsync();
 
             return RedirectToAction("Login");
         }
@@ -130,7 +127,10 @@ namespace AspView.Controllers
 
                 return RedirectToAction("Login", new {returnUrl = "/"});
             }
-            return View(model); //todo give error when passwords do not match
+
+            ModelState.AddModelError(nameof(model.Username),"Passwords do not match");
+
+            return View(model);
         }
     }
 }

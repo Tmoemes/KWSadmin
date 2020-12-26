@@ -22,32 +22,29 @@ namespace AspView.Controllers
         }
         
         
-        public IActionResult Index()
+        public IActionResult Index() //todo show list of all orders with filter/search function
         {
             return View();
         }
         [Authorize]
-        public IActionResult Privacy()
+
+        public IActionResult CreateOrder() //todo form to add order details and javascript search for client, acccu and user object
         {
             return View();
         }
-        public IActionResult CreateOrder()
-        {
-            return View();
-        }
-        public IActionResult AddClient()
+        public IActionResult AddClient() //todo add client form and function
         {
             return View();
         }
 
-        public async Task<ActionResult> AddClient(KWSAdmin.Application.Client model)
+        /*public Task<ActionResult> AddClient(KWSAdmin.Application.Client model)
         {
             if (!ModelState.IsValid) return View(model);
 
             Client.AddClient(new Client(new ClientDto(0, model.FName, model.LName, model.Phone, model.EMail,
                 model.Adres)));
 
-        }
+        }*/
 
 
 

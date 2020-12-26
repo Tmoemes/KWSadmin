@@ -11,7 +11,5 @@ namespace AspView.Models
         [MinLength(6)]
         public string Password { get; set; }
 
-        public string ReturnUrl { get; set; }
-
     }
 }

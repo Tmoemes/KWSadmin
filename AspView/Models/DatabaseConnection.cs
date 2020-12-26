@@ -21,7 +21,7 @@ namespace AspView.Models
             con = new SqlConnection(configuration.GetConnectionString("ConnectionString"));
         }
 
-        private IConfigurationRoot getConfiguration()
+        private IConfigurationRoot getConfiguration() 
         {
             IConfigurationBuilder builder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json",true,true);
             return builder.Build();
