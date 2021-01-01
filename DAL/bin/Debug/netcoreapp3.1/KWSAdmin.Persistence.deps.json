@@ -123,6 +123,9 @@
       },
       "System.Security.Principal.Windows/4.7.0": {},
       "KWSAdmin.Persistence.Interface/1.0.0": {
+        "dependencies": {
+          "System.Data.SqlClient": "4.8.2"
+        },
         "runtime": {
           "KWSAdmin.Persistence.Interface.dll": {}
         }

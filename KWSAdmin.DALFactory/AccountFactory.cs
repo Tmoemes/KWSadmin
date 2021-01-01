@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using KWSAdmin.Persistence;
+﻿using KWSAdmin.Persistence;
 using KWSAdmin.Persistence.Interface.Interfaces;
 
 namespace KWSAdmin.DALFactory
@@ -10,7 +7,7 @@ namespace KWSAdmin.DALFactory
     {
         public static IUserDal GetUserDal()
         {
-            return new AccountDal(new DbConnection());
+            return new AccountDal();
         }
     }
 }

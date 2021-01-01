@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Data;
 using KWSAdmin.Persistence.Interface.Interfaces;
 using KWSAdmin.Persistence.Interface.Dtos;
 using System.Data.SqlClient;
+using System.Threading.Tasks;
 using Interface;
 
 namespace KWSAdmin.Persistence
@@ -9,21 +11,13 @@ namespace KWSAdmin.Persistence
     public class AccountDal : IUserDal
     {
 
-        private readonly DbConnection _db;
-
-
-        public AccountDal(DbConnection db)
+        public void Add(UserDto user, SqlConnection connection)
         {
-            _db = db;
-        }
-        public void Add(UserDto user)
-        {
-
             try
             {           
-                _db.SqlConnection.Open();
+                connection.Open();
 
-                var cmd = new SqlCommand("INSERT INTO Account (username, password, admin) VALUES (@username, @password, @admin)", _db.SqlConnection);
+                var cmd = new SqlCommand("INSERT INTO Account (username, password, admin) VALUES (@username, @password, @admin)");
                 cmd.Parameters.AddWithValue("@username", user.username);
                 cmd.Parameters.AddWithValue("@password", user.password);
                 cmd.Parameters.AddWithValue("@admin", Convert.ToInt32(user.admin));
@@ -36,24 +30,27 @@ namespace KWSAdmin.Persistence
             }
             finally
             {
-                _db.SqlConnection.Close();
+                connection.Close();
             }
         }
 
-        public UserDto GetById(int id)
+        public UserDto GetById(int id, SqlConnection connection)
         {
             try
             {
-                _db.SqlConnection.Open();
+                connection.Open();
 
-                var cmd = new SqlCommand("SELECT username,password,admin FROM Account WHERE id = @id", _db.SqlConnection);
+                var cmd = new SqlCommand("SELECT username,password,admin FROM Account WHERE id = @id",connection);
                 cmd.Parameters.AddWithValue("@id", id);
 
                 var reader = cmd.ExecuteReader();
 
                 while (reader.Read())
                 {
-                    var user = new UserDto(id,reader["username"].ToString(),reader["password"].ToString(),Convert.ToBoolean(reader["admin"]));
+                    var username = reader.GetString("username");
+                    var password = reader.GetString("password");
+
+                   var user = new UserDto(id,username,password,Convert.ToBoolean(reader.GetInt32("admin")));
 
                     return user;
                 }
@@ -68,18 +65,18 @@ namespace KWSAdmin.Persistence
             }
             finally
             {
-                _db.SqlConnection.Close();
+                connection.Close();
             }
 
         }
 
-        public UserDto GetByName(string name)
+        public UserDto GetByName(string name, SqlConnection connection)
         {
             try
             {
-                _db.SqlConnection.Open();
+                connection.Open();
 
-                var cmd = new SqlCommand("SELECT id,password,admin FROM Account WHERE username = @username", _db.SqlConnection);
+                var cmd = new SqlCommand("SELECT id,password,admin FROM Account WHERE username = @username",connection);
                 cmd.Parameters.AddWithValue("@username", name);
 
                 var reader = cmd.ExecuteReader();
@@ -100,17 +97,17 @@ namespace KWSAdmin.Persistence
             }
             finally
             {
-                _db.SqlConnection.Close();
+                connection.Close();
             }
 
         }
 
-        public void UpdateUser(UserDto user)
+        public void UpdateUser(UserDto user, SqlConnection connection)
         {
 
             try
             {
-                _db.SqlConnection.Open();
+                connection.Open();
                 var cmd = new SqlCommand(
                     "UPDATE Account SET username = @username, password = @password WHERE id = @id");
                 cmd.Parameters.AddWithValue("@id", user.id);
@@ -126,7 +123,7 @@ namespace KWSAdmin.Persistence
             }
             finally
             {
-                _db.SqlConnection.Close();
+                connection.Close();
             }
 
         }

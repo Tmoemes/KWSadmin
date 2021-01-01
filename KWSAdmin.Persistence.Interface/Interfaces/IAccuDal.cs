@@ -1,14 +1,15 @@
 ﻿using Interface;
 using KWSAdmin.Persistence.Interface.Dtos;
+using System.Data.SqlClient;
 
 namespace KWSAdmin.Persistence.Interface.Interfaces
 {
     public interface IAccuDal
     { 
-        AccuDto GetById(int id);
+        AccuDto GetById(int id, SqlConnection connection);
 
-        void Add(AccuDto order);
+        void Add(AccuDto order, SqlConnection connection);
 
-        void UpdateAccu(AccuDto order);
+        void UpdateAccu(AccuDto order, SqlConnection connection);
     }
 }

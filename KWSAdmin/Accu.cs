@@ -11,7 +11,7 @@ namespace KWSAdmin.Application
         public int id { get; private set; }
         public string Name { get; private set; }
         public Account Creator { get; private set; }
-        public string[] Specs { get; private set; }
+        public string Specs { get; private set; }
 
         public Accu(AccuDto accu)
         {

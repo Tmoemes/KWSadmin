@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using KWSAdmin.Persistence;
+﻿using KWSAdmin.Persistence;
 
 namespace KWSAdmin.DALFactory
 {
@@ -9,7 +6,7 @@ namespace KWSAdmin.DALFactory
         {
         public static ClientDal GetClientDal()
         {
-            return new ClientDal(new DbConnection());
+            return new ClientDal();
         }
     }
 }

@@ -1,50 +1,101 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using AspView.Models;
+using Interface;
 using KWSAdmin.Application;
+using KWSAdmin.DALFactory;
+using KWSAdmin.Persistence;
 using KWSAdmin.Persistence.Interface.Dtos;
+using KWSAdmin.Persistence.Interface.Interfaces;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.Extensions.Configuration;
 
 namespace AspView.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        readonly SqlConnection connection;
+        private IConfiguration configuration;
+        private IOrderDal orderDal = OrderFactory.GetOrderDal();
+        private IClientDal clientDal = ClientFactory.GetClientDal();
+        private IAccuDal accuDal = AccuFactory.GetAccuDal();
+        private IUserDal userDal = AccountFactory.GetUserDal();
 
-        public HomeController(ILogger<HomeController> logger)
+
+        public HomeController(ILogger<HomeController> logger, IConfiguration _configuration)
         {
+            configuration = _configuration;
+            connection = new SqlConnection(configuration.GetConnectionString("ConnectionString"));
             _logger = logger;
         }
-        
-        
-        public IActionResult Index() //todo show list of all orders with filter/search function
+
+        public IActionResult Index()
         {
-            return View();
+            if (!User.Identity.IsAuthenticated) return RedirectToAction("Login", "Account");
+            List<Order> model = new List<Order>();
+            foreach (var order in orderDal.GetAllOrders(connection))
+            {
+                model.Add(new Order(order));
+            }
+
+            return View(model);
         }
-        [Authorize]
+
+        /*public IActionResult Index() //todo show list of all orders with filter/search function
+        {
+            if (!User.Identity.IsAuthenticated) return RedirectToAction("Login","Account");
+            
+
+            return View();
+        }*/
 
         public IActionResult CreateOrder() //todo form to add order details and javascript search for client, acccu and user object
         {
-            return View();
-        }
-        public IActionResult AddClient() //todo add client form and function
-        {
+            if (!User.IsInRole("Admin")) return RedirectToAction("Login","Account");
             return View();
         }
 
-        /*public Task<ActionResult> AddClient(KWSAdmin.Application.Client model)
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateOrder(AspView.Models.OrderViewModel model)
+        {
+            if (!User.IsInRole("Admin")) return RedirectToAction("Login", "Account");
+            orderDal.Add(new OrderDto(0,clientDal.GetById(Convert.ToInt32(model.Client),connection),
+                model.Location,
+                userDal.GetById(Convert.ToInt32(User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Sid)?.Value),connection),
+                accuDal.GetById(Convert.ToInt32(model.Accu),connection),
+                model.Info
+                ),connection);
+            return View();
+        }
+
+        public IActionResult AddClient() //todo add client form and function
+        {
+            if (!User.IsInRole("Admin")) return RedirectToAction("Login", "Account");
+            return View();
+        }
+
+
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddClient( AspView.Models.CientViewModel model)
         {
             if (!ModelState.IsValid) return View(model);
 
             Client.AddClient(new Client(new ClientDto(0, model.FName, model.LName, model.Phone, model.EMail,
-                model.Adres)));
-
-        }*/
+                model.Adres)),connection);
+            return RedirectToAction("Index");
+        }
 
 
 

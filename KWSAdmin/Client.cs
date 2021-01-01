@@ -7,6 +7,7 @@ using KWSAdmin.Persistence.Interface.Dtos;
 using KWSAdmin.Persistence.Interface.Interfaces;
 using KWSAdmin.DALFactory;
 using System.ComponentModel.DataAnnotations;
+using System.Data.SqlClient;
 
 namespace KWSAdmin.Application
 {
@@ -32,16 +33,16 @@ namespace KWSAdmin.Application
 
         public static IClientDal dal = ClientFactory.GetClientDal();
 
-        public static Client GetByLName(string name)
+        public static Client GetByLName(string name, SqlConnection connection)
         {
-            return new Client(dal.GetByLName(name));
+            return new Client(dal.GetByLName(name, connection));
         }
 
-        public static int AddClient(Client client)
+        public static int AddClient(Client client, SqlConnection connection)
         {
-            dal.Add(new ClientDto(0,client.FName,client.LName,client.Phone,client.EMail,client.Adres));
+            dal.Add(new ClientDto(0,client.FName,client.LName,client.Phone,client.EMail,client.Adres), connection);
 
-            return dal.GetByLName(client.LName).id;
+            return GetByLName(client.LName,connection).id;
         }
 
 

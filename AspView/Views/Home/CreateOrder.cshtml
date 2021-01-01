@@ -1,10 +1,11 @@
-﻿@model KWSAdmin.Application.Order
+﻿@using KWSAdmin.Persistence.Interface.Dtos
+@model AspView.Models.OrderViewModel
 
 @{
     ViewData["Title"] = "Create Order";
 }
 
-<h1>View</h1>
+
 
 <h4>Order</h4>
 <hr />
@@ -12,20 +13,23 @@
     <div class="col-md-4">
         <form asp-action="CreateOrder">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @Html.DropDownListFor(m => m.Location, new SelectList(Enum.GetValues(typeof(Location))),"Select current location")
             <div class="form-group">
-                <label asp-for="id" class="control-label"></label>
-                <input asp-for="id" class="form-control" />
-                <span asp-validation-for="id" class="text-danger"></span>
+                <label asp-for="Client" class="control-label"></label>
+                <input asp-for="Client" class="form-control" />
+                <span asp-validation-for="Client" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="location" class="control-label"></label>
-                <input asp-for="location" class="form-control" />
-                <span asp-validation-for="location" class="text-danger"></span>
+                <label asp-for="Accu" class="control-label"></label>
+                <input asp-for="Accu" class="form-control" />
+                <span asp-validation-for="Accu" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="info" class="control-label"></label>
-                <input asp-for="info" class="form-control" />
-                <span asp-validation-for="info" class="text-danger"></span>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Info)
+                    @Html.TextAreaFor(model => model.Info)
+                    <span asp-validation-for="Info" class="text-danger"></span>
+                </div>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
@@ -41,3 +45,5 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+
+

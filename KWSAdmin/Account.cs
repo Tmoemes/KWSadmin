@@ -8,6 +8,7 @@ using KWSAdmin.Persistence.Interface.Dtos;
 using KWSAdmin.Persistence.Interface.Interfaces;
 using Interface;
 using KWSAdmin.DALFactory;
+using KWSAdmin.Persistence;
 using Microsoft.AspNetCore.Identity;
 
 namespace KWSAdmin.Application
@@ -35,16 +36,16 @@ namespace KWSAdmin.Application
 
         private static IUserDal dal = AccountFactory.GetUserDal();
 
-        public static Account GetByName(string name)
+        public static Account GetByName(string name,SqlConnection connection)
         {
-            return new Account(dal.GetByName(name));
+            return new Account(dal.GetByName(name,connection));
         }
 
-        public static int AddUser(Account user)
+        public static int AddUser(Account user, SqlConnection connection)
         {
-            dal.Add(new UserDto(0,user.username,user.password,user.admin));
+            dal.Add(new UserDto(0,user.username,user.password,user.admin), connection);
 
-            return dal.GetByName(user.username).id;
+            return dal.GetByName(user.username, connection).id;
         }
 
         public void SetHashedPw(string hashPw)
