@@ -32,10 +32,14 @@
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="AddAccu">Add Accu</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Register">Add Account</a>
+                            </li>
                         }
                     </ul>
-                </div>  
-            <div class="ml-auto d-inline-flex">
+                </div>
+            </div>
+            
                 @if (User?.Identity?.IsAuthenticated ?? true)
                             {
                             <li class="nav-item">
@@ -51,8 +55,8 @@
                                     <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Login">Login</a>
                                 </li>
                             }
-                </div>
-            </div>
+                
+            
         </nav>
     </header>
     <div class="container">

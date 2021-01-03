@@ -8,8 +8,8 @@ namespace KWSAdmin.Persistence.Interface.Interfaces
     { 
         AccuDto GetById(int id, SqlConnection connection);
 
-        void Add(AccuDto order, SqlConnection connection);
+        void Add(AccuDto accu, SqlConnection connection);
 
-        void UpdateAccu(AccuDto order, SqlConnection connection);
+        void UpdateAccu(AccuDto accu, SqlConnection connection);
     }
 }

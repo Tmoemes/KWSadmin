@@ -130,3 +130,4 @@ C:\Users\meesv\source\repos\Tmoemes\KWSadmin\AspView\obj\Debug\netcoreapp3.1\Asp
 C:\Users\meesv\source\repos\Tmoemes\KWSadmin\AspView\obj\Debug\netcoreapp3.1\AspView.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\meesv\source\repos\Tmoemes\KWSadmin\AspView\obj\Debug\netcoreapp3.1\Razor\Views\Home\CreateOrder.cshtml.g.cs
 C:\Users\meesv\source\repos\Tmoemes\KWSadmin\AspView\obj\Debug\netcoreapp3.1\Razor\Views\Home\AddClient.cshtml.g.cs
+C:\Users\meesv\source\repos\Tmoemes\KWSadmin\AspView\obj\Debug\netcoreapp3.1\Razor\Views\Home\AddAccu.cshtml.g.cs

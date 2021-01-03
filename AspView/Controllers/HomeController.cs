@@ -37,6 +37,7 @@ namespace AspView.Controllers
             _logger = logger;
         }
 
+        [HttpGet]
         public IActionResult Index()
         {
             if (!User.Identity.IsAuthenticated) return RedirectToAction("Login", "Account");
@@ -56,6 +57,25 @@ namespace AspView.Controllers
 
             return View();
         }*/
+
+
+        public IActionResult AddAccu()
+        {
+            if (!User.IsInRole("Admin")) return RedirectToAction("Login", "Account");
+            return View();
+        }
+
+        [HttpPost]
+        [AutoValidateAntiforgeryToken]
+        public ActionResult AddAccu(AccuViewModel model)
+        {
+            if (!User.IsInRole("Admin")) return RedirectToAction("Login", "Account");
+            
+            accuDal.Add(new AccuDto(0,model.Name,
+                userDal.GetById(Convert.ToInt32(User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Sid)?.Value), connection),
+                model.Specs),connection);
+            return View();
+        }
 
         public IActionResult CreateOrder() //todo form to add order details and javascript search for client, acccu and user object
         {
