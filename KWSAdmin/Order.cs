@@ -21,30 +21,35 @@ namespace KWSAdmin.Application
         public string info { get; private set; }
 
         private static IOrderDal orderDal = OrderFactory.GetOrderDal();
+        private static IUserDal userDal = AccountFactory.GetUserDal();
+        private static IAccuDal accuDal = AccuFactory.GetAccuDal();
+        private static IClientDal clientDal = ClientFactory.GetClientDal();
 
 
-        public Order(OrderDto order)
+        public Order(OrderDto order,SqlConnection connection)
         {
             this.id = order.id;
-            this.client = new Client(order.client); 
+            this.client = new Client(clientDal.GetById(order.clientid,connection)); 
             this.location = order.location;
-            this.creator = new Account(order.creator); 
-            this.accu = new Accu(order.accu);
+            this.creator = new Account(userDal.GetById(order.creatorid,connection)); 
+            this.accu = new Accu(accuDal.GetById(order.accuid,connection),connection);
             this.info = order.info;
         }
 
+        public Order(int id, int clientid, Location location, int creatorid, int accuid, string info , SqlConnection connection)
+        {
+            this.id = id;
+            this.client = new Client(clientDal.GetById(clientid, connection));
+            this.location = location;
+            this.creator = new Account(userDal.GetById(creatorid, connection));
+            this.accu = new Accu(accuDal.GetById(accuid, connection), connection);
+            this.info = info;
+        }
+
+
         public static void AddOrder(Order order, SqlConnection connection)
         {
-            Client client = order.client;
-            ClientDto clientDto = new ClientDto(client.id,client.FName,client.LName,client.Phone,client.EMail,client.Adres);
-            Account creator = order.creator;
-            UserDto creatorDto = new UserDto(creator.id,creator.username,creator.password,creator.admin);
-            Accu accu = order.accu;
-            Account accucreator = order.accu.Creator;
-            UserDto accucreatorDto = new UserDto(accucreator.id,accucreator.username,accucreator.password,accucreator.admin);
-            AccuDto accuDto = new AccuDto(accu.id,accu.Name,accucreatorDto,accu.Specs);
-
-            orderDal.Add(new OrderDto(0,clientDto,order.location,creatorDto,accuDto,order.info), connection);
+            orderDal.Add(new OrderDto(0,order.client.id,order.location,order.creator.id,order.accu.id,order.info), connection);
         }
 
         public static List<Order> GetAllOrders(SqlConnection connection)
@@ -52,7 +57,7 @@ namespace KWSAdmin.Application
             List<Order> orderList = new List<Order>();
             foreach (var order in orderDal.GetAllOrders(connection))
             {
-                orderList.Add(new Order(order));
+                orderList.Add(new Order(order,connection));
             }
 
             return orderList;

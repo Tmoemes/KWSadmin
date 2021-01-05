@@ -21,7 +21,7 @@ namespace KWSAdmin.Persistence
 
                 var cmd = new SqlCommand("INSERT INTO Accu (name, creatorid, specs) VALUES (@name, @creatorid, @specs)");
                 cmd.Parameters.AddWithValue("@name", accu.Name);
-                cmd.Parameters.AddWithValue("@creatorid", accu.Creator.id);
+                cmd.Parameters.AddWithValue("@creatorid", accu.Creatorid);
                 cmd.Parameters.AddWithValue("@specs", string.Join(",", accu.Specs));
 
                 cmd.ExecuteNonQuery();
@@ -39,7 +39,6 @@ namespace KWSAdmin.Persistence
         public List<AccuDto> GetAllAccus(SqlConnection connection)
         {
             var dtolist = new List<AccuDto>();
-            var templist = new List<TempAccu>();
 
             try
             {
@@ -54,7 +53,7 @@ namespace KWSAdmin.Persistence
                     var creatorid = reader.GetInt32("creatorid");
                     var specs = reader.GetString("specs");
 
-                    templist.Add(new TempAccu(id, name, creatorid, specs));
+                    dtolist.Add(new AccuDto(id, name, creatorid, specs));
                 }
             }
             catch (Exception e)
@@ -65,13 +64,8 @@ namespace KWSAdmin.Persistence
             finally
             {
                 connection.Close();
+               
             }
-
-            foreach (var accu in templist)
-            {
-                dtolist.Add(new AccuDto(accu.id,accu.name,userDal.GetById(accu.creatorid,connection),accu.specs));
-            }
-
 
             return dtolist;
         }
@@ -87,26 +81,28 @@ namespace KWSAdmin.Persistence
             {
                 connection.Open();
 
-                var cmd = new SqlCommand("SELECT name,creatorid,specs FROM Accu WHERE id = @id",connection);
+                var cmd = new SqlCommand("SELECT name,creatorid,specs FROM Accu WHERE id = @id", connection);
                 cmd.Parameters.AddWithValue("@id", id);
 
                 var reader = cmd.ExecuteReader();
 
                 while (reader.Read())
                 {
-                    name = reader.GetString("name");
-                    userid = reader.GetInt32("creatorid");
-                    specs = reader.GetString("specs");
+                    return new AccuDto(id, reader.GetString("name"), reader.GetInt32("creatorid"), reader.GetString("specs"));
                 }
-                connection.Close();
 
-                return new AccuDto(id, name, userDal.GetById(userid, connection), specs);
+                return null;
+
             }
 
             catch (Exception e)
             {
                 Console.WriteLine(e);
                 throw;
+            }
+            finally
+            {
+                connection.Close();
             }
 
 
@@ -122,7 +118,7 @@ namespace KWSAdmin.Persistence
                     "UPDATE Accu SET name = @name, creatorid = @creatorid, specs = @specs WHERE id = @id");
                 cmd.Parameters.AddWithValue("@id", accu.id);
                 cmd.Parameters.AddWithValue("@name", accu.Name);
-                cmd.Parameters.AddWithValue("@creatorid", accu.Creator.id);
+                cmd.Parameters.AddWithValue("@creatorid", accu.Creatorid);
                 cmd.Parameters.AddWithValue("@specs", string.Join(",", accu.Specs));
 
                 cmd.ExecuteNonQuery();

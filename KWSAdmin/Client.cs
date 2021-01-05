@@ -31,6 +31,17 @@ namespace KWSAdmin.Application
 
         }
 
+        public Client(int id, string fName, string lName, string phone, string eMail, string adres)
+        {
+            this.id = id;
+            this.FName = fName;
+            this.LName = lName;
+            this.Phone = phone;
+            this.EMail = eMail;
+            this.Adres = adres;
+        }
+
+
         public static IClientDal dal = ClientFactory.GetClientDal();
 
         public static Client GetByLName(string name, SqlConnection connection)

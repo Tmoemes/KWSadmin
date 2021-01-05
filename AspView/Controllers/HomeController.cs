@@ -10,10 +10,6 @@ using Microsoft.Extensions.Logging;
 using AspView.Models;
 using Interface;
 using KWSAdmin.Application;
-using KWSAdmin.DALFactory;
-using KWSAdmin.Persistence;
-using KWSAdmin.Persistence.Interface.Dtos;
-using KWSAdmin.Persistence.Interface.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Configuration;
 
@@ -24,10 +20,6 @@ namespace AspView.Controllers
         private readonly ILogger<HomeController> _logger;
         public static SqlConnection connection;
         private IConfiguration configuration;
-        private IOrderDal orderDal = OrderFactory.GetOrderDal();
-        private IClientDal clientDal = ClientFactory.GetClientDal();
-        private IAccuDal accuDal = AccuFactory.GetAccuDal();
-        private IUserDal userDal = AccountFactory.GetUserDal();
 
 
         public HomeController(ILogger<HomeController> logger, IConfiguration _configuration)
@@ -65,9 +57,8 @@ namespace AspView.Controllers
         {
             if (!User.IsInRole("Admin")) return RedirectToAction("Login", "Account");
             
-            accuDal.Add(new AccuDto(0,model.Name,
-                userDal.GetById(Convert.ToInt32(User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Sid)?.Value), connection),
-                model.Specs),connection);
+            Accu.AddAccu(new Accu(0,model.Name,GetCurrentUserId(),model.Specs,connection),connection);
+
             return View();
         }
 
@@ -82,14 +73,7 @@ namespace AspView.Controllers
         public ActionResult CreateOrder(AspView.Models.OrderViewModel model)
         {
             if (!User.IsInRole("Admin")) return RedirectToAction("Login", "Account");
-            Order.AddOrder()
-            
-            orderDal.Add(new OrderDto(0,clientDal.GetById(Convert.ToInt32(model.Client),connection),
-                model.Location,
-                userDal.GetById(Convert.ToInt32(User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Sid)?.Value),connection),
-                accuDal.GetById(Convert.ToInt32(model.Accu),connection),
-                model.Info
-                ),connection);
+            Order.AddOrder(new Order(0, model.Client.id,model.Location,GetCurrentUserId(),model.Accu.id,model.Info,connection), connection);
             return View();
         }
 
@@ -108,8 +92,7 @@ namespace AspView.Controllers
         {
             if (!ModelState.IsValid) return View(model);
 
-            Client.AddClient(new Client(new ClientDto(0, model.FName, model.LName, model.Phone, model.EMail,
-                model.Adres)),connection);
+            Client.AddClient(new Client(0, model.FName, model.LName, model.Phone, model.EMail, model.Adres),connection);
             return RedirectToAction("Index");
         }
 
@@ -120,5 +103,13 @@ namespace AspView.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+
+
+        private int GetCurrentUserId()
+        {
+            return Convert.ToInt32(User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Sid)?.Value);
+        }
+
     }
 }

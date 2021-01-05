@@ -12,10 +12,7 @@ namespace KWSAdmin.Persistence
 {
     public class OrderDal : IOrderDal
     {
-        private readonly ClientDal _clientDal = new ClientDal();
-        private readonly AccountDal _userDal = new AccountDal();
-        private readonly AccuDal _accuDal = new AccuDal();
-
+        
 
         public void Add(OrderDto order, SqlConnection connection)
         {
@@ -26,9 +23,9 @@ namespace KWSAdmin.Persistence
 
                 var cmd = new SqlCommand("INSERT INTO Order (locationid, clientid, creatorid, accuid, info) VALUES (@locationid, @clientid, @creatorid, @accuid, @info)");
                 cmd.Parameters.AddWithValue("locationid", (int)order.location);
-                cmd.Parameters.AddWithValue("clientid", order.client.id);
-                cmd.Parameters.AddWithValue("accuid", order.accu.id);
-                cmd.Parameters.AddWithValue("creatorid", order.creator.id);
+                cmd.Parameters.AddWithValue("clientid", order.clientid);
+                cmd.Parameters.AddWithValue("accuid", order.accuid);
+                cmd.Parameters.AddWithValue("creatorid", order.creatorid);
                 cmd.Parameters.AddWithValue("info", order.info);
 
                 cmd.ExecuteNonQuery();
@@ -56,7 +53,7 @@ namespace KWSAdmin.Persistence
 
                 while (reader.Read())
                 {
-                    var order = new OrderDto((int)reader["id"], _clientDal.GetById((int)reader["clientid"], connection), (Location)reader["locationid"], _userDal.GetById((int)reader["creatorid"], connection), _accuDal.GetById((int)reader["accuid"], connection), reader["info"].ToString());
+                    var order = new OrderDto(reader.GetInt32("id"), reader.GetInt32("clientid"), (Location)reader["locationid"], reader.GetInt32("creatorid"), reader.GetInt32("accuid"), reader.GetString("info"));
 
                     return order;
                 }
@@ -86,9 +83,9 @@ namespace KWSAdmin.Persistence
                     "UPDATE Order SET locationid = @locationid, clientid = @clientid, accuid = @accuid, creatorid = @creatorid, info = @info WHERE id = @id");
                 cmd.Parameters.AddWithValue("@id", order.id);
                 cmd.Parameters.AddWithValue("@locationid", (int) order.location);
-                cmd.Parameters.AddWithValue("@clientid", order.client.id);
-                cmd.Parameters.AddWithValue("@accuid", order.accu.id);
-                cmd.Parameters.AddWithValue("@creatorid", order.creator.id);
+                cmd.Parameters.AddWithValue("@clientid", order.clientid);
+                cmd.Parameters.AddWithValue("@accuid", order.accuid);
+                cmd.Parameters.AddWithValue("@creatorid", order.creatorid);
                 cmd.Parameters.AddWithValue("@info", order.info);
 
                 cmd.ExecuteNonQuery();
@@ -109,7 +106,6 @@ namespace KWSAdmin.Persistence
         public List<OrderDto> GetAllOrders(SqlConnection connection)
         {
             var dtolist = new List<OrderDto>();
-            var templist = new List<TempOrder>();
 
             try
             {
@@ -126,7 +122,7 @@ namespace KWSAdmin.Persistence
                     var accuid = reader.GetInt32("accuid");
                     var info = reader.GetString("info");
 
-                    templist.Add(new TempOrder(id,locationid,clientid,userid,accuid,info));
+                    dtolist.Add(new OrderDto(id,clientid,(Location)locationid,userid,accuid,info));
                 }
             }
             catch (Exception e)
@@ -139,26 +135,8 @@ namespace KWSAdmin.Persistence
                 connection.Close();
             }
 
-
-            foreach (var tOrder in templist)
-            {
-                dtolist.Add(orderMapper(tOrder.id,tOrder.clientid,tOrder.locationid,tOrder.creatorid,tOrder.accuid,tOrder.info,connection));
-            }
-
             return dtolist;
         }
-
-
-        private OrderDto orderMapper(int id, int clientid, int locationid, int userid, int accuid, string info, SqlConnection connection)
-        {
-            var client = _clientDal.GetById(clientid, connection);
-            var location = (Location)locationid;
-            var user = _userDal.GetById(userid, connection);
-            var accu = _accuDal.GetById(accuid, connection);
-
-            return new OrderDto(id,client,location,user,accu,info);
-        }
-
 
     }
 }
