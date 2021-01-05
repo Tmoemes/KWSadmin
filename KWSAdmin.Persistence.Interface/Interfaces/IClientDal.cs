@@ -1,4 +1,5 @@
-﻿using System.Data.SqlTypes;
+﻿using System.Collections.Generic;
+using System.Data.SqlTypes;
 using Interface;
 using KWSAdmin.Persistence.Interface.Dtos;
 using System.Data.SqlClient;
@@ -18,6 +19,7 @@ namespace KWSAdmin.Persistence.Interface.Interfaces
 
         void UpdateClient(ClientDto order, SqlConnection connection);
 
-        
+        List<ClientDto> GetAllClients(SqlConnection connection);
+
     }
 }

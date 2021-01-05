@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Data;
 using KWSAdmin.Persistence.Interface.Interfaces;
 using KWSAdmin.Persistence.Interface.Dtos;
 using Interface;
@@ -36,6 +38,45 @@ namespace KWSAdmin.Persistence
                 connection.Close();
             }
         }
+
+        public List<ClientDto> GetAllClients(SqlConnection connection)
+        {
+            var dtolist = new List<ClientDto>();
+
+            try
+            {
+                connection.Open();
+                var cmd = new SqlCommand("SELECT * FROM [Client]", connection);
+                var reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    var id = reader.GetInt32("id");
+                    var fname = reader.GetString("fname");
+                    var lname = reader.GetString("lname");
+                    var phone = reader.GetString("phone");
+                    var email = reader.GetString("email");
+                    var adres = reader.GetString("adres");
+
+                    dtolist.Add(new ClientDto(id,fname,lname,phone,email,adres));
+                }
+
+                return dtolist;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
+
+
+
+
 
         public ClientDto GetById(int id,SqlConnection connection)
         {

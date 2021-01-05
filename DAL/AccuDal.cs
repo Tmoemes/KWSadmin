@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using KWSAdmin.Persistence.Interface.Interfaces;
 using KWSAdmin.Persistence.Interface.Dtos;
@@ -34,6 +35,47 @@ namespace KWSAdmin.Persistence
                 connection.Close();
             }
         }
+
+        public List<AccuDto> GetAllAccus(SqlConnection connection)
+        {
+            var dtolist = new List<AccuDto>();
+            var templist = new List<TempAccu>();
+
+            try
+            {
+                connection.Open();
+                var cmd = new SqlCommand("SELECT * FROM [Accu]", connection);
+                var reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    var id = reader.GetInt32("id");
+                    var name = reader.GetString("name");
+                    var creatorid = reader.GetInt32("creatorid");
+                    var specs = reader.GetString("specs");
+
+                    templist.Add(new TempAccu(id, name, creatorid, specs));
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            foreach (var accu in templist)
+            {
+                dtolist.Add(new AccuDto(accu.id,accu.name,userDal.GetById(accu.creatorid,connection),accu.specs));
+            }
+
+
+            return dtolist;
+        }
+
 
         public AccuDto GetById(int id,SqlConnection connection)
         {

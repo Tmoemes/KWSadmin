@@ -45,6 +45,20 @@ namespace KWSAdmin.Application
             return GetByLName(client.LName,connection).id;
         }
 
+        public static List<Client> GetAllClients(SqlConnection connection)
+        {
+            List<Client> clients = new List<Client>();
+            foreach (var clientDto in dal.GetAllClients(connection))
+            {
+                clients.Add(new Client(clientDto));
+            }
 
+            return clients;
+        }
+
+        public override string ToString()
+        {
+            return LName + ", " + FName;
+        }
     }
 }

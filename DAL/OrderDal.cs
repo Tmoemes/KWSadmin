@@ -160,36 +160,5 @@ namespace KWSAdmin.Persistence
         }
 
 
-
-        /*public async Task<List<OrderDto>> GetAllOrders(SqlConnection connection)
-        {
-            List<OrderDto> list = new List<OrderDto>();
-            try
-            {
-                await connection.OpenAsync();
-                var cmd = new SqlCommand("SELECT * FROM [Order]",connection);
-
-                var reader =  await cmd.ExecuteReaderAsync();
-
-                while (await reader.ReadAsync())
-                {
-                    list.Add(orderMapper(reader,connection));
-                }
-
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw;
-            }
-            finally
-            {
-               await connection.CloseAsync();
-            }
-
-            return list;
-        }*/
-
-
     }
 }

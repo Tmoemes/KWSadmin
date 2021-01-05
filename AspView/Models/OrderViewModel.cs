@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using KWSAdmin.Application;
 using KWSAdmin.Persistence.Interface.Dtos;
 
 
@@ -8,10 +9,9 @@ namespace AspView.Models
     {
         [Required] public Location Location { get; set; }
 
-        public string Client { get; set; }
+        public Client Client { get; set; }
 
-
-        public string Accu { get; set; }
+        public Accu Accu { get; set; }
 
         public string Info { get; set; }
 

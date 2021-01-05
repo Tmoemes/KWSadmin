@@ -22,7 +22,7 @@ namespace AspView.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        readonly SqlConnection connection;
+        public static SqlConnection connection;
         private IConfiguration configuration;
         private IOrderDal orderDal = OrderFactory.GetOrderDal();
         private IClientDal clientDal = ClientFactory.GetClientDal();
@@ -41,13 +41,7 @@ namespace AspView.Controllers
         public IActionResult Index()
         {
             if (!User.Identity.IsAuthenticated) return RedirectToAction("Login", "Account");
-            List<Order> model = new List<Order>();
-            foreach (var order in orderDal.GetAllOrders(connection))
-            {
-                model.Add(new Order(order));
-            }
-
-            return View(model);
+            return View(Order.GetAllOrders(connection));
         }
 
         /*public IActionResult Index() //todo show list of all orders with filter/search function
@@ -88,6 +82,8 @@ namespace AspView.Controllers
         public ActionResult CreateOrder(AspView.Models.OrderViewModel model)
         {
             if (!User.IsInRole("Admin")) return RedirectToAction("Login", "Account");
+            Order.AddOrder()
+            
             orderDal.Add(new OrderDto(0,clientDal.GetById(Convert.ToInt32(model.Client),connection),
                 model.Location,
                 userDal.GetById(Convert.ToInt32(User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Sid)?.Value),connection),
