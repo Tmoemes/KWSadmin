@@ -59,7 +59,7 @@ namespace AspView.Controllers
             
             Accu.AddAccu(new Accu(0,model.Name,GetCurrentUserId(),model.Specs,connection),connection);
 
-            return View();
+            return RedirectToAction("Index");
         }
 
         public IActionResult CreateOrder() //todo form to add order details and javascript search for client, acccu and user object
@@ -74,7 +74,7 @@ namespace AspView.Controllers
         {
             if (!User.IsInRole("Admin")) return RedirectToAction("Login", "Account");
             Order.AddOrder(new Order(0, model.Client.id,model.Location,GetCurrentUserId(),model.Accu.id,model.Info,connection), connection);
-            return View();
+            return RedirectToAction("Index");
         }
 
         public IActionResult AddClient() //todo add client form and function

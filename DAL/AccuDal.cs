@@ -19,10 +19,10 @@ namespace KWSAdmin.Persistence
             {
                 connection.Open();
 
-                var cmd = new SqlCommand("INSERT INTO Accu (name, creatorid, specs) VALUES (@name, @creatorid, @specs)");
+                var cmd = new SqlCommand("INSERT INTO Accu (name, creatorid, specs) VALUES (@name, @creatorid, @specs)",connection);
                 cmd.Parameters.AddWithValue("@name", accu.Name);
                 cmd.Parameters.AddWithValue("@creatorid", accu.Creatorid);
-                cmd.Parameters.AddWithValue("@specs", string.Join(",", accu.Specs));
+                cmd.Parameters.AddWithValue("@specs", accu.Specs);
 
                 cmd.ExecuteNonQuery();
             }
@@ -55,6 +55,8 @@ namespace KWSAdmin.Persistence
 
                     dtolist.Add(new AccuDto(id, name, creatorid, specs));
                 }
+
+                return dtolist;
             }
             catch (Exception e)
             {
@@ -66,17 +68,11 @@ namespace KWSAdmin.Persistence
                 connection.Close();
                
             }
-
-            return dtolist;
         }
 
 
         public AccuDto GetById(int id,SqlConnection connection)
         {
-            string name = "";
-            int userid = 1;
-            string specs = "";
-
             try
             {
                 connection.Open();
@@ -115,7 +111,7 @@ namespace KWSAdmin.Persistence
             {
                 connection.Open();
                 var cmd = new SqlCommand(
-                    "UPDATE Accu SET name = @name, creatorid = @creatorid, specs = @specs WHERE id = @id");
+                    "UPDATE Accu SET name = @name, creatorid = @creatorid, specs = @specs WHERE id = @id",connection);
                 cmd.Parameters.AddWithValue("@id", accu.id);
                 cmd.Parameters.AddWithValue("@name", accu.Name);
                 cmd.Parameters.AddWithValue("@creatorid", accu.Creatorid);

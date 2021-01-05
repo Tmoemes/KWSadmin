@@ -28,10 +28,12 @@ namespace KWSAdmin.Application
             this.admin = user.admin;
         }
 
-        public Account(string username, string password)
+        public Account(int id,string username, string password, bool admin)
         {
+            this.id = id;
             this.username = username; 
             this.password = password;
+            this.admin = admin;
         }
 
         private static IUserDal dal = AccountFactory.GetUserDal();

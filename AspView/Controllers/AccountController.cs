@@ -7,14 +7,11 @@ using System.Net.Cache;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using AspView.Models;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using KWSAdmin.Persistence.Interface.Dtos;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using KWSAdmin.Application;
-using KWSAdmin.Persistence;
 using Microsoft.AspNetCore.Http;
 using System.Data.SqlClient;
 using KWSAdmin.DALFactory;
@@ -64,16 +61,15 @@ namespace AspView.Controllers
         
              if (User.Identity.IsAuthenticated) return RedirectToAction("Index","Home");
 
-             UserDto tempuser = userDal.GetByName(model.Username, connection);
+             Account user = new Account(userDal.GetByName(model.Username, connection));
 
-             //check username 
-             if (tempuser == null)
+             //check username and password exist
+             if (user.username == null || user.password == null)
              {
                  ModelState.AddModelError("", "Username or password is incorrect.");
                  return View(model);
              }
 
-             Account user = new Account(tempuser);
             //check password
             var hasher = new PasswordHasher<Account>();
              if (hasher.VerifyHashedPassword(user, user.password, model.Password) == PasswordVerificationResult.Failed)
@@ -131,7 +127,7 @@ namespace AspView.Controllers
             {
                 var hasher = new PasswordHasher<Account>();
 
-                Account tempAccount = new Account(new UserDto(0, model.Username, model.Password, model.IsAdmin));
+                Account tempAccount = new Account(0, model.Username, model.Password, model.IsAdmin);
 
                 string hashedPW = hasher.HashPassword(tempAccount, model.Password);
 

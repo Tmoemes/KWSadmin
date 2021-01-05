@@ -124,6 +124,7 @@ namespace KWSAdmin.Persistence
 
                     dtolist.Add(new OrderDto(id,clientid,(Location)locationid,userid,accuid,info));
                 }
+                return dtolist;
             }
             catch (Exception e)
             {
@@ -135,7 +136,7 @@ namespace KWSAdmin.Persistence
                 connection.Close();
             }
 
-            return dtolist;
+            
         }
 
     }
