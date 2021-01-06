@@ -123,7 +123,12 @@ namespace AspView.Controllers
             return View();
         }
 
-
+        [HttpGet]
+        public IActionResult OrderView(int id)
+        {
+            var selectedOrder =  Order.GetById(id, connection);
+            return View(selectedOrder);
+        }
 
 
         [HttpPost]

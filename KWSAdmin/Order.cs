@@ -63,7 +63,10 @@ namespace KWSAdmin.Application
             return orderList;
         }
 
-        
+        public static Order GetById(int id, SqlConnection connection)
+        {
+            return new Order(orderDal.GetById(id, connection),connection);
+        }
 
 
     }

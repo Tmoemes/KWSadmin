@@ -46,14 +46,14 @@ namespace KWSAdmin.Persistence
             {
                 connection.Open();
 
-                var cmd = new SqlCommand("SELECT locationid,clientid,accuid,creatorid,info FROM Order WHERE id = @id",connection);
+                var cmd = new SqlCommand("SELECT locationid,clientid,accuid,creatorid,info FROM [Order] WHERE id = @id",connection);
                 cmd.Parameters.AddWithValue("@id", id);
 
                 var reader = cmd.ExecuteReader();
 
                 while (reader.Read())
                 {
-                    var order = new OrderDto(reader.GetInt32("id"), reader.GetInt32("clientid"), (Location)reader["locationid"], reader.GetInt32("creatorid"), reader.GetInt32("accuid"), reader.GetString("info"));
+                    var order = new OrderDto(id, reader.GetInt32("clientid"), (Location)reader["locationid"], reader.GetInt32("creatorid"), reader.GetInt32("accuid"), reader.GetString("info"));
 
                     return order;
                 }
@@ -80,7 +80,7 @@ namespace KWSAdmin.Persistence
             {
                 connection.Open();
                 var cmd = new SqlCommand(
-                    "UPDATE Order SET locationid = @locationid, clientid = @clientid, accuid = @accuid, creatorid = @creatorid, info = @info WHERE id = @id",connection);
+                    "UPDATE [Order] SET locationid = @locationid, clientid = @clientid, accuid = @accuid, creatorid = @creatorid, info = @info WHERE id = @id",connection);
                 cmd.Parameters.AddWithValue("@id", order.id);
                 cmd.Parameters.AddWithValue("@locationid", (int) order.location);
                 cmd.Parameters.AddWithValue("@clientid", order.clientid);
