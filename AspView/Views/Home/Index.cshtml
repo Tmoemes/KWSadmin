@@ -1,29 +1,45 @@
-﻿@model List<KWSAdmin.Application.Order>
+﻿@using System.Data.SqlClient
+@model List<KWSAdmin.Application.Order>
 @{
     ViewData["Title"] = "Home Page";
 }
 
-<input type="text" id="myInput" onkeyup="myFuncion()" placeholder="Search for names"/>
+
+@using (Html.BeginForm())
+{
+    <p>
+        Find by name: @Html.TextBox("SearchString")
+        <input type="submit" value="Search" />
+    </p>
+}
 
 
-<div class="row text-dark">
+<table class="table">
+    <thead>
+        <tr>
+            <th>@Html.ActionLink("Id", "Index", new { SortOrder = ViewBag.IdSortParm })</th>
+            <th>@Html.ActionLink("Client", "Index", new { SortOrder = ViewBag.ClientSortParm })</th>
+            <th>@Html.ActionLink("Accu", "Index", new { SortOrder = ViewBag.AccuSortParm })</th>
+            <th>@Html.ActionLink("Creator", "Index", new { SortOrder = ViewBag.CreatorSortParm })</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            
+            <tr>
 
-    @{foreach (var order in Model)
-      {
-          <div class="col-12 col-md-3 ">
-              <a asp-area="" asp-controller="Home" asp-action="OrderView"  asp-route-id="@order.id" class="btn-dark text-deco-none">
-                  <div class="card card-scale mb-4 h-80">
-                      <div class="card-body d-inline-flex flex-column">
-                          <h5 class="card-title text-dark">@order.accu.Name</h5>
-                          <p class="card-text text-dark">@order.id: @order.client.LName</p>
-                          <p class="card-author text-dark">@order.creator.username</p>
-                      </div>
-                  </div>
-              </a>
-          </div>
-      }
-    }
-</div>
-
-
+                <td>
+                    <a asp-area="" asp-controller="Home" asp-action="OrderView" asp-route-id="@item.id">
+                        @Html.DisplayFor(modelitem => item.id)
+                    </a>
+                </td>
+                <td>@Html.DisplayFor(modelitem => item.client.LName)</td>
+                <td>@Html.DisplayFor(modelitem => item.accu.Name)</td>
+                <td>@Html.DisplayFor(modelitem => item.creator.username)</td>
+            </tr>
+            
+        }
+    </tbody>
+</table>
 

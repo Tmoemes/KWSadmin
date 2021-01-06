@@ -21,7 +21,7 @@ namespace KWSAdmin.Persistence
             {
                 connection.Open();
 
-                var cmd = new SqlCommand("INSERT INTO Order (locationid, clientid, creatorid, accuid, info) VALUES (@locationid, @clientid, @creatorid, @accuid, @info)");
+                var cmd = new SqlCommand("INSERT INTO [Order] (locationid, clientid, creatorid, accuid, info) VALUES (@locationid, @clientid, @creatorid, @accuid, @info)",connection);
                 cmd.Parameters.AddWithValue("locationid", (int)order.location);
                 cmd.Parameters.AddWithValue("clientid", order.clientid);
                 cmd.Parameters.AddWithValue("accuid", order.accuid);
@@ -80,7 +80,7 @@ namespace KWSAdmin.Persistence
             {
                 connection.Open();
                 var cmd = new SqlCommand(
-                    "UPDATE Order SET locationid = @locationid, clientid = @clientid, accuid = @accuid, creatorid = @creatorid, info = @info WHERE id = @id");
+                    "UPDATE Order SET locationid = @locationid, clientid = @clientid, accuid = @accuid, creatorid = @creatorid, info = @info WHERE id = @id",connection);
                 cmd.Parameters.AddWithValue("@id", order.id);
                 cmd.Parameters.AddWithValue("@locationid", (int) order.location);
                 cmd.Parameters.AddWithValue("@clientid", order.clientid);

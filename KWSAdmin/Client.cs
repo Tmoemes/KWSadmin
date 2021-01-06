@@ -69,7 +69,7 @@ namespace KWSAdmin.Application
 
         public override string ToString()
         {
-            return LName + ", " + FName;
+            return id + ": " + LName + ", " + FName;
         }
     }
 }

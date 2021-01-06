@@ -30,19 +30,54 @@ namespace AspView.Controllers
         }
 
         [HttpGet]
-        public IActionResult Index()
+        public ActionResult Index(string sortOrder, string searchString)
         {
             if (!User.Identity.IsAuthenticated) return RedirectToAction("Login", "Account");
-            return View(Order.GetAllOrders(connection));
+
+            ViewBag.IdSortParm = String.IsNullOrEmpty(sortOrder) ? "id_desc" : "";
+            ViewBag.ClientSortParm = sortOrder == "client" ? "client_desc" : "client";
+            ViewBag.AccuSortParm = sortOrder == "accu" ? "accu_desc" : "accu";
+            ViewBag.CreatorSortParm = sortOrder == "creator" ? "creator_desc" : "creator";
+
+            var orders = Order.GetAllOrders(connection);
+
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                orders = orders.Where(s =>
+                    s.client.LName.Contains(searchString) || s.client.FName.Contains(searchString)).ToList();
+            }
+
+
+            switch (sortOrder)
+            {
+                case "id_desc":
+                    orders = orders.OrderByDescending(s => s.id).ToList();
+                    break;
+                case "client":
+                    orders = orders.OrderBy(s => s.client.LName).ToList();
+                    break;
+                case "client_desc":
+                    orders = orders.OrderByDescending(s => s.client.LName).ToList();
+                    break;
+                case "accu":
+                    orders = orders.OrderBy(s => s.accu.Name).ToList();
+                    break;
+                case "accu_desc":
+                    orders = orders.OrderByDescending(s => s.accu.Name).ToList();
+                    break;
+                case "creator":
+                    orders = orders.OrderBy(s => s.creator.username).ToList();
+                    break;
+                case "creator_desc":
+                    orders = orders.OrderByDescending(s => s.creator.username).ToList();
+                    break;
+                default:
+                    orders = orders.OrderBy(s => s.id).ToList();
+                    break;
+            }
+
+            return View(orders);
         }
-
-        /*public IActionResult Index() //todo show list of all orders with filter/search function
-        {
-            if (!User.Identity.IsAuthenticated) return RedirectToAction("Login","Account");
-            
-
-            return View();
-        }*/
 
 
         public IActionResult AddAccu()
@@ -62,7 +97,7 @@ namespace AspView.Controllers
             return RedirectToAction("Index");
         }
 
-        public IActionResult CreateOrder() //todo form to add order details and javascript search for client, acccu and user object
+        public IActionResult CreateOrder() //todo form to add order details and javascript search for client, accu and user object
         {
             if (!User.IsInRole("Admin")) return RedirectToAction("Login","Account");
             return View();
@@ -73,11 +108,16 @@ namespace AspView.Controllers
         public ActionResult CreateOrder(AspView.Models.OrderViewModel model)
         {
             if (!User.IsInRole("Admin")) return RedirectToAction("Login", "Account");
-            Order.AddOrder(new Order(0, model.Client.id,model.Location,GetCurrentUserId(),model.Accu.id,model.Info,connection), connection);
+            Order.AddOrder(new Order(0,
+                Convert.ToInt32(model.Client.Split(":")[0]),
+                model.Location,GetCurrentUserId(),
+                Convert.ToInt32(model.Accu.Split(":")[0]),
+                model.Info,
+                connection), connection);
             return RedirectToAction("Index");
         }
 
-        public IActionResult AddClient() //todo add client form and function
+        public IActionResult AddClient() 
         {
             if (!User.IsInRole("Admin")) return RedirectToAction("Login", "Account");
             return View();

@@ -9,9 +9,9 @@ namespace AspView.Models
     {
         [Required] public Location Location { get; set; }
 
-        public Client Client { get; set; }
+        public string Client { get; set; }
 
-        public Accu Accu { get; set; }
+        public string Accu { get; set; }
 
         public string Info { get; set; }
 

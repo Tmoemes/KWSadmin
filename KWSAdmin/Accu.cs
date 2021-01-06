@@ -55,7 +55,9 @@ namespace KWSAdmin.Application
 
         }
 
-
-
+        public override string ToString()
+        {
+            return id + ": " + Name  ; 
+        }
     }
 }
