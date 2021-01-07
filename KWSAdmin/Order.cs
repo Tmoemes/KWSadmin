@@ -18,6 +18,7 @@ namespace KWSAdmin.Application
         public Account Creator { get; private set; }
         public Accu Accu { get; private set; }
         public string Info { get; private set; }
+        public bool Done { get; set; }
 
         private static readonly IOrderDal OrderDal = OrderFactory.GetOrderDal();
         private static readonly IAccountDal UserDal = AccountFactory.GetUserDal();
@@ -33,9 +34,10 @@ namespace KWSAdmin.Application
             this.Creator = new Account(UserDal.GetById(order.Creatorid,connection)); 
             this.Accu = new Accu(AccuDal.GetById(order.Accuid,connection),connection);
             this.Info = order.Info;
+            this.Done = order.Done;
         }
 
-        public Order(int id, int clientid, Location location, int creatorid, int accuid, string info , SqlConnection connection)
+        public Order(int id, int clientid, Location location, int creatorid, int accuid, string info ,bool done , SqlConnection connection)
         {
             this.Id = id;
             this.Client = new Client(ClientDal.GetById(clientid, connection));
@@ -43,12 +45,13 @@ namespace KWSAdmin.Application
             this.Creator = new Account(UserDal.GetById(creatorid, connection));
             this.Accu = new Accu(AccuDal.GetById(accuid, connection), connection);
             this.Info = info;
+            this.Done = done;
         }
 
 
         public static void AddOrder(Order order, SqlConnection connection)
         {
-            OrderDal.Add(new OrderDto(0,order.Client.Id,order.Location,order.Creator.Id,order.Accu.Id,order.Info), connection);
+            OrderDal.Add(new OrderDto(0,order.Client.Id,order.Location,order.Creator.Id,order.Accu.Id,order.Info,order.Done), connection);
         }
 
         public static List<Order> GetAllOrders(SqlConnection connection)

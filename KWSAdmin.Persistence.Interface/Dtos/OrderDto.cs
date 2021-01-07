@@ -9,8 +9,9 @@
         public int Creatorid { get; private set; }
         public int Accuid { get; private set; }
         public string Info { get; private set; }
+        public bool Done { get; set; }
 
-        public OrderDto(int id, int client, Location location, int creator, int accu, string info) 
+        public OrderDto(int id, int client, Location location, int creator, int accu, string info, bool done) 
         {
             this.Id = id;
             this.Clientid = client;
@@ -18,6 +19,7 @@
             this.Creatorid = creator;
             this.Accuid =  accu;
             this.Info = info;
+            this.Done = done;
         }
 
     }

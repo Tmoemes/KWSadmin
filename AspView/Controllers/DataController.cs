@@ -80,7 +80,7 @@ namespace AspView.Controllers
                 Convert.ToInt32(model.Client.Split(":")[0]),
                 model.Location, GetCurrentUserId(),
                 Convert.ToInt32(model.Accu.Split(":")[0]),
-                model.Info,
+                model.Info,false,
                 Connection), Connection);
             return RedirectToAction("Index","Home");
         }

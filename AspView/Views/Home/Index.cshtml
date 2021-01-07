@@ -1,17 +1,20 @@
-﻿@using System.Data.SqlClient
-@model List<KWSAdmin.Application.Order>
+﻿@model List<KWSAdmin.Application.Order>
 @{
     ViewData["Title"] = "Home Page";
 }
 
 
-@using (Html.BeginForm())
-{
-    <p>
-        Find by name: @Html.TextBox("SearchString")
-        <input type="submit" value="Search" />
-    </p>
-}
+
+<form method="get" asp-action="Index">
+    Find by name: @Html.TextBox("SearchString")
+    <input type="submit" value="Search" />
+
+</form>
+
+
+<p>
+    @Html.ActionLink("Toggle done orders", "Index", new { showDone = ViewBag.DoneFilterParm })
+</p>
 
 
 <table class="table">
@@ -20,14 +23,15 @@
             <th>@Html.ActionLink("Id", "Index", new { SortOrder = ViewBag.IdSortParm })</th>
             <th>@Html.ActionLink("Client", "Index", new { SortOrder = ViewBag.ClientSortParm })</th>
             <th>@Html.ActionLink("Accu", "Index", new { SortOrder = ViewBag.AccuSortParm })</th>
+            <th>@Html.ActionLink("Location", "Index", new { SortOrder = ViewBag.LocationSortParm })</th>
             <th>@Html.ActionLink("Creator", "Index", new { SortOrder = ViewBag.CreatorSortParm })</th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
-            
-            <tr>
+
+            <tr id="OrderItem">
 
                 <td>
                     <a asp-area="" asp-controller="Data" asp-action="OrderView" asp-route-id="@item.Id">
@@ -36,10 +40,12 @@
                 </td>
                 <td>@Html.DisplayFor(modelitem => item.Client.LName)</td>
                 <td>@Html.DisplayFor(modelitem => item.Accu.Name)</td>
+                <td>@Html.DisplayFor(modelitem => item.Location)</td>
                 <td>@Html.DisplayFor(modelitem => item.Creator.Username)</td>
             </tr>
-            
+
         }
     </tbody>
 </table>
+
 

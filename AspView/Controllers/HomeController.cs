@@ -24,14 +24,17 @@ namespace AspView.Controllers
         }
 
         [HttpGet]
-        public ActionResult Index(string sortOrder, string searchString)
+        public ActionResult Index(string sortOrder, string searchString, string showDone)
         {
-            if (!User.Identity.IsAuthenticated) return RedirectToAction("Login", "Account");
+            if (!User.Identity.IsAuthenticated) RedirectToAction("Login", "Account");
 
             ViewBag.IdSortParm = string.IsNullOrEmpty(sortOrder) ? "id_desc" : "";
             ViewBag.ClientSortParm = sortOrder == "client" ? "client_desc" : "client";
             ViewBag.AccuSortParm = sortOrder == "accu" ? "accu_desc" : "accu";
             ViewBag.CreatorSortParm = sortOrder == "creator" ? "creator_desc" : "creator";
+            ViewBag.LocationSortParm = sortOrder == "location" ? "location_desc" : "location";
+            ViewBag.DoneFilterParm = showDone == "true" ? "false" : "true";
+
 
             var orders = Order.GetAllOrders(Connection);
 
@@ -39,8 +42,12 @@ namespace AspView.Controllers
             if (!string.IsNullOrEmpty(searchString))
             {
                 orders = orders.Where(s =>
-                    s.Client.LName.Contains(searchString) || s.Client.FName.Contains(searchString)).ToList();
+                    s.Client.LName.ToUpper().Contains(searchString.ToUpper()) || s.Client.FName.ToUpper().Contains(searchString.ToUpper())).ToList();
             }
+
+            //Filters out any orders with done status of true
+            if (showDone != "true") orders = orders.Where(s => !s.Done).ToList();
+            
 
             //Reads out chosen sort order and sorts orders accordingly
             orders = sortOrder switch
@@ -52,6 +59,8 @@ namespace AspView.Controllers
                 "accu_desc" => orders.OrderByDescending(s => s.Accu.Name).ToList(),
                 "creator" => orders.OrderBy(s => s.Creator.Username).ToList(),
                 "creator_desc" => orders.OrderByDescending(s => s.Creator.Username).ToList(),
+                "location" => orders.OrderBy(s => s.Location).ToList(),
+                "location_desc" => orders.OrderByDescending(s => s.Location).ToList(),
                 _ => orders.OrderBy(s => s.Id).ToList()
             };
 

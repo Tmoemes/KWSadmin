@@ -18,12 +18,13 @@ namespace KWSAdmin.Persistence
             {
                 connection.Open();
 
-                var cmd = new SqlCommand("INSERT INTO [Order] (locationid, clientid, creatorid, accuid, info) VALUES (@locationid, @clientid, @creatorid, @accuid, @info)",connection);
+                var cmd = new SqlCommand("INSERT INTO [Order] (locationid, clientid, creatorid, accuid, info, done) VALUES (@locationid, @clientid, @creatorid, @accuid, @info, @done)",connection);
                 cmd.Parameters.AddWithValue("locationid", (int)order.Location);
                 cmd.Parameters.AddWithValue("clientid", order.Clientid);
                 cmd.Parameters.AddWithValue("accuid", order.Accuid);
                 cmd.Parameters.AddWithValue("creatorid", order.Creatorid);
                 cmd.Parameters.AddWithValue("info", order.Info);
+                cmd.Parameters.AddWithValue("@done", 0);
 
                 cmd.ExecuteNonQuery();
             }
@@ -43,14 +44,16 @@ namespace KWSAdmin.Persistence
             {
                 connection.Open();
 
-                var cmd = new SqlCommand("SELECT locationid,clientid,accuid,creatorid,info FROM [Order] WHERE id = @id",connection);
+                var cmd = new SqlCommand("SELECT locationid,clientid,accuid,creatorid,info,done FROM [Order] WHERE id = @id",connection);
                 cmd.Parameters.AddWithValue("@id", id);
 
                 var reader = cmd.ExecuteReader();
 
                 while (reader.Read())
                 {
-                    var order = new OrderDto(id, reader.GetInt32("clientid"), (Location)reader["locationid"], reader.GetInt32("creatorid"), reader.GetInt32("accuid"), reader.GetString("info"));
+                    var order = new OrderDto(id, reader.GetInt32("clientid"), (Location) reader["locationid"],
+                        reader.GetInt32("creatorid"), reader.GetInt32("accuid"), reader.GetString("info"),
+                        Convert.ToBoolean(reader.GetInt32("done")));
 
                     return order;
                 }
@@ -84,6 +87,7 @@ namespace KWSAdmin.Persistence
                 cmd.Parameters.AddWithValue("@accuid", order.Accuid);
                 cmd.Parameters.AddWithValue("@creatorid", order.Creatorid);
                 cmd.Parameters.AddWithValue("@info", order.Info);
+                cmd.Parameters.AddWithValue("@done", Convert.ToInt32(order.Done));
 
                 cmd.ExecuteNonQuery();
             }
@@ -118,8 +122,9 @@ namespace KWSAdmin.Persistence
                     var userid = reader.GetInt32("creatorid");
                     var accuid = reader.GetInt32("accuid");
                     var info = reader.GetString("info");
+                    var done = Convert.ToBoolean(reader.GetInt32("done"));
 
-                    dtolist.Add(new OrderDto(id,clientid,(Location)locationid,userid,accuid,info));
+                    dtolist.Add(new OrderDto(id,clientid,(Location)locationid,userid,accuid,info,done));
                 }
                 return dtolist;
             }

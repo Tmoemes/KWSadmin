@@ -3,12 +3,9 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Reflection.Metadata.Ecma335;
 using System.Text;
-using System.Threading.Tasks;
 using KWSAdmin.Persistence.Interface.Dtos;
 using KWSAdmin.Persistence.Interface.Interfaces;
 using KWSAdmin.DALFactory;
-using KWSAdmin.Persistence;
-using Microsoft.AspNetCore.Identity;
 
 namespace KWSAdmin.Application
 {
