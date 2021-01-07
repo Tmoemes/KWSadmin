@@ -3,23 +3,22 @@ using System.Data;
 using KWSAdmin.Persistence.Interface.Interfaces;
 using KWSAdmin.Persistence.Interface.Dtos;
 using System.Data.SqlClient;
-using System.Threading.Tasks;
 
 namespace KWSAdmin.Persistence
 {
     public class AccountDal : IAccountDal
     {
 
-        public void Add(AccountDto user, SqlConnection connection)
+        public void Add(AccountDto account, SqlConnection connection)
         {
             try
             {           
                 connection.Open();
 
                 var cmd = new SqlCommand("INSERT INTO Account (username, password, admin) VALUES (@username, @password, @admin)");
-                cmd.Parameters.AddWithValue("@username", user.Username);
-                cmd.Parameters.AddWithValue("@password", user.Password);
-                cmd.Parameters.AddWithValue("@admin", Convert.ToInt32(user.Admin));
+                cmd.Parameters.AddWithValue("@username", account.Username);
+                cmd.Parameters.AddWithValue("@password", account.Password);
+                cmd.Parameters.AddWithValue("@admin", Convert.ToInt32(account.Admin));
 
                 cmd.ExecuteNonQuery();
             }
@@ -101,7 +100,7 @@ namespace KWSAdmin.Persistence
 
         }
 
-        public void UpdateUser(AccountDto user, SqlConnection connection)
+        public void UpdateUser(AccountDto account, SqlConnection connection)
         {
 
             try
@@ -109,9 +108,9 @@ namespace KWSAdmin.Persistence
                 connection.Open();
                 var cmd = new SqlCommand(
                     "UPDATE Account SET username = @username, password = @password WHERE id = @id");
-                cmd.Parameters.AddWithValue("@id", user.Id);
-                cmd.Parameters.AddWithValue("@username", user.Username);
-                cmd.Parameters.AddWithValue("@password", user.Password);
+                cmd.Parameters.AddWithValue("@id", account.Id);
+                cmd.Parameters.AddWithValue("@username", account.Username);
+                cmd.Parameters.AddWithValue("@password", account.Password);
                 
                 cmd.ExecuteNonQuery();
             }

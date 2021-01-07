@@ -19,12 +19,12 @@ namespace KWSAdmin.Application
         public string Password { get; private set; }
         public bool Admin { get; private set; }
 
-        public Account(AccountDto user)
+        public Account(AccountDto account)
         {
-            this.Id = user.Id;
-            this.Username = user.Username;
-            this.Password = user.Password;
-            this.Admin = user.Admin;
+            this.Id = account.Id;
+            this.Username = account.Username;
+            this.Password = account.Password;
+            this.Admin = account.Admin;
         }
 
         public Account(int id,string username, string password, bool admin)
@@ -35,18 +35,18 @@ namespace KWSAdmin.Application
             this.Admin = admin;
         }
 
-        private static readonly IAccountDal dal = AccountFactory.GetUserDal();
+        private static readonly IAccountDal Dal = AccountFactory.GetUserDal();
 
         public static Account GetByName(string name,SqlConnection connection)
         {
-            return new Account(dal.GetByName(name,connection));
+            return new Account(Dal.GetByName(name,connection));
         }
 
-        public static int AddUser(Account user, SqlConnection connection)
+        public static int AddAccount(Account account, SqlConnection connection)
         {
-            dal.Add(new AccountDto(0,user.Username,user.Password,user.Admin), connection);
+            Dal.Add(new AccountDto(0,account.Username,account.Password,account.Admin), connection);
 
-            return dal.GetByName(user.Username, connection).Id;
+            return Dal.GetByName(account.Username, connection).Id;
         }
 
         public void SetHashedPw(string hashPw)

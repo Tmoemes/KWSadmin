@@ -10,7 +10,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\KWSAdmin.Persistence.Interface\KWSAdmin.Persistence.Interface.csproj" />
     <ProjectReference Include="..\KWSAdmin\KWSAdmin.Application.csproj" />
   </ItemGroup>
 

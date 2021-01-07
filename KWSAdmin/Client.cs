@@ -28,7 +28,6 @@ namespace KWSAdmin.Application
             this.Phone = client.Phone;
             this.EMail = client.EMail;
             this.Adres = client.Adres;
-
         }
 
         public Client(int id, string fName, string lName, string phone, string eMail, string adres)
@@ -49,11 +48,9 @@ namespace KWSAdmin.Application
             return new Client(Dal.GetByLName(name, connection));
         }
 
-        public static int AddClient(Client client, SqlConnection connection)
+        public static void AddClient(Client client, SqlConnection connection)
         {
             Dal.Add(new ClientDto(0,client.FName,client.LName,client.Phone,client.EMail,client.Adres), connection);
-
-            return GetByLName(client.LName,connection).Id;
         }
 
         public static List<Client> GetAllClients(SqlConnection connection)

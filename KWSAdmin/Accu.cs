@@ -7,7 +7,6 @@ using KWSAdmin;
 using KWSAdmin.DALFactory;
 using KWSAdmin.Persistence.Interface.Dtos;
 using KWSAdmin.Persistence.Interface.Interfaces;
-using Microsoft.AspNetCore.Localization;
 
 namespace KWSAdmin.Application 
 {

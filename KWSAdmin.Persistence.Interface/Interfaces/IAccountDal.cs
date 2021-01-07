@@ -9,9 +9,9 @@ namespace KWSAdmin.Persistence.Interface.Interfaces
     {
          AccountDto GetById(int id, SqlConnection connection);
 
-        void Add(AccountDto user, SqlConnection connection);
+        void Add(AccountDto account, SqlConnection connection);
 
-        void UpdateUser(AccountDto user, SqlConnection connection);
+        void UpdateUser(AccountDto account, SqlConnection connection);
 
         AccountDto GetByName(string name, SqlConnection connection);
     }
