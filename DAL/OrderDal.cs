@@ -1,12 +1,9 @@
 ﻿using KWSAdmin.Persistence.Interface.Interfaces;
 using KWSAdmin.Persistence.Interface.Dtos;
 using System.Data.SqlClient;
-using Interface;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Net.Http.Headers;
-using System.Threading.Tasks;
 
 namespace KWSAdmin.Persistence
 {
@@ -22,11 +19,11 @@ namespace KWSAdmin.Persistence
                 connection.Open();
 
                 var cmd = new SqlCommand("INSERT INTO [Order] (locationid, clientid, creatorid, accuid, info) VALUES (@locationid, @clientid, @creatorid, @accuid, @info)",connection);
-                cmd.Parameters.AddWithValue("locationid", (int)order.location);
-                cmd.Parameters.AddWithValue("clientid", order.clientid);
-                cmd.Parameters.AddWithValue("accuid", order.accuid);
-                cmd.Parameters.AddWithValue("creatorid", order.creatorid);
-                cmd.Parameters.AddWithValue("info", order.info);
+                cmd.Parameters.AddWithValue("locationid", (int)order.Location);
+                cmd.Parameters.AddWithValue("clientid", order.Clientid);
+                cmd.Parameters.AddWithValue("accuid", order.Accuid);
+                cmd.Parameters.AddWithValue("creatorid", order.Creatorid);
+                cmd.Parameters.AddWithValue("info", order.Info);
 
                 cmd.ExecuteNonQuery();
             }
@@ -81,12 +78,12 @@ namespace KWSAdmin.Persistence
                 connection.Open();
                 var cmd = new SqlCommand(
                     "UPDATE [Order] SET locationid = @locationid, clientid = @clientid, accuid = @accuid, creatorid = @creatorid, info = @info WHERE id = @id",connection);
-                cmd.Parameters.AddWithValue("@id", order.id);
-                cmd.Parameters.AddWithValue("@locationid", (int) order.location);
-                cmd.Parameters.AddWithValue("@clientid", order.clientid);
-                cmd.Parameters.AddWithValue("@accuid", order.accuid);
-                cmd.Parameters.AddWithValue("@creatorid", order.creatorid);
-                cmd.Parameters.AddWithValue("@info", order.info);
+                cmd.Parameters.AddWithValue("@id", order.Id);
+                cmd.Parameters.AddWithValue("@locationid", (int) order.Location);
+                cmd.Parameters.AddWithValue("@clientid", order.Clientid);
+                cmd.Parameters.AddWithValue("@accuid", order.Accuid);
+                cmd.Parameters.AddWithValue("@creatorid", order.Creatorid);
+                cmd.Parameters.AddWithValue("@info", order.Info);
 
                 cmd.ExecuteNonQuery();
             }

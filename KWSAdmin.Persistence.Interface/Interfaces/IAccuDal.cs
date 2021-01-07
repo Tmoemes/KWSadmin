@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Interface;
 using KWSAdmin.Persistence.Interface.Dtos;
 using System.Data.SqlClient;
 

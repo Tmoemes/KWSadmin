@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Text;
-using Interface;
-using KWSAdmin;
 using KWSAdmin.Persistence.Interface.Dtos;
 using KWSAdmin.Persistence.Interface.Interfaces;
 using KWSAdmin.DALFactory;
@@ -13,59 +12,53 @@ namespace KWSAdmin.Application
 {
     public class Order
     {
-        public int id { get; private set; }
-        public Client client { get; private set; } 
-        public Location location { get; private set; }
-        public Account creator { get; private set; }
-        public Accu accu { get; private set; }
-        public string info { get; private set; }
+        public int Id { get; private set; }
+        public Client Client { get; private set; } 
+        public Location Location { get; private set; }
+        public Account Creator { get; private set; }
+        public Accu Accu { get; private set; }
+        public string Info { get; private set; }
 
-        private static IOrderDal orderDal = OrderFactory.GetOrderDal();
-        private static IUserDal userDal = AccountFactory.GetUserDal();
-        private static IAccuDal accuDal = AccuFactory.GetAccuDal();
-        private static IClientDal clientDal = ClientFactory.GetClientDal();
+        private static readonly IOrderDal OrderDal = OrderFactory.GetOrderDal();
+        private static readonly IAccountDal UserDal = AccountFactory.GetUserDal();
+        private static readonly IAccuDal AccuDal = AccuFactory.GetAccuDal();
+        private static readonly IClientDal ClientDal = ClientFactory.GetClientDal();
 
 
         public Order(OrderDto order,SqlConnection connection)
         {
-            this.id = order.id;
-            this.client = new Client(clientDal.GetById(order.clientid,connection)); 
-            this.location = order.location;
-            this.creator = new Account(userDal.GetById(order.creatorid,connection)); 
-            this.accu = new Accu(accuDal.GetById(order.accuid,connection),connection);
-            this.info = order.info;
+            this.Id = order.Id;
+            this.Client = new Client(ClientDal.GetById(order.Clientid,connection)); 
+            this.Location = order.Location;
+            this.Creator = new Account(UserDal.GetById(order.Creatorid,connection)); 
+            this.Accu = new Accu(AccuDal.GetById(order.Accuid,connection),connection);
+            this.Info = order.Info;
         }
 
         public Order(int id, int clientid, Location location, int creatorid, int accuid, string info , SqlConnection connection)
         {
-            this.id = id;
-            this.client = new Client(clientDal.GetById(clientid, connection));
-            this.location = location;
-            this.creator = new Account(userDal.GetById(creatorid, connection));
-            this.accu = new Accu(accuDal.GetById(accuid, connection), connection);
-            this.info = info;
+            this.Id = id;
+            this.Client = new Client(ClientDal.GetById(clientid, connection));
+            this.Location = location;
+            this.Creator = new Account(UserDal.GetById(creatorid, connection));
+            this.Accu = new Accu(AccuDal.GetById(accuid, connection), connection);
+            this.Info = info;
         }
 
 
         public static void AddOrder(Order order, SqlConnection connection)
         {
-            orderDal.Add(new OrderDto(0,order.client.id,order.location,order.creator.id,order.accu.id,order.info), connection);
+            OrderDal.Add(new OrderDto(0,order.Client.Id,order.Location,order.Creator.Id,order.Accu.Id,order.Info), connection);
         }
 
         public static List<Order> GetAllOrders(SqlConnection connection)
         {
-            List<Order> orderList = new List<Order>();
-            foreach (var order in orderDal.GetAllOrders(connection))
-            {
-                orderList.Add(new Order(order,connection));
-            }
-
-            return orderList;
+            return OrderDal.GetAllOrders(connection).Select(order => new Order(order, connection)).ToList();
         }
 
         public static Order GetById(int id, SqlConnection connection)
         {
-            return new Order(orderDal.GetById(id, connection),connection);
+            return new Order(OrderDal.GetById(id, connection),connection);
         }
 
 

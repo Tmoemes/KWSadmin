@@ -5,7 +5,7 @@ namespace KWSAdmin.DALFactory
 {
     public class AccountFactory
     {
-        public static IUserDal GetUserDal()
+        public static IAccountDal GetUserDal()
         {
             return new AccountDal();
         }

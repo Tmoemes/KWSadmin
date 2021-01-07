@@ -23,16 +23,13 @@ namespace AspView.Controllers
 {
     public class AccountController : Controller
     {
-
-        readonly SqlConnection connection;
-        private IConfiguration configuration;
-        private IUserDal userDal = AccountFactory.GetUserDal();
+        private readonly SqlConnection _connection;
+        private readonly IAccountDal _userDal = AccountFactory.GetUserDal();
 
 
-        public AccountController(IConfiguration _configuration)
+        public AccountController(IConfiguration configuration)
         {
-            configuration = _configuration;
-            connection = new SqlConnection(configuration.GetConnectionString("ConnectionString"));
+            _connection = new SqlConnection(configuration.GetConnectionString("ConnectionString"));
         }
 
 
@@ -43,7 +40,7 @@ namespace AspView.Controllers
             
             int userid = Convert.ToInt32(User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Sid)?.Value);
 
-            return View(new Account(userDal.GetById(userid,connection)));
+            return View(new Account(_userDal.GetById(userid,_connection)));
         }
 
 
@@ -61,10 +58,10 @@ namespace AspView.Controllers
         
              if (User.Identity.IsAuthenticated) return RedirectToAction("Index","Home");
 
-             Account user = new Account(userDal.GetByName(model.Username, connection));
+             var user = new Account(_userDal.GetByName(model.Username, _connection));
 
              //check username and password exist
-             if (user.username == null || user.password == null)
+             if (user.Username == null || user.Password == null)
              {
                  ModelState.AddModelError("", "Username or password is incorrect.");
                  return View(model);
@@ -72,7 +69,7 @@ namespace AspView.Controllers
 
             //check password
             var hasher = new PasswordHasher<Account>();
-             if (hasher.VerifyHashedPassword(user, user.password, model.Password) == PasswordVerificationResult.Failed)
+             if (hasher.VerifyHashedPassword(user, user.Password, model.Password) == PasswordVerificationResult.Failed)
              {
                  ModelState.AddModelError("", "Username or password is incorrect.");
                  return View(model);
@@ -80,12 +77,12 @@ namespace AspView.Controllers
 
              var claims = new List<Claim>
              {
-                 new Claim(ClaimTypes.Name,user.username),
-                 new Claim(ClaimTypes.Sid, user.id.ToString())
+                 new Claim(ClaimTypes.Name,user.Username),
+                 new Claim(ClaimTypes.Sid, user.Id.ToString())
              };
 
 
-            if (user.admin)
+            if (user.Admin)
             {
                 claims.Add(new Claim(ClaimTypes.Role, "Admin"));
             };
@@ -127,13 +124,13 @@ namespace AspView.Controllers
             {
                 var hasher = new PasswordHasher<Account>();
 
-                Account tempAccount = new Account(0, model.Username, model.Password, model.IsAdmin);
+                var tempAccount = new Account(0, model.Username, model.Password, model.IsAdmin);
 
-                string hashedPW = hasher.HashPassword(tempAccount, model.Password);
+                var hashedPw = hasher.HashPassword(tempAccount, model.Password);
 
-                tempAccount.SetHashedPw(hashedPW);
+                tempAccount.SetHashedPw(hashedPw);
 
-                KWSAdmin.Application.Account.AddUser(tempAccount,connection);
+                KWSAdmin.Application.Account.AddUser(tempAccount,_connection);
 
                 return RedirectToAction("Login", new {returnUrl = "/"});
             }

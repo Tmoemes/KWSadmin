@@ -3,14 +3,12 @@ using System.Collections.Generic;
 using System.Data;
 using KWSAdmin.Persistence.Interface.Interfaces;
 using KWSAdmin.Persistence.Interface.Dtos;
-using Interface;
 using System.Data.SqlClient;
 
 namespace KWSAdmin.Persistence
 {
     public class AccuDal : IAccuDal
     {
-        AccountDal userDal = new AccountDal();
 
         public void Add(AccuDto accu,SqlConnection connection)
         {
@@ -112,7 +110,7 @@ namespace KWSAdmin.Persistence
                 connection.Open();
                 var cmd = new SqlCommand(
                     "UPDATE Accu SET name = @name, creatorid = @creatorid, specs = @specs WHERE id = @id",connection);
-                cmd.Parameters.AddWithValue("@id", accu.id);
+                cmd.Parameters.AddWithValue("@id", accu.Id);
                 cmd.Parameters.AddWithValue("@name", accu.Name);
                 cmd.Parameters.AddWithValue("@creatorid", accu.Creatorid);
                 cmd.Parameters.AddWithValue("@specs", string.Join(",", accu.Specs));

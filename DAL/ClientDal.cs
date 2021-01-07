@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Data;
 using KWSAdmin.Persistence.Interface.Interfaces;
 using KWSAdmin.Persistence.Interface.Dtos;
-using Interface;
 using System.Data.SqlClient;
 using System.Threading.Tasks;
 
@@ -152,7 +151,7 @@ namespace KWSAdmin.Persistence
                 connection.Open();
                 var cmd = new SqlCommand(
                     "UPDATE Client SET fname = @fname, lname = @lname, phone = @phone, email = @email, adres = @adres WHERE id = @id",connection);
-                cmd.Parameters.AddWithValue("@id", client.id);
+                cmd.Parameters.AddWithValue("@id", client.Id);
                 cmd.Parameters.AddWithValue("@fname", client.FName);
                 cmd.Parameters.AddWithValue("@lname", client.LName);
                 cmd.Parameters.AddWithValue("@phone", client.Phone);

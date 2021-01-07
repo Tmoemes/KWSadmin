@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Data.SqlTypes;
-using Interface;
 using KWSAdmin.Persistence.Interface.Dtos;
 using System.Data.SqlClient;
 using System.Threading.Tasks;

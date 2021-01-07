@@ -30,13 +30,13 @@
             <tr>
 
                 <td>
-                    <a asp-area="" asp-controller="Home" asp-action="OrderView" asp-route-id="@item.id">
-                        @Html.DisplayFor(modelitem => item.id)
+                    <a asp-area="" asp-controller="Home" asp-action="OrderView" asp-route-id="@item.Id">
+                        @Html.DisplayFor(modelitem => item.Id)
                     </a>
                 </td>
-                <td>@Html.DisplayFor(modelitem => item.client.LName)</td>
-                <td>@Html.DisplayFor(modelitem => item.accu.Name)</td>
-                <td>@Html.DisplayFor(modelitem => item.creator.username)</td>
+                <td>@Html.DisplayFor(modelitem => item.Client.LName)</td>
+                <td>@Html.DisplayFor(modelitem => item.Accu.Name)</td>
+                <td>@Html.DisplayFor(modelitem => item.Creator.Username)</td>
             </tr>
             
         }

@@ -4,23 +4,22 @@ using KWSAdmin.Persistence.Interface.Interfaces;
 using KWSAdmin.Persistence.Interface.Dtos;
 using System.Data.SqlClient;
 using System.Threading.Tasks;
-using Interface;
 
 namespace KWSAdmin.Persistence
 {
-    public class AccountDal : IUserDal
+    public class AccountDal : IAccountDal
     {
 
-        public void Add(UserDto user, SqlConnection connection)
+        public void Add(AccountDto user, SqlConnection connection)
         {
             try
             {           
                 connection.Open();
 
                 var cmd = new SqlCommand("INSERT INTO Account (username, password, admin) VALUES (@username, @password, @admin)");
-                cmd.Parameters.AddWithValue("@username", user.username);
-                cmd.Parameters.AddWithValue("@password", user.password);
-                cmd.Parameters.AddWithValue("@admin", Convert.ToInt32(user.admin));
+                cmd.Parameters.AddWithValue("@username", user.Username);
+                cmd.Parameters.AddWithValue("@password", user.Password);
+                cmd.Parameters.AddWithValue("@admin", Convert.ToInt32(user.Admin));
 
                 cmd.ExecuteNonQuery();
             }
@@ -34,7 +33,7 @@ namespace KWSAdmin.Persistence
             }
         }
 
-        public UserDto GetById(int id, SqlConnection connection)
+        public AccountDto GetById(int id, SqlConnection connection)
         {
             try
             {
@@ -50,7 +49,7 @@ namespace KWSAdmin.Persistence
                     var username = reader.GetString("username");
                     var password = reader.GetString("password");
 
-                   var user = new UserDto(id,username,password,Convert.ToBoolean(reader.GetInt32("admin")));
+                   var user = new AccountDto(id,username,password,Convert.ToBoolean(reader.GetInt32("admin")));
 
                     return user;
                 }
@@ -70,7 +69,7 @@ namespace KWSAdmin.Persistence
 
         }
 
-        public UserDto GetByName(string name, SqlConnection connection)
+        public AccountDto GetByName(string name, SqlConnection connection)
         {
             try
             {
@@ -83,7 +82,7 @@ namespace KWSAdmin.Persistence
 
                 while (reader.Read())
                 {
-                    var user = new UserDto((int)reader["id"],name, reader["password"].ToString(),Convert.ToBoolean(reader["admin"]));
+                    var user = new AccountDto((int)reader["id"],name, reader["password"].ToString(),Convert.ToBoolean(reader["admin"]));
                     return user;
                 }
 
@@ -102,7 +101,7 @@ namespace KWSAdmin.Persistence
 
         }
 
-        public void UpdateUser(UserDto user, SqlConnection connection)
+        public void UpdateUser(AccountDto user, SqlConnection connection)
         {
 
             try
@@ -110,9 +109,9 @@ namespace KWSAdmin.Persistence
                 connection.Open();
                 var cmd = new SqlCommand(
                     "UPDATE Account SET username = @username, password = @password WHERE id = @id");
-                cmd.Parameters.AddWithValue("@id", user.id);
-                cmd.Parameters.AddWithValue("@username", user.username);
-                cmd.Parameters.AddWithValue("@password", user.password);
+                cmd.Parameters.AddWithValue("@id", user.Id);
+                cmd.Parameters.AddWithValue("@username", user.Username);
+                cmd.Parameters.AddWithValue("@password", user.Password);
                 
                 cmd.ExecuteNonQuery();
             }
