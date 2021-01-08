@@ -23,10 +23,12 @@ namespace AspView.Controllers
             _logger = logger;
         }
 
+
+
         [HttpGet]
         public ActionResult Index(string sortOrder, string searchString, string showDone)
         {
-            if (!User.Identity.IsAuthenticated) RedirectToAction("Login", "Account");
+            if (!User.Identity.IsAuthenticated) return RedirectToAction("Login", "Account");
 
             ViewBag.IdSortParm = string.IsNullOrEmpty(sortOrder) ? "id_desc" : "";
             ViewBag.ClientSortParm = sortOrder == "client" ? "client_desc" : "client";
@@ -42,11 +44,15 @@ namespace AspView.Controllers
             if (!string.IsNullOrEmpty(searchString))
             {
                 orders = orders.Where(s =>
-                    s.Client.LName.ToUpper().Contains(searchString.ToUpper()) || s.Client.FName.ToUpper().Contains(searchString.ToUpper())).ToList();
+                    s.Client.LName.ToUpper().Contains(searchString.ToUpper()) ||
+                    s.Client.FName.ToUpper().Contains(searchString.ToUpper()) ||
+                    s.Accu.Name.ToUpper().Contains(searchString.ToUpper()) || 
+                    s.Creator.Username.ToUpper().Contains(searchString.ToUpper())
+                    ).ToList();
             }
 
             //Filters out any orders with done status of true
-            if (showDone != "true") orders = orders.Where(s => !s.Done).ToList();
+            if (showDone == "true") orders = orders.Where(s => !s.Done).ToList();
             
 
             //Reads out chosen sort order and sorts orders accordingly

@@ -15,7 +15,7 @@ namespace KWSAdmin.Persistence
             {           
                 connection.Open();
 
-                var cmd = new SqlCommand("INSERT INTO Account (username, password, admin) VALUES (@username, @password, @admin)");
+                var cmd = new SqlCommand("INSERT INTO Account (username, password, admin) VALUES (@username, @password, @admin)",connection);
                 cmd.Parameters.AddWithValue("@username", account.Username);
                 cmd.Parameters.AddWithValue("@password", account.Password);
                 cmd.Parameters.AddWithValue("@admin", Convert.ToInt32(account.Admin));
@@ -107,7 +107,7 @@ namespace KWSAdmin.Persistence
             {
                 connection.Open();
                 var cmd = new SqlCommand(
-                    "UPDATE Account SET username = @username, password = @password WHERE id = @id");
+                    "UPDATE Account SET username = @username, password = @password WHERE id = @id",connection);
                 cmd.Parameters.AddWithValue("@id", account.Id);
                 cmd.Parameters.AddWithValue("@username", account.Username);
                 cmd.Parameters.AddWithValue("@password", account.Password);

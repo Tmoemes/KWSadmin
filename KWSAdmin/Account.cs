@@ -39,11 +39,10 @@ namespace KWSAdmin.Application
             return new Account(Dal.GetByName(name,connection));
         }
 
-        public static int AddAccount(Account account, SqlConnection connection)
+        public static void AddAccount(Account account, SqlConnection connection)
         {
             Dal.Add(new AccountDto(0,account.Username,account.Password,account.Admin), connection);
 
-            return Dal.GetByName(account.Username, connection).Id;
         }
 
         public void SetHashedPw(string hashPw)

@@ -42,6 +42,7 @@ namespace AspView.Controllers
 
         public IActionResult Login()
         {
+            if (User.Identity.IsAuthenticated) return RedirectToAction("Index", "Home");
             return View();
         }
 
@@ -128,7 +129,7 @@ namespace AspView.Controllers
 
                 KWSAdmin.Application.Account.AddAccount(tempAccount,_connection);
 
-                return RedirectToAction("Login", new {returnUrl = "/"});
+                return RedirectToAction("Index","Home");
             }
 
             ModelState.AddModelError(nameof(model.Username),"Passwords do not match");
