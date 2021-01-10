@@ -18,30 +18,20 @@ namespace KWSAdmin.Application
         public string Specs { get; private set; }
 
         private readonly IAccuDal _accuDal = AccuFactory.GetAccuDal();
-        private readonly IAccountDal _userDal = AccountFactory.GetUserDal();
 
         public Accu(AccuDto accu)
         {
             this.Id = accu.Id;
             this.Name = accu.Name;
-            this.Creator = new Account(_userDal.GetById(accu.Creatorid));
+            this.Creator = new Account().GetById(accu.Creatorid);
             this.Specs = accu.Specs;
-
-        }
-
-        public Accu(int id, string name, int creatorid, string specs)
-        {
-            this.Id = id;
-            this.Name = name;
-            this.Creator = new Account(_userDal.GetById(creatorid));
-            this.Specs = specs;
 
         }
 
         public Accu(string name, int creatorid, string specs)
         {
             this.Name = name;
-            this.Creator = new Account(_userDal.GetById(creatorid));
+            this.Creator = new Account().GetById(creatorid);
             this.Specs = specs;
 
         }
@@ -60,6 +50,11 @@ namespace KWSAdmin.Application
         {
             _accuDal.Add(new AccuDto(0,accu.Name,accu.Creator.Id,accu.Specs));
 
+        }
+
+        public Accu GetById(int id)
+        {
+            return new Accu(_accuDal.GetById(id));
         }
 
         public override string ToString()

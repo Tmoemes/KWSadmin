@@ -37,7 +37,7 @@ namespace AspView.Controllers
         {
             if (!User.IsInRole("Admin")) return RedirectToAction("Login", "Account");
 
-            new Order(model.Accu.Id, model.Location, GetCurrentUserId(), model.Accu.Id, model.Info).AddOrder();
+            new Order(model.ClientId, model.Location, GetCurrentUserId(), model.AccuId, model.Info).AddOrder();
             return RedirectToAction("Index", "Home");
         }
 
@@ -65,8 +65,8 @@ namespace AspView.Controllers
             {
                 Id = oldOrder.Id,
                 Location = oldOrder.Location,
-                Accu = oldOrder.Accu,
-                Client = oldOrder.Client,
+                AccuId = oldOrder.Accu.Id,
+                ClientId = oldOrder.Client.Id,
                 Info = oldOrder.Info,
                 Done = oldOrder.Done,
                 Accus = new Accu().GetAllAccus(),
@@ -83,7 +83,13 @@ namespace AspView.Controllers
         {
             if (!User.IsInRole("Admin")) return RedirectToAction("Login", "Account");
 
-            var order = new Order(model.Id, model.Client, model.Location, model.Creator, model.Accu, model.Info, model.Done);//todo vreemde error bij het ophalen van creator bij alleen deze 
+            var client = new Client().GetById(model.ClientId);
+            var accu = new Accu().GetById(model.AccuId);
+            var creator = new Account().GetById(model.CreatorId);//todo returned alleen hier null, geen idee waarom
+           
+
+            var order = new Order(model.Id, client, model.Location, creator, accu, model.Info,
+                model.Done); 
             new Order().Update(order);
             return RedirectToAction("OrderView", model.Id);
         }

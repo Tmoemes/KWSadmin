@@ -72,6 +72,11 @@ namespace KWSAdmin.Application
             return _ClientDal.GetAllClients().Select(clientDto => new Client(clientDto)).ToList();
         }
 
+        public Client GetById(int id)
+        {
+            return new Client(_ClientDal.GetById(id));
+        }
+
         public override string ToString()
         {
             return Id + ": " + LastName + ", " + FirstName;

@@ -21,18 +21,16 @@ namespace KWSAdmin.Application
         public bool Done { get; set; }
 
         private readonly IOrderDal _orderDal = OrderFactory.GetOrderDal();
-        private readonly IAccountDal _userDal = AccountFactory.GetUserDal();
-        private readonly IAccuDal _accuDal = AccuFactory.GetAccuDal();
-        private readonly IClientDal _clientDal = ClientFactory.GetClientDal();
+        
 
 
         public Order(OrderDto order)
         {
             this.Id = order.Id;
-            this.Client = new Client(_clientDal.GetById(order.Clientid)); 
+            this.Client = new Client().GetById(order.Clientid); 
             this.Location = order.Location;
-            this.Creator = new Account(_userDal.GetById(order.Creatorid)); 
-            this.Accu = new Accu(_accuDal.GetById(order.Accuid));
+            this.Creator = new Account().GetById(order.Creatorid); 
+            this.Accu = new Accu().GetById(order.Accuid);
             this.Info = order.Info;
             this.Done = order.Done;
         }
@@ -51,10 +49,10 @@ namespace KWSAdmin.Application
         //create order ctor
         public Order(int clientid , Location location , int creatorid , int accuid , string info)
         {
-            this.Client = new Client(_clientDal.GetById(clientid));
+            this.Client = new Client().GetById(clientid);
             this.Location = location;
-            this.Creator = new Account(_userDal.GetById(creatorid));
-            this.Accu = new Accu(_accuDal.GetById(accuid));
+            this.Creator = new Account().GetById(creatorid);
+            this.Accu = new Accu().GetById(accuid);
             this.Info = info;
             this.Done = false;
         }

@@ -12,13 +12,13 @@ namespace AspView.Models
 
         [Required] public Location Location { get; set; }
 
-        public Client Client { get; set; }
+        public int ClientId { get; set; }
 
-        public Accu Accu { get; set; }
+        public int AccuId { get; set; }
 
         public string Info { get; set; }
 
-        public Account Creator { get; set; }
+        public int CreatorId { get; set; }
 
         public bool Done { get; set; }
 
