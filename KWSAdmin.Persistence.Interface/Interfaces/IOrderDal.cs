@@ -14,6 +14,8 @@ namespace KWSAdmin.Persistence.Interface.Interfaces
 
         void UpdateOrder(OrderDto order, SqlConnection connection);
 
-        public List<OrderDto> GetAllOrders(SqlConnection connection);
+        List<OrderDto> GetAllOrders(SqlConnection connection);
+
+        void DeleteOrder(int id, SqlConnection connection);
     }
 }

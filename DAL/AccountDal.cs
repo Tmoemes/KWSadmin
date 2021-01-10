@@ -3,6 +3,7 @@ using System.Data;
 using KWSAdmin.Persistence.Interface.Interfaces;
 using KWSAdmin.Persistence.Interface.Dtos;
 using System.Data.SqlClient;
+using System.Security.Cryptography.X509Certificates;
 
 namespace KWSAdmin.Persistence
 {
@@ -107,11 +108,11 @@ namespace KWSAdmin.Persistence
             {
                 connection.Open();
                 var cmd = new SqlCommand(
-                    "UPDATE Account SET username = @username, password = @password WHERE id = @id",connection);
+                    "UPDATE Account SET username = @username, password = @password WHERE id = @id", connection);
                 cmd.Parameters.AddWithValue("@id", account.Id);
                 cmd.Parameters.AddWithValue("@username", account.Username);
                 cmd.Parameters.AddWithValue("@password", account.Password);
-                
+
                 cmd.ExecuteNonQuery();
             }
             catch (Exception e)
@@ -123,7 +124,31 @@ namespace KWSAdmin.Persistence
             {
                 connection.Close();
             }
+        }
+
+        public void DeleteAccount(int id, SqlConnection connection)
+        {
+
+                try
+                {
+                    connection.Open();
+                    var cmd = new SqlCommand(
+                        "DELETE FROM Account WHERE id = @id", connection);
+                    cmd.Parameters.AddWithValue("@id", id);
+
+                    cmd.ExecuteNonQuery();
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                    throw;
+                }
+                finally
+                {
+                    connection.Close();
+                }
 
         }
+
     }
 }

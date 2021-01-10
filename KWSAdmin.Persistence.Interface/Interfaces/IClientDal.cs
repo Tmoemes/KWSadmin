@@ -20,5 +20,6 @@ namespace KWSAdmin.Persistence.Interface.Interfaces
 
         List<ClientDto> GetAllClients(SqlConnection connection);
 
+        void DeleteClient(int id, SqlConnection connection);
     }
 }

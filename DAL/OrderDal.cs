@@ -9,28 +9,27 @@ namespace KWSAdmin.Persistence
 {
     public class OrderDal : IOrderDal
     {
-        
-
         public void Add(OrderDto order, SqlConnection connection)
         {
-
             try
             {
                 connection.Open();
 
-                var cmd = new SqlCommand("INSERT INTO [Order] (locationid, clientid, creatorid, accuid, info, done) VALUES (@locationid, @clientid, @creatorid, @accuid, @info, @done)",connection);
-                cmd.Parameters.AddWithValue("locationid", (int)order.Location);
+                var cmd = new SqlCommand(
+                    "INSERT INTO [Order] (locationid, clientid, creatorid, accuid, info, done) VALUES (@locationid, @clientid, @creatorid, @accuid, @info, @done)",
+                    connection);
+                cmd.Parameters.AddWithValue("locationid", (int) order.Location);
                 cmd.Parameters.AddWithValue("clientid", order.Clientid);
                 cmd.Parameters.AddWithValue("accuid", order.Accuid);
                 cmd.Parameters.AddWithValue("creatorid", order.Creatorid);
-                cmd.Parameters.AddWithValue("info", order.Info);
+                cmd.Parameters.AddWithValue("info", order.Info ?? " ");
                 cmd.Parameters.AddWithValue("@done", 0);
 
                 cmd.ExecuteNonQuery();
             }
             catch (Exception e)
             {
-                Console.WriteLine(e);
+                Console.WriteLine(e); //todo gebruiker ziet hier niks van
             }
             finally
             {
@@ -44,7 +43,8 @@ namespace KWSAdmin.Persistence
             {
                 connection.Open();
 
-                var cmd = new SqlCommand("SELECT locationid,clientid,accuid,creatorid,info,done FROM [Order] WHERE id = @id",connection);
+                var cmd = new SqlCommand(
+                    "SELECT locationid,clientid,accuid,creatorid,info,done FROM [Order] WHERE id = @id", connection);
                 cmd.Parameters.AddWithValue("@id", id);
 
                 var reader = cmd.ExecuteReader();
@@ -70,23 +70,22 @@ namespace KWSAdmin.Persistence
             {
                 connection.Close();
             }
-
         }
 
         public void UpdateOrder(OrderDto order, SqlConnection connection)
         {
-
             try
             {
                 connection.Open();
                 var cmd = new SqlCommand(
-                    "UPDATE [Order] SET locationid = @locationid, clientid = @clientid, accuid = @accuid, creatorid = @creatorid, info = @info WHERE id = @id",connection);
+                    "UPDATE [Order] SET locationid = @locationid, clientid = @clientid, accuid = @accuid, creatorid = @creatorid, info = @info WHERE id = @id",
+                    connection);
                 cmd.Parameters.AddWithValue("@id", order.Id);
                 cmd.Parameters.AddWithValue("@locationid", (int) order.Location);
                 cmd.Parameters.AddWithValue("@clientid", order.Clientid);
                 cmd.Parameters.AddWithValue("@accuid", order.Accuid);
                 cmd.Parameters.AddWithValue("@creatorid", order.Creatorid);
-                cmd.Parameters.AddWithValue("@info", order.Info);
+                cmd.Parameters.AddWithValue("@info", order.Info ?? " ");
                 cmd.Parameters.AddWithValue("@done", Convert.ToInt32(order.Done));
 
                 cmd.ExecuteNonQuery();
@@ -100,9 +99,29 @@ namespace KWSAdmin.Persistence
             {
                 connection.Close();
             }
-
         }
 
+        public void DeleteOrder(int id, SqlConnection connection)
+        {
+            try
+            {
+                connection.Open();
+                var cmd = new SqlCommand(
+                    "DELETE FROM [Order] WHERE id = @id", connection);
+                cmd.Parameters.AddWithValue("@id", id);
+
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
 
         public List<OrderDto> GetAllOrders(SqlConnection connection)
         {
@@ -111,6 +130,17 @@ namespace KWSAdmin.Persistence
             try
             {
                 connection.Open();
+
+                /*var ds = new DataSet();
+                var cmd = new SqlCommand("EXEC SelectAllOrders", connection) {CommandType = CommandType.StoredProcedure};
+                var da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+
+                foreach (var order in ds.Tables["Order"].Columns["id"].)
+                {
+                    
+                }*/
+
                 var cmd = new SqlCommand("SELECT * FROM [Order]", connection);
                 var reader = cmd.ExecuteReader();
 
@@ -124,22 +154,22 @@ namespace KWSAdmin.Persistence
                     var info = reader.GetString("info");
                     var done = Convert.ToBoolean(reader.GetInt32("done"));
 
-                    dtolist.Add(new OrderDto(id,clientid,(Location)locationid,userid,accuid,info,done));
+                    dtolist.Add(new OrderDto(id, clientid, (Location) locationid, userid, accuid, info,
+                        done)); //todo kan beter met 1 stored procedure
                 }
+
                 return dtolist;
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
-                throw;
             }
             finally
             {
                 connection.Close();
             }
 
-            
+            return null;
         }
-
     }
 }

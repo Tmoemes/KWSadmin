@@ -22,5 +22,15 @@
             this.Done = done;
         }
 
+        public OrderDto(int client, Location location, int creator, int accu, string info, bool done)
+        {
+            this.Clientid = client;
+            this.Location = location;
+            this.Creatorid = creator;
+            this.Accuid = accu;
+            this.Info = info;
+            this.Done = done;
+        }
+
     }
 }

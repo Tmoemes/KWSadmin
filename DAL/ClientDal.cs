@@ -20,12 +20,13 @@ namespace KWSAdmin.Persistence
 
                 var cmd = new SqlCommand(
                     "INSERT INTO Client (fname, lname, phone, email, adres) VALUES (@fname, @lname, @phone, @email, @adres)",connection);
-                cmd.Parameters.AddWithValue("@fname", client.FName);
-                cmd.Parameters.AddWithValue("@lname", client.LName);
-                cmd.Parameters.AddWithValue("@phone", client.Phone);
+                //nullable params
+                cmd.Parameters.AddWithValue("@fname", client.FirstName ?? " ");
+                cmd.Parameters.AddWithValue("@phone", client.Phone ?? " ");
+                cmd.Parameters.AddWithValue("@adres", client.Adres ?? " ");
+                cmd.Parameters.AddWithValue("@lname", client.LastName);
                 cmd.Parameters.AddWithValue("@email", client.EMail);
-                cmd.Parameters.AddWithValue("@adres", client.Adres);
-
+                
                 cmd.ExecuteNonQuery();
             }
             catch (Exception e)
@@ -152,11 +153,11 @@ namespace KWSAdmin.Persistence
                 var cmd = new SqlCommand(
                     "UPDATE Client SET fname = @fname, lname = @lname, phone = @phone, email = @email, adres = @adres WHERE id = @id",connection);
                 cmd.Parameters.AddWithValue("@id", client.Id);
-                cmd.Parameters.AddWithValue("@fname", client.FName);
-                cmd.Parameters.AddWithValue("@lname", client.LName);
-                cmd.Parameters.AddWithValue("@phone", client.Phone);
+                cmd.Parameters.AddWithValue("@fname", client.FirstName ?? " ");
+                cmd.Parameters.AddWithValue("@lname", client.LastName);
+                cmd.Parameters.AddWithValue("@phone", client.Phone ?? " ");
                 cmd.Parameters.AddWithValue("@email", client.EMail);
-                cmd.Parameters.AddWithValue("@adres", client.Adres);
+                cmd.Parameters.AddWithValue("@adres", client.Adres ?? " ");
 
                 cmd.ExecuteNonQuery();
             }
@@ -171,5 +172,31 @@ namespace KWSAdmin.Persistence
             }
 
         }
+
+
+        public void DeleteClient(int id, SqlConnection connection)
+        {
+
+            try
+            {
+                connection.Open();
+                var cmd = new SqlCommand(
+                    "DELETE FROM Client WHERE id = @id", connection);
+                cmd.Parameters.AddWithValue("@id", id);
+
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+        }
+
     }
 }

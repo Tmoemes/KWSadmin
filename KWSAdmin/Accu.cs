@@ -17,8 +17,8 @@ namespace KWSAdmin.Application
         public Account Creator { get; private set; }
         public string Specs { get; private set; }
 
-        private static readonly IAccuDal AccuDal = AccuFactory.GetAccuDal();
-        private static readonly IAccountDal UserDal = AccountFactory.GetUserDal();
+        private readonly IAccuDal AccuDal = AccuFactory.GetAccuDal();
+        private readonly IAccountDal UserDal = AccountFactory.GetUserDal();
 
         public Accu(AccuDto accu,SqlConnection connection)
         {
@@ -38,12 +38,25 @@ namespace KWSAdmin.Application
 
         }
 
-        public static List<Accu> GetAllAccus(SqlConnection connection)
+        public Accu(string name, int creatorid, string specs, SqlConnection connection)
+        {
+            this.Name = name;
+            this.Creator = new Account(UserDal.GetById(creatorid, connection));
+            this.Specs = specs;
+
+        }
+
+        public Accu()
+        {
+            
+        }
+
+        public List<Accu> GetAllAccus(SqlConnection connection)
         {
             return AccuDal.GetAllAccus(connection).Select(accu => new Accu(accu, connection)).ToList();
         }
 
-        public static void AddAccu(Accu accu, SqlConnection connection)
+        public void AddAccu(Accu accu, SqlConnection connection)
         {
             AccuDal.Add(new AccuDto(0,accu.Name,accu.Creator.Id,accu.Specs),connection);
 

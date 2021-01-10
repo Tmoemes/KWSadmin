@@ -14,5 +14,11 @@
             this.Creatorid = creator;
             this.Specs = specs;
         }
+        public AccuDto(string name, int creator, string specs)
+        {
+            this.Name = name;
+            this.Creatorid = creator;
+            this.Specs = specs;
+        }
     }
 }

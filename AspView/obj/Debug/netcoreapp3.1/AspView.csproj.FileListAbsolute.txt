@@ -17,8 +17,6 @@ C:\Users\meesv\source\repos\Tmoemes\KWSadmin\AspView\obj\Debug\netcoreapp3.1\Asp
 C:\Users\meesv\source\repos\Tmoemes\KWSadmin\AspView\obj\Debug\netcoreapp3.1\AspView.TagHelpers.input.cache
 C:\Users\meesv\source\repos\Tmoemes\KWSadmin\AspView\obj\Debug\netcoreapp3.1\AspView.TagHelpers.output.cache
 C:\Users\meesv\source\repos\Tmoemes\KWSadmin\AspView\obj\Debug\netcoreapp3.1\AspView.RazorCoreGenerate.cache
-C:\Users\meesv\source\repos\Tmoemes\KWSadmin\AspView\obj\Debug\netcoreapp3.1\Razor\Views\Home\Index.cshtml.g.cs
-C:\Users\meesv\source\repos\Tmoemes\KWSadmin\AspView\obj\Debug\netcoreapp3.1\Razor\Views\Home\Privacy.cshtml.g.cs
 C:\Users\meesv\source\repos\Tmoemes\KWSadmin\AspView\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Error.cshtml.g.cs
 C:\Users\meesv\source\repos\Tmoemes\KWSadmin\AspView\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Layout.cshtml.g.cs
 C:\Users\meesv\source\repos\Tmoemes\KWSadmin\AspView\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
@@ -128,7 +126,10 @@ C:\Users\meesv\source\repos\Tmoemes\KWSadmin\AspView\bin\Debug\netcoreapp3.1\zh-
 C:\Users\meesv\source\repos\Tmoemes\KWSadmin\AspView\bin\Debug\netcoreapp3.1\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\meesv\source\repos\Tmoemes\KWSadmin\AspView\obj\Debug\netcoreapp3.1\AspView.csproj.CoreCompileInputs.cache
 C:\Users\meesv\source\repos\Tmoemes\KWSadmin\AspView\obj\Debug\netcoreapp3.1\AspView.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\meesv\source\repos\Tmoemes\KWSadmin\AspView\obj\Debug\netcoreapp3.1\Razor\Views\Data\AddAccu.cshtml.g.cs
-C:\Users\meesv\source\repos\Tmoemes\KWSadmin\AspView\obj\Debug\netcoreapp3.1\Razor\Views\Data\AddClient.cshtml.g.cs
-C:\Users\meesv\source\repos\Tmoemes\KWSadmin\AspView\obj\Debug\netcoreapp3.1\Razor\Views\Data\CreateOrder.cshtml.g.cs
-C:\Users\meesv\source\repos\Tmoemes\KWSadmin\AspView\obj\Debug\netcoreapp3.1\Razor\Views\Data\OrderView.cshtml.g.cs
+C:\Users\meesv\source\repos\Tmoemes\KWSadmin\AspView\obj\Debug\netcoreapp3.1\Razor\Views\Order\CreateOrder.cshtml.g.cs
+C:\Users\meesv\source\repos\Tmoemes\KWSadmin\AspView\obj\Debug\netcoreapp3.1\Razor\Views\Order\OrderView.cshtml.g.cs
+C:\Users\meesv\source\repos\Tmoemes\KWSadmin\AspView\obj\Debug\netcoreapp3.1\Razor\Views\Order\UpdateOrder.cshtml.g.cs
+C:\Users\meesv\source\repos\Tmoemes\KWSadmin\AspView\obj\Debug\netcoreapp3.1\Razor\Views\Home\Index.cshtml.g.cs
+C:\Users\meesv\source\repos\Tmoemes\KWSadmin\AspView\obj\Debug\netcoreapp3.1\Razor\Views\Home\Privacy.cshtml.g.cs
+C:\Users\meesv\source\repos\Tmoemes\KWSadmin\AspView\obj\Debug\netcoreapp3.1\Razor\Views\Accu\AddAccu.cshtml.g.cs
+C:\Users\meesv\source\repos\Tmoemes\KWSadmin\AspView\obj\Debug\netcoreapp3.1\Razor\Views\Client\AddClient.cshtml.g.cs

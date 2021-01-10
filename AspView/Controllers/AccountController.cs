@@ -20,8 +20,6 @@ namespace AspView.Controllers
     public class AccountController : Controller
     {
         private readonly SqlConnection _connection;
-        private readonly IAccountDal _userDal = AccountFactory.GetUserDal();
-
 
         public AccountController(IConfiguration configuration)
         {
@@ -36,7 +34,7 @@ namespace AspView.Controllers
             
             int userid = Convert.ToInt32(User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Sid)?.Value);
 
-            return View(new Account(_userDal.GetById(userid,_connection)));
+            return View(new Account().GetById(userid,_connection));
         }
 
 
@@ -55,10 +53,10 @@ namespace AspView.Controllers
         
              if (User.Identity.IsAuthenticated) return RedirectToAction("Index","Home");
 
-             var user = new Account(_userDal.GetByName(model.Username, _connection));
+             var user = new Account().GetByName(model.Username, _connection); 
 
              //check username and password exist
-             if (user.Username == null || user.Password == null)
+             if (user == null)
              {
                  ModelState.AddModelError("", "Username or password is incorrect.");
                  return View(model);
@@ -121,13 +119,13 @@ namespace AspView.Controllers
             {
                 var hasher = new PasswordHasher<Account>();
 
-                var tempAccount = new Account(0, model.Username, model.Password, model.IsAdmin);
+                var tempAccount = new Account(model.Username, model.Password, model.IsAdmin);
 
                 var hashedPw = hasher.HashPassword(tempAccount, model.Password);
 
                 tempAccount.SetHashedPw(hashedPw);
 
-                KWSAdmin.Application.Account.AddAccount(tempAccount,_connection);
+                tempAccount.AddAccount(_connection);
 
                 return RedirectToAction("Index","Home");
             }
@@ -136,5 +134,7 @@ namespace AspView.Controllers
 
             return View(model);
         }
+
+
     }
 }

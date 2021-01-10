@@ -26,7 +26,7 @@ namespace AspView.Controllers
 
 
         [HttpGet]
-        public ActionResult Index(string sortOrder, string searchString, string showDone)
+        public ActionResult Index(string sortOrder, string searchString, string hideDone)
         {
             if (!User.Identity.IsAuthenticated) return RedirectToAction("Login", "Account");
 
@@ -35,32 +35,32 @@ namespace AspView.Controllers
             ViewBag.AccuSortParm = sortOrder == "accu" ? "accu_desc" : "accu";
             ViewBag.CreatorSortParm = sortOrder == "creator" ? "creator_desc" : "creator";
             ViewBag.LocationSortParm = sortOrder == "location" ? "location_desc" : "location";
-            ViewBag.DoneFilterParm = showDone == "true" ? "false" : "true";
+            ViewBag.DoneFilterParm = hideDone == "true" ? "false" : "true";
 
 
-            var orders = Order.GetAllOrders(Connection);
+            var orders = new Order().GetAllOrders(Connection);
 
             //Filters the list of order according to the searchString
             if (!string.IsNullOrEmpty(searchString))
             {
                 orders = orders.Where(s =>
-                    s.Client.LName.ToUpper().Contains(searchString.ToUpper()) ||
-                    s.Client.FName.ToUpper().Contains(searchString.ToUpper()) ||
+                    s.Client.LastName.ToUpper().Contains(searchString.ToUpper()) ||
+                    s.Client.FirstName.ToUpper().Contains(searchString.ToUpper()) ||
                     s.Accu.Name.ToUpper().Contains(searchString.ToUpper()) || 
                     s.Creator.Username.ToUpper().Contains(searchString.ToUpper())
                     ).ToList();
             }
 
             //Filters out any orders with done status of true
-            if (showDone == "true") orders = orders.Where(s => !s.Done).ToList();
+            if (hideDone == "true") orders = orders.Where(s => !s.Done).ToList();
             
 
             //Reads out chosen sort order and sorts orders accordingly
             orders = sortOrder switch
             {
                 "id_desc" => orders.OrderByDescending(s => s.Id).ToList(),
-                "client" => orders.OrderBy(s => s.Client.LName).ToList(),
-                "client_desc" => orders.OrderByDescending(s => s.Client.LName).ToList(),
+                "client" => orders.OrderBy(s => s.Client.LastName).ToList(),
+                "client_desc" => orders.OrderByDescending(s => s.Client.LastName).ToList(),
                 "accu" => orders.OrderBy(s => s.Accu.Name).ToList(),
                 "accu_desc" => orders.OrderByDescending(s => s.Accu.Name).ToList(),
                 "creator" => orders.OrderBy(s => s.Creator.Username).ToList(),

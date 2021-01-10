@@ -10,9 +10,8 @@ namespace AspView.Models
         [Required]
         public string LName { get; set; }
 
-        [Required]
         public string Phone { get; set; }
-        
+        [Required]
         public string EMail { get; set; }
         [Required]
         public string Adres { get; set; }

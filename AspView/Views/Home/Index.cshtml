@@ -13,7 +13,7 @@
 
 
 <p>
-    @Html.ActionLink("Toggle done orders", "Index", new { showDone = ViewBag.DoneFilterParm })
+    @Html.ActionLink("Toggle done orders", "Index", new { hideDone = ViewBag.DoneFilterParm })
 </p>
 
 
@@ -34,11 +34,11 @@
             <tr id="OrderItem">
 
                 <td>
-                    <a asp-area="" asp-controller="Data" asp-action="OrderView" asp-route-id="@item.Id">
+                    <a asp-area="" asp-controller="Order" asp-action="OrderView" asp-route-id="@item.Id">
                         @Html.DisplayFor(modelitem => item.Id)
                     </a>
                 </td>
-                <td>@Html.DisplayFor(modelitem => item.Client.LName)</td>
+                <td>@Html.DisplayFor(modelitem => item.Client.LastName)</td>
                 <td>@Html.DisplayFor(modelitem => item.Accu.Name)</td>
                 <td>@Html.DisplayFor(modelitem => item.Location)</td>
                 <td>@Html.DisplayFor(modelitem => item.Creator.Username)</td>

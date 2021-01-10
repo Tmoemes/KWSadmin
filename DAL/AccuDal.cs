@@ -20,7 +20,7 @@ namespace KWSAdmin.Persistence
                 var cmd = new SqlCommand("INSERT INTO Accu (name, creatorid, specs) VALUES (@name, @creatorid, @specs)",connection);
                 cmd.Parameters.AddWithValue("@name", accu.Name);
                 cmd.Parameters.AddWithValue("@creatorid", accu.Creatorid);
-                cmd.Parameters.AddWithValue("@specs", accu.Specs);
+                cmd.Parameters.AddWithValue("@specs", accu.Specs ?? " ");
 
                 cmd.ExecuteNonQuery();
             }
@@ -113,7 +113,7 @@ namespace KWSAdmin.Persistence
                 cmd.Parameters.AddWithValue("@id", accu.Id);
                 cmd.Parameters.AddWithValue("@name", accu.Name);
                 cmd.Parameters.AddWithValue("@creatorid", accu.Creatorid);
-                cmd.Parameters.AddWithValue("@specs", string.Join(",", accu.Specs));
+                cmd.Parameters.AddWithValue("@specs", accu.Specs ?? " ");
 
                 cmd.ExecuteNonQuery();
             }
@@ -129,6 +129,29 @@ namespace KWSAdmin.Persistence
 
         }
 
+        public void DeleteAccu(int id, SqlConnection connection)
+        {
+
+            try
+            {
+                connection.Open();
+                var cmd = new SqlCommand(
+                    "DELETE FROM Accu WHERE id = @id", connection);
+                cmd.Parameters.AddWithValue("@id", id);
+
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+        }
 
     }
 }

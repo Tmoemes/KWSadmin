@@ -14,5 +14,7 @@ namespace KWSAdmin.Persistence.Interface.Interfaces
         void UpdateUser(AccountDto account, SqlConnection connection);
 
         AccountDto GetByName(string name, SqlConnection connection);
+
+        void DeleteAccount(int id, SqlConnection connection);
     }
 }

@@ -32,16 +32,34 @@ namespace KWSAdmin.Application
             this.Admin = admin;
         }
 
-        private static readonly IAccountDal Dal = AccountFactory.GetUserDal();
-
-        public static Account GetByName(string name,SqlConnection connection)
+        public Account(string username, string password, bool admin)
         {
-            return new Account(Dal.GetByName(name,connection));
+            this.Username = username;
+            this.Password = password;
+            this.Admin = admin;
         }
 
-        public static void AddAccount(Account account, SqlConnection connection)
+        public Account()
         {
-            Dal.Add(new AccountDto(0,account.Username,account.Password,account.Admin), connection);
+            
+        }
+
+        private static readonly IAccountDal Dal = AccountFactory.GetUserDal();
+
+        public Account GetByName(string name,SqlConnection connection)
+        {
+            AccountDto accountDto = Dal.GetByName(name, connection);
+            return accountDto == null ? null : new Account(accountDto);
+        }
+
+        public void AddAccount(SqlConnection connection)
+        {
+            Dal.Add(new AccountDto(0,Username,Password,Admin), connection);
+        }
+
+        public Account GetById(int id, SqlConnection connection)
+        {
+           return new Account(Dal.GetById(id, connection));
 
         }
 

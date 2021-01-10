@@ -13,5 +13,7 @@ namespace KWSAdmin.Persistence.Interface.Interfaces
         void UpdateAccu(AccuDto accu, SqlConnection connection);
 
         List<AccuDto> GetAllAccus(SqlConnection connection);
+
+        void DeleteAccu(int id, SqlConnection connection);
     }
 }
