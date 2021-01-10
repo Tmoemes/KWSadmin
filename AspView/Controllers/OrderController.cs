@@ -83,7 +83,7 @@ namespace AspView.Controllers
         {
             if (!User.IsInRole("Admin")) return RedirectToAction("Login", "Account");
 
-            var order = new Order(model.Id, model.ClientId, model.Location, model.CreatorId, model.AccuId, model.Info, model.Done);
+            var order = new Order(model.Id, model.ClientId, model.Location, model.CreatorId, model.AccuId, model.Info, model.Done);//todo vreemde error bij het ophalen van creator bij alleen deze 
             new Order().Update(order);
             return RedirectToAction("OrderView", model.Id);
         }

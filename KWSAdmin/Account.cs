@@ -44,22 +44,22 @@ namespace KWSAdmin.Application
             
         }
 
-        private static readonly IAccountDal Dal = AccountFactory.GetUserDal();
+        private static readonly IAccountDal _AccountDal = AccountFactory.GetUserDal();
 
         public Account GetByName(string name)
         {
-            AccountDto accountDto = Dal.GetByName(name);
+            AccountDto accountDto = _AccountDal.GetByName(name);
             return accountDto == null ? null : new Account(accountDto);
         }
 
         public void AddAccount()
         {
-            Dal.Add(new AccountDto(0,Username,Password,Admin));
+            _AccountDal.Add(new AccountDto(0,Username,Password,Admin));
         }
 
         public Account GetById(int id)
         {
-           return new Account(Dal.GetById(id));
+           return new Account(_AccountDal.GetById(id));
 
         }
 
