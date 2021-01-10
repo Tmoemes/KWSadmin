@@ -10,7 +10,7 @@ C:\Users\meesv\source\repos\Tmoemes\KWSadmin\KWSAdmin\bin\Debug\netcoreapp3.1\KW
 C:\Users\meesv\source\repos\Tmoemes\KWSadmin\KWSAdmin\obj\Debug\netcoreapp3.1\KWSAdmin.Application.csprojAssemblyReference.cache
 C:\Users\meesv\source\repos\Tmoemes\KWSadmin\KWSAdmin\obj\Debug\netcoreapp3.1\KWSAdmin.Application.AssemblyInfoInputs.cache
 C:\Users\meesv\source\repos\Tmoemes\KWSadmin\KWSAdmin\obj\Debug\netcoreapp3.1\KWSAdmin.Application.AssemblyInfo.cs
-C:\Users\meesv\source\repos\Tmoemes\KWSadmin\KWSAdmin\obj\Debug\netcoreapp3.1\KWSAdmin.Application.csproj.CoreCompileInputs.cache
 C:\Users\meesv\source\repos\Tmoemes\KWSadmin\KWSAdmin\obj\Debug\netcoreapp3.1\KWSAdmin.Application.csproj.CopyComplete
 C:\Users\meesv\source\repos\Tmoemes\KWSadmin\KWSAdmin\obj\Debug\netcoreapp3.1\KWSAdmin.Application.dll
 C:\Users\meesv\source\repos\Tmoemes\KWSadmin\KWSAdmin\obj\Debug\netcoreapp3.1\KWSAdmin.Application.pdb
+C:\Users\meesv\source\repos\Tmoemes\KWSadmin\KWSAdmin\obj\Debug\netcoreapp3.1\KWSAdmin.Application.csproj.CoreCompileInputs.cache

@@ -10,13 +10,20 @@ namespace KWSAdmin.Persistence
     public class AccountDal : IAccountDal
     {
 
-        public void Add(AccountDto account, SqlConnection connection)
+        private readonly SqlConnection _connection;
+
+        public AccountDal()
+        {
+            _connection = DbConnection.GetConnection();
+        }
+
+        public void Add(AccountDto account)
         {
             try
             {           
-                connection.Open();
+                _connection.Open();
 
-                var cmd = new SqlCommand("INSERT INTO Account (username, password, admin) VALUES (@username, @password, @admin)",connection);
+                var cmd = new SqlCommand("INSERT INTO Account (username, password, admin) VALUES (@username, @password, @admin)",_connection);
                 cmd.Parameters.AddWithValue("@username", account.Username);
                 cmd.Parameters.AddWithValue("@password", account.Password);
                 cmd.Parameters.AddWithValue("@admin", Convert.ToInt32(account.Admin));
@@ -29,17 +36,17 @@ namespace KWSAdmin.Persistence
             }
             finally
             {
-                connection.Close();
+                _connection.Close();
             }
         }
 
-        public AccountDto GetById(int id, SqlConnection connection)
+        public AccountDto GetById(int id)
         {
             try
             {
-                connection.Open();
+                _connection.Open();
 
-                var cmd = new SqlCommand("SELECT username,password,admin FROM Account WHERE id = @id",connection);
+                var cmd = new SqlCommand("SELECT username,password,admin FROM Account WHERE id = @id",_connection);
                 cmd.Parameters.AddWithValue("@id", id);
 
                 var reader = cmd.ExecuteReader();
@@ -64,18 +71,18 @@ namespace KWSAdmin.Persistence
             }
             finally
             {
-                connection.Close();
+                _connection.Close();
             }
 
         }
 
-        public AccountDto GetByName(string name, SqlConnection connection)
+        public AccountDto GetByName(string name)
         {
             try
             {
-                connection.Open();
+                _connection.Open();
 
-                var cmd = new SqlCommand("SELECT id,password,admin FROM Account WHERE username = @username",connection);
+                var cmd = new SqlCommand("SELECT id,password,admin FROM Account WHERE username = @username",_connection);
                 cmd.Parameters.AddWithValue("@username", name);
 
                 var reader = cmd.ExecuteReader();
@@ -96,19 +103,19 @@ namespace KWSAdmin.Persistence
             }
             finally
             {
-                connection.Close();
+                _connection.Close();
             }
 
         }
 
-        public void UpdateUser(AccountDto account, SqlConnection connection)
+        public void UpdateUser(AccountDto account)
         {
 
             try
             {
-                connection.Open();
+                _connection.Open();
                 var cmd = new SqlCommand(
-                    "UPDATE Account SET username = @username, password = @password WHERE id = @id", connection);
+                    "UPDATE Account SET username = @username, password = @password WHERE id = @id", _connection);
                 cmd.Parameters.AddWithValue("@id", account.Id);
                 cmd.Parameters.AddWithValue("@username", account.Username);
                 cmd.Parameters.AddWithValue("@password", account.Password);
@@ -122,18 +129,18 @@ namespace KWSAdmin.Persistence
             }
             finally
             {
-                connection.Close();
+                _connection.Close();
             }
         }
 
-        public void DeleteAccount(int id, SqlConnection connection)
+        public void DeleteAccount(int id)
         {
 
                 try
                 {
-                    connection.Open();
+                    _connection.Open();
                     var cmd = new SqlCommand(
-                        "DELETE FROM Account WHERE id = @id", connection);
+                        "DELETE FROM Account WHERE id = @id", _connection);
                     cmd.Parameters.AddWithValue("@id", id);
 
                     cmd.ExecuteNonQuery();
@@ -145,7 +152,7 @@ namespace KWSAdmin.Persistence
                 }
                 finally
                 {
-                    connection.Close();
+                    _connection.Close();
                 }
 
         }

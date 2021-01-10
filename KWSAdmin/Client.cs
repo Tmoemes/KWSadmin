@@ -55,21 +55,21 @@ namespace KWSAdmin.Application
             
         }
 
-        public IClientDal Dal = ClientFactory.GetClientDal();
+        public IClientDal _ClientDal = ClientFactory.GetClientDal();
 
-        public Client GetByLName(string name, SqlConnection connection)
+        public Client GetByLName(string name)
         {
-            return new Client(Dal.GetByLName(name, connection));
+            return new Client(_ClientDal.GetByLName(name));
         }
 
-        public void AddClient(Client client, SqlConnection connection)
+        public void AddClient(Client client)
         {
-            Dal.Add(new ClientDto(client.FirstName,client.LastName, client.Phone, client.EMail,client.Adres), connection);
+            _ClientDal.Add(new ClientDto(client.FirstName,client.LastName, client.Phone, client.EMail,client.Adres));
         }
 
-        public List<Client> GetAllClients(SqlConnection connection)
+        public List<Client> GetAllClients()
         {
-            return Dal.GetAllClients(connection).Select(clientDto => new Client(clientDto)).ToList();
+            return _ClientDal.GetAllClients().Select(clientDto => new Client(clientDto)).ToList();
         }
 
         public override string ToString()

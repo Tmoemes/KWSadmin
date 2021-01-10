@@ -10,14 +10,21 @@ namespace KWSAdmin.Persistence
     public class AccuDal : IAccuDal
     {
 
-        public void Add(AccuDto accu,SqlConnection connection)
+        private readonly SqlConnection _connection;
+
+        public AccuDal()
+        {
+            _connection = DbConnection.GetConnection();
+        }
+
+        public void Add(AccuDto accu)
         {
 
             try
             {
-                connection.Open();
+                _connection.Open();
 
-                var cmd = new SqlCommand("INSERT INTO Accu (name, creatorid, specs) VALUES (@name, @creatorid, @specs)",connection);
+                var cmd = new SqlCommand("INSERT INTO Accu (name, creatorid, specs) VALUES (@name, @creatorid, @specs)",_connection);
                 cmd.Parameters.AddWithValue("@name", accu.Name);
                 cmd.Parameters.AddWithValue("@creatorid", accu.Creatorid);
                 cmd.Parameters.AddWithValue("@specs", accu.Specs ?? " ");
@@ -30,18 +37,18 @@ namespace KWSAdmin.Persistence
             }
             finally
             {
-                connection.Close();
+                _connection.Close();
             }
         }
 
-        public List<AccuDto> GetAllAccus(SqlConnection connection)
+        public List<AccuDto> GetAllAccus()
         {
             var dtolist = new List<AccuDto>();
 
             try
             {
-                connection.Open();
-                var cmd = new SqlCommand("SELECT * FROM [Accu]", connection);
+                _connection.Open();
+                var cmd = new SqlCommand("SELECT * FROM [Accu]", _connection);
                 var reader = cmd.ExecuteReader();
 
                 while (reader.Read())
@@ -63,19 +70,19 @@ namespace KWSAdmin.Persistence
             }
             finally
             {
-                connection.Close();
+                _connection.Close();
                
             }
         }
 
 
-        public AccuDto GetById(int id,SqlConnection connection)
+        public AccuDto GetById(int id)
         {
             try
             {
-                connection.Open();
+                _connection.Open();
 
-                var cmd = new SqlCommand("SELECT name,creatorid,specs FROM Accu WHERE id = @id", connection);
+                var cmd = new SqlCommand("SELECT name,creatorid,specs FROM Accu WHERE id = @id", _connection);
                 cmd.Parameters.AddWithValue("@id", id);
 
                 var reader = cmd.ExecuteReader();
@@ -96,20 +103,20 @@ namespace KWSAdmin.Persistence
             }
             finally
             {
-                connection.Close();
+                _connection.Close();
             }
 
 
         }
 
-        public void UpdateAccu(AccuDto accu, SqlConnection connection)
+        public void UpdateAccu(AccuDto accu)
         {
 
             try
             {
-                connection.Open();
+                _connection.Open();
                 var cmd = new SqlCommand(
-                    "UPDATE Accu SET name = @name, creatorid = @creatorid, specs = @specs WHERE id = @id",connection);
+                    "UPDATE Accu SET name = @name, creatorid = @creatorid, specs = @specs WHERE id = @id",_connection);
                 cmd.Parameters.AddWithValue("@id", accu.Id);
                 cmd.Parameters.AddWithValue("@name", accu.Name);
                 cmd.Parameters.AddWithValue("@creatorid", accu.Creatorid);
@@ -124,19 +131,19 @@ namespace KWSAdmin.Persistence
             }
             finally
             {
-                connection.Close();
+                _connection.Close();
             }
 
         }
 
-        public void DeleteAccu(int id, SqlConnection connection)
+        public void DeleteAccu(int id)
         {
 
             try
             {
-                connection.Open();
+                _connection.Open();
                 var cmd = new SqlCommand(
-                    "DELETE FROM Accu WHERE id = @id", connection);
+                    "DELETE FROM Accu WHERE id = @id", _connection);
                 cmd.Parameters.AddWithValue("@id", id);
 
                 cmd.ExecuteNonQuery();
@@ -148,7 +155,7 @@ namespace KWSAdmin.Persistence
             }
             finally
             {
-                connection.Close();
+                _connection.Close();
             }
 
         }

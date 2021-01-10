@@ -7,14 +7,14 @@ namespace KWSAdmin.Persistence.Interface.Interfaces
 {
     public interface IAccountDal
     {
-         AccountDto GetById(int id, SqlConnection connection);
+         AccountDto GetById(int id);
 
-        void Add(AccountDto account, SqlConnection connection);
+        void Add(AccountDto account);
 
-        void UpdateUser(AccountDto account, SqlConnection connection);
+        void UpdateUser(AccountDto account);
 
-        AccountDto GetByName(string name, SqlConnection connection);
+        AccountDto GetByName(string name);
 
-        void DeleteAccount(int id, SqlConnection connection);
+        void DeleteAccount(int id);
     }
 }

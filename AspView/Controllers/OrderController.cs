@@ -16,11 +16,9 @@ namespace AspView.Controllers
     {
 
         private readonly ILogger<HomeController> _logger;
-        public static SqlConnection Connection;
 
-        public OrderController(ILogger<HomeController> logger, IConfiguration configuration)
+        public OrderController(ILogger<HomeController> logger)
         {
-            Connection = new SqlConnection(configuration.GetConnectionString("ConnectionString"));
             _logger = logger;
         }
 
@@ -28,7 +26,7 @@ namespace AspView.Controllers
         public IActionResult CreateOrder()
         {
             if (!User.IsInRole("Admin")) return RedirectToAction("Login", "Account");
-            OrderViewModel model = new OrderViewModel {Accus = new Accu().GetAllAccus(Connection),Clients = new Client().GetAllClients(Connection)};
+            OrderViewModel model = new OrderViewModel {Accus = new Accu().GetAllAccus(),Clients = new Client().GetAllClients()};
 
             return View(model);
         }
@@ -39,7 +37,7 @@ namespace AspView.Controllers
         {
             if (!User.IsInRole("Admin")) return RedirectToAction("Login", "Account");
 
-            new Order(model.AccuId, model.Location, GetCurrentUserId(), model.AccuId, model.Info, Connection).AddOrder(Connection);
+            new Order(model.AccuId, model.Location, GetCurrentUserId(), model.AccuId, model.Info).AddOrder();
             return RedirectToAction("Index", "Home");
         }
 
@@ -47,32 +45,47 @@ namespace AspView.Controllers
         [HttpGet]
         public IActionResult OrderView(int id)
         {
-            var selectedOrder = new Order().GetById(id, Connection);
+            var selectedOrder = new Order().GetById(id);
             return View(selectedOrder);
         }
 
         public ActionResult DeleteOrder(int id)
         {
-            new Order().Delete(id, Connection);
+            new Order().Delete(id);
             return RedirectToAction("Index", "Home");
         }
 
 
-        public IActionResult UpdateOrder(Order order)
+        public IActionResult UpdateOrder(int id)
         {
-            return View(order);
+
+            var oldOrder = new Order().GetById(id);
+
+            OrderViewModel model = new OrderViewModel
+            {
+                Id = oldOrder.Id,
+                Location = oldOrder.Location,
+                AccuId = oldOrder.Accu.Id,
+                ClientId = oldOrder.Client.Id,
+                Info = oldOrder.Info,
+                Done = oldOrder.Done,
+                Accus = new Accu().GetAllAccus(),
+                Clients = new Client().GetAllClients(),
+
+            };
+            return View(model);
         }
 
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult UpdateOrder(OrderViewModel model, Order oldOrder)
+        public ActionResult UpdateOrder(OrderViewModel model)
         {
             if (!User.IsInRole("Admin")) return RedirectToAction("Login", "Account");
 
-            var order = new Order(oldOrder.Id, model.ClientId, model.Location, oldOrder.Creator.Id, model.AccuId, model.Info, false, Connection);
-            new Order().Update(order, Connection);
-            return RedirectToAction("OrderView", oldOrder.Id);
+            var order = new Order(model.Id, model.ClientId, model.Location, model.CreatorId, model.AccuId, model.Info, model.Done);
+            new Order().Update(order);
+            return RedirectToAction("OrderView", model.Id);
         }
 
         private int GetCurrentUserId()

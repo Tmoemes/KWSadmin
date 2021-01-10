@@ -14,12 +14,10 @@ namespace AspView.Controllers
     public class ClientController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        public static SqlConnection Connection;
 
 
-        public ClientController(ILogger<HomeController> logger, IConfiguration configuration)
+        public ClientController(ILogger<HomeController> logger)
         {
-            Connection = new SqlConnection(configuration.GetConnectionString("ConnectionString"));
             _logger = logger;
         }
 
@@ -36,7 +34,7 @@ namespace AspView.Controllers
         {
             if (!ModelState.IsValid) return View(model);
 
-            new Client().AddClient(new Client(model.FName, model.LName, model.Phone, model.EMail, model.Adres), Connection);
+            new Client().AddClient(new Client(model.FName, model.LName, model.Phone, model.EMail, model.Adres));
             return RedirectToAction("Index", "Home");
         }
 

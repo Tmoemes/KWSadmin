@@ -8,6 +8,8 @@ namespace AspView.Models
 {
     public class OrderViewModel
     {
+        public int  Id { get; set; }
+
         [Required] public Location Location { get; set; }
 
         public int ClientId { get; set; }
@@ -16,10 +18,13 @@ namespace AspView.Models
 
         public string Info { get; set; }
 
+        public int CreatorId { get; set; }
+
+        public bool Done { get; set; }
+
         public List<Client> Clients { get; set; }
 
         public List<Accu> Accus { get; set; }
-
 
     }
 }

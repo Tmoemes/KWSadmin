@@ -11,15 +11,23 @@ namespace KWSAdmin.Persistence
     public class ClientDal : IClientDal
     {
 
-        public void Add(ClientDto client, SqlConnection connection)
+        private readonly SqlConnection _connection;
+
+        public ClientDal()
+        {
+            _connection = DbConnection.GetConnection();
+        }
+
+
+        public void Add(ClientDto client)
         {
 
             try
             {
-                connection.Open();
+                _connection.Open();
 
                 var cmd = new SqlCommand(
-                    "INSERT INTO Client (fname, lname, phone, email, adres) VALUES (@fname, @lname, @phone, @email, @adres)",connection);
+                    "INSERT INTO Client (fname, lname, phone, email, adres) VALUES (@fname, @lname, @phone, @email, @adres)",_connection);
                 //nullable params
                 cmd.Parameters.AddWithValue("@fname", client.FirstName ?? " ");
                 cmd.Parameters.AddWithValue("@phone", client.Phone ?? " ");
@@ -35,18 +43,18 @@ namespace KWSAdmin.Persistence
             }
             finally
             {
-                connection.Close();
+                _connection.Close();
             }
         }
 
-        public List<ClientDto> GetAllClients(SqlConnection connection)
+        public List<ClientDto> GetAllClients()
         {
             var dtolist = new List<ClientDto>();
 
             try
             {
-                connection.Open();
-                var cmd = new SqlCommand("SELECT * FROM [Client]", connection);
+                _connection.Open();
+                var cmd = new SqlCommand("SELECT * FROM [Client]", _connection);
                 var reader = cmd.ExecuteReader();
 
                 while (reader.Read())
@@ -70,7 +78,7 @@ namespace KWSAdmin.Persistence
             }
             finally
             {
-                connection.Close();
+                _connection.Close();
             }
         }
 
@@ -78,13 +86,13 @@ namespace KWSAdmin.Persistence
 
 
 
-        public ClientDto GetById(int id,SqlConnection connection)
+        public ClientDto GetById(int id)
         {
             try
             {
-                connection.Open();
+                _connection.Open();
 
-                var cmd = new SqlCommand("SELECT fname,lname,phone,email,adres FROM Client WHERE id = @id", connection);
+                var cmd = new SqlCommand("SELECT fname,lname,phone,email,adres FROM Client WHERE id = @id", _connection);
                 cmd.Parameters.AddWithValue("@id", id);
 
                 var reader = cmd.ExecuteReader();
@@ -106,18 +114,18 @@ namespace KWSAdmin.Persistence
             }
             finally
             {
-                connection.Close();
+                _connection.Close();
             }
 
         }
 
-        public ClientDto GetByLName(string name, SqlConnection connection)
+        public ClientDto GetByLName(string name)
         {
             try
             {
-                connection.Open();
+                _connection.Open();
 
-                var cmd = new SqlCommand("SELECT id,fname,phone,email,adres FROM Client WHERE lname = @lname", connection);
+                var cmd = new SqlCommand("SELECT id,fname,phone,email,adres FROM Client WHERE lname = @lname", _connection);
                 cmd.Parameters.AddWithValue("@lname", name);
 
                 var reader = cmd.ExecuteReader();
@@ -139,19 +147,19 @@ namespace KWSAdmin.Persistence
             }
             finally
             {
-                connection.Close();
+                _connection.Close();
             }
 
         }
 
-        public void UpdateClient(ClientDto client, SqlConnection connection)
+        public void UpdateClient(ClientDto client)
         {
 
             try
             {
-                connection.Open();
+                _connection.Open();
                 var cmd = new SqlCommand(
-                    "UPDATE Client SET fname = @fname, lname = @lname, phone = @phone, email = @email, adres = @adres WHERE id = @id",connection);
+                    "UPDATE Client SET fname = @fname, lname = @lname, phone = @phone, email = @email, adres = @adres WHERE id = @id",_connection);
                 cmd.Parameters.AddWithValue("@id", client.Id);
                 cmd.Parameters.AddWithValue("@fname", client.FirstName ?? " ");
                 cmd.Parameters.AddWithValue("@lname", client.LastName);
@@ -168,20 +176,20 @@ namespace KWSAdmin.Persistence
             }
             finally
             {
-                connection.Close();
+                _connection.Close();
             }
 
         }
 
 
-        public void DeleteClient(int id, SqlConnection connection)
+        public void DeleteClient(int id)
         {
 
             try
             {
-                connection.Open();
+                _connection.Open();
                 var cmd = new SqlCommand(
-                    "DELETE FROM Client WHERE id = @id", connection);
+                    "DELETE FROM Client WHERE id = @id", _connection);
                 cmd.Parameters.AddWithValue("@id", id);
 
                 cmd.ExecuteNonQuery();
@@ -193,7 +201,7 @@ namespace KWSAdmin.Persistence
             }
             finally
             {
-                connection.Close();
+                _connection.Close();
             }
 
         }

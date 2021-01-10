@@ -16,16 +16,11 @@ namespace AspView.Controllers
     {
 
         private readonly ILogger<HomeController> _logger;
-        public static SqlConnection Connection;
-       
 
-
-        public AccuController(ILogger<HomeController> logger, IConfiguration configuration)
+        public AccuController(ILogger<HomeController> logger)
         {
-            Connection = new SqlConnection(configuration.GetConnectionString("ConnectionString"));
             _logger = logger;
         }
-
 
 
         public IActionResult AddAccu()
@@ -40,7 +35,7 @@ namespace AspView.Controllers
         {
             if (!User.IsInRole("Admin")) return RedirectToAction("Login", "Account");
 
-            new Accu().AddAccu(new Accu(model.Name, GetCurrentUserId(), model.Specs, Connection), Connection);
+            new Accu().AddAccu(new Accu(model.Name, GetCurrentUserId(), model.Specs));
 
             return RedirectToAction("Index", "Home");
         }

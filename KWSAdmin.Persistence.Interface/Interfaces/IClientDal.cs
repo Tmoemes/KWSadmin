@@ -10,16 +10,16 @@ namespace KWSAdmin.Persistence.Interface.Interfaces
     public interface IClientDal
     {
 
-        ClientDto GetById(int id, SqlConnection connection);
+        ClientDto GetById(int id);
 
-        ClientDto GetByLName(string name, SqlConnection connection);
+        ClientDto GetByLName(string name);
 
-        void Add(ClientDto order, SqlConnection connection);
+        void Add(ClientDto order);
 
-        void UpdateClient(ClientDto order, SqlConnection connection);
+        void UpdateClient(ClientDto order);
 
-        List<ClientDto> GetAllClients(SqlConnection connection);
+        List<ClientDto> GetAllClients();
 
-        void DeleteClient(int id, SqlConnection connection);
+        void DeleteClient(int id);
     }
 }

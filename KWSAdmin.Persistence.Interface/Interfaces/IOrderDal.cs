@@ -8,14 +8,14 @@ namespace KWSAdmin.Persistence.Interface.Interfaces
 {
     public interface IOrderDal
     {
-        OrderDto GetById(int id, SqlConnection connection);
+        OrderDto GetById(int id);
 
-        void Add(OrderDto order, SqlConnection connection);
+        void Add(OrderDto order);
 
-        void UpdateOrder(OrderDto order, SqlConnection connection);
+        void UpdateOrder(OrderDto order);
 
-        List<OrderDto> GetAllOrders(SqlConnection connection);
+        List<OrderDto> GetAllOrders();
 
-        void DeleteOrder(int id, SqlConnection connection);
+        void DeleteOrder(int id);
     }
 }

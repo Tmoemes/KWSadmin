@@ -6,14 +6,14 @@ namespace KWSAdmin.Persistence.Interface.Interfaces
 {
     public interface IAccuDal
     { 
-        AccuDto GetById(int id, SqlConnection connection);
+        AccuDto GetById(int id);
 
-        void Add(AccuDto accu, SqlConnection connection);
+        void Add(AccuDto accu);
 
-        void UpdateAccu(AccuDto accu, SqlConnection connection);
+        void UpdateAccu(AccuDto accu);
 
-        List<AccuDto> GetAllAccus(SqlConnection connection);
+        List<AccuDto> GetAllAccus();
 
-        void DeleteAccu(int id, SqlConnection connection);
+        void DeleteAccu(int id);
     }
 }

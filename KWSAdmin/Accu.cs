@@ -17,31 +17,31 @@ namespace KWSAdmin.Application
         public Account Creator { get; private set; }
         public string Specs { get; private set; }
 
-        private readonly IAccuDal AccuDal = AccuFactory.GetAccuDal();
-        private readonly IAccountDal UserDal = AccountFactory.GetUserDal();
+        private readonly IAccuDal _accuDal = AccuFactory.GetAccuDal();
+        private readonly IAccountDal _userDal = AccountFactory.GetUserDal();
 
-        public Accu(AccuDto accu,SqlConnection connection)
+        public Accu(AccuDto accu)
         {
             this.Id = accu.Id;
             this.Name = accu.Name;
-            this.Creator = new Account(UserDal.GetById(accu.Creatorid,connection));
+            this.Creator = new Account(_userDal.GetById(accu.Creatorid));
             this.Specs = accu.Specs;
 
         }
 
-        public Accu(int id, string name, int creatorid, string specs, SqlConnection connection)
+        public Accu(int id, string name, int creatorid, string specs)
         {
             this.Id = id;
             this.Name = name;
-            this.Creator = new Account(UserDal.GetById(creatorid, connection));
+            this.Creator = new Account(_userDal.GetById(creatorid));
             this.Specs = specs;
 
         }
 
-        public Accu(string name, int creatorid, string specs, SqlConnection connection)
+        public Accu(string name, int creatorid, string specs)
         {
             this.Name = name;
-            this.Creator = new Account(UserDal.GetById(creatorid, connection));
+            this.Creator = new Account(_userDal.GetById(creatorid));
             this.Specs = specs;
 
         }
@@ -51,14 +51,14 @@ namespace KWSAdmin.Application
             
         }
 
-        public List<Accu> GetAllAccus(SqlConnection connection)
+        public List<Accu> GetAllAccus()
         {
-            return AccuDal.GetAllAccus(connection).Select(accu => new Accu(accu, connection)).ToList();
+            return _accuDal.GetAllAccus().Select(accu => new Accu(accu)).ToList();
         }
 
-        public void AddAccu(Accu accu, SqlConnection connection)
+        public void AddAccu(Accu accu)
         {
-            AccuDal.Add(new AccuDto(0,accu.Name,accu.Creator.Id,accu.Specs),connection);
+            _accuDal.Add(new AccuDto(0,accu.Name,accu.Creator.Id,accu.Specs));
 
         }
 

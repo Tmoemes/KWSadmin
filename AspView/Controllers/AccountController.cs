@@ -9,21 +9,18 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using KWSAdmin.Application;
-using System.Data.SqlClient;
-using KWSAdmin.DALFactory;
-using KWSAdmin.Persistence.Interface.Interfaces;
-using Microsoft.Extensions.Configuration;
+
 
 
 namespace AspView.Controllers
 {
     public class AccountController : Controller
     {
-        private readonly SqlConnection _connection;
+       
 
-        public AccountController(IConfiguration configuration)
+        public AccountController()
         {
-            _connection = new SqlConnection(configuration.GetConnectionString("ConnectionString"));
+            
         }
 
 
@@ -34,7 +31,7 @@ namespace AspView.Controllers
             
             int userid = Convert.ToInt32(User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Sid)?.Value);
 
-            return View(new Account().GetById(userid,_connection));
+            return View(new Account().GetById(userid));
         }
 
 
@@ -53,7 +50,7 @@ namespace AspView.Controllers
         
              if (User.Identity.IsAuthenticated) return RedirectToAction("Index","Home");
 
-             var user = new Account().GetByName(model.Username, _connection); 
+             var user = new Account().GetByName(model.Username); 
 
              //check username and password exist
              if (user == null)
@@ -125,7 +122,7 @@ namespace AspView.Controllers
 
                 tempAccount.SetHashedPw(hashedPw);
 
-                tempAccount.AddAccount(_connection);
+                tempAccount.AddAccount();
 
                 return RedirectToAction("Index","Home");
             }

@@ -14,12 +14,10 @@ namespace AspView.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        public static SqlConnection Connection;
 
 
-        public HomeController(ILogger<HomeController> logger, IConfiguration configuration)
+        public HomeController(ILogger<HomeController> logger)
         {
-            Connection = new SqlConnection(configuration.GetConnectionString("ConnectionString"));
             _logger = logger;
         }
 
@@ -38,7 +36,7 @@ namespace AspView.Controllers
             ViewBag.DoneFilterParm = hideDone == "true" ? "false" : "true";
 
 
-            var orders = new Order().GetAllOrders(Connection);
+            var orders = new Order().GetAllOrders();
 
             //Filters the list of order according to the searchString
             if (!string.IsNullOrEmpty(searchString))

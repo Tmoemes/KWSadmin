@@ -46,20 +46,20 @@ namespace KWSAdmin.Application
 
         private static readonly IAccountDal Dal = AccountFactory.GetUserDal();
 
-        public Account GetByName(string name,SqlConnection connection)
+        public Account GetByName(string name)
         {
-            AccountDto accountDto = Dal.GetByName(name, connection);
+            AccountDto accountDto = Dal.GetByName(name);
             return accountDto == null ? null : new Account(accountDto);
         }
 
-        public void AddAccount(SqlConnection connection)
+        public void AddAccount()
         {
-            Dal.Add(new AccountDto(0,Username,Password,Admin), connection);
+            Dal.Add(new AccountDto(0,Username,Password,Admin));
         }
 
-        public Account GetById(int id, SqlConnection connection)
+        public Account GetById(int id)
         {
-           return new Account(Dal.GetById(id, connection));
+           return new Account(Dal.GetById(id));
 
         }
 

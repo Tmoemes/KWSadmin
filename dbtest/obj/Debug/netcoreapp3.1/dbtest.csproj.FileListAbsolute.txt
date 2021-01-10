@@ -16,12 +16,8 @@ C:\Users\meesv\source\repos\Tmoemes\KWSadmin\dbtest\bin\Debug\netcoreapp3.1\KWSA
 C:\Users\meesv\source\repos\Tmoemes\KWSadmin\dbtest\bin\Debug\netcoreapp3.1\KWSAdmin.Persistence.Interface.pdb
 C:\Users\meesv\source\repos\Tmoemes\KWSadmin\dbtest\obj\Debug\netcoreapp3.1\dbtest.AssemblyInfoInputs.cache
 C:\Users\meesv\source\repos\Tmoemes\KWSadmin\dbtest\obj\Debug\netcoreapp3.1\dbtest.AssemblyInfo.cs
-C:\Users\meesv\source\repos\Tmoemes\KWSadmin\dbtest\obj\Debug\netcoreapp3.1\dbtest.csproj.CoreCompileInputs.cache
 C:\Users\meesv\source\repos\Tmoemes\KWSadmin\dbtest\obj\Debug\netcoreapp3.1\dbtest.csproj.CopyComplete
 C:\Users\meesv\source\repos\Tmoemes\KWSadmin\dbtest\obj\Debug\netcoreapp3.1\dbtest.dll
 C:\Users\meesv\source\repos\Tmoemes\KWSadmin\dbtest\obj\Debug\netcoreapp3.1\dbtest.pdb
 C:\Users\meesv\source\repos\Tmoemes\KWSadmin\dbtest\obj\Debug\netcoreapp3.1\dbtest.genruntimeconfig.cache
 C:\Users\meesv\source\repos\Tmoemes\KWSadmin\dbtest\obj\Debug\netcoreapp3.1\dbtest.csprojAssemblyReference.cache
-C:\Users\meesv\source\repos\Tmoemes\KWSadmin\dbtest\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.dll
-C:\Users\meesv\source\repos\Tmoemes\KWSadmin\dbtest\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.Abstractions.dll
-C:\Users\meesv\source\repos\Tmoemes\KWSadmin\dbtest\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Primitives.dll
