@@ -37,7 +37,7 @@ namespace AspView.Controllers
         {
             if (!User.IsInRole("Admin")) return RedirectToAction("Login", "Account");
 
-            new Order(model.AccuId, model.Location, GetCurrentUserId(), model.AccuId, model.Info).AddOrder();
+            new Order(model.Accu.Id, model.Location, GetCurrentUserId(), model.Accu.Id, model.Info).AddOrder();
             return RedirectToAction("Index", "Home");
         }
 
@@ -65,8 +65,8 @@ namespace AspView.Controllers
             {
                 Id = oldOrder.Id,
                 Location = oldOrder.Location,
-                AccuId = oldOrder.Accu.Id,
-                ClientId = oldOrder.Client.Id,
+                Accu = oldOrder.Accu,
+                Client = oldOrder.Client,
                 Info = oldOrder.Info,
                 Done = oldOrder.Done,
                 Accus = new Accu().GetAllAccus(),
@@ -83,7 +83,7 @@ namespace AspView.Controllers
         {
             if (!User.IsInRole("Admin")) return RedirectToAction("Login", "Account");
 
-            var order = new Order(model.Id, model.ClientId, model.Location, model.CreatorId, model.AccuId, model.Info, model.Done);//todo vreemde error bij het ophalen van creator bij alleen deze 
+            var order = new Order(model.Id, model.Client, model.Location, model.Creator, model.Accu, model.Info, model.Done);//todo vreemde error bij het ophalen van creator bij alleen deze 
             new Order().Update(order);
             return RedirectToAction("OrderView", model.Id);
         }

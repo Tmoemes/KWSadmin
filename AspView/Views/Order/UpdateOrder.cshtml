@@ -19,9 +19,9 @@
 
             <div> @Html.DropDownListFor(m => m.Location, new SelectList(Enum.GetValues(typeof(Location))))</div>
 
-            <div>@Html.DropDownListFor(m => m.ClientId, new SelectList(Model.Clients, "Id", "LastName") ))) <a asp-action="AddClient", asp-controller="Client">Add new Client</a> </div>
+            <div>@Html.DropDownListFor(m => m.Client, new SelectList(Model.Clients,"Id", "LastName",Model.Client))) <a asp-action="AddClient", asp-controller="Client">Add new Client</a> </div>
 
-            <div>@Html.DropDownListFor(m => m.AccuId, new SelectList(Model.Accus, "Id", "Name")))) <a asp-action="AddAccu", asp-controller="Accu">Add new Accu</a> </div>
+            <div>@Html.DropDownListFor(m => m.Accu, new SelectList(Model.Accus, "Id", "Name",Model.Accu)))) <a asp-action="AddAccu", asp-controller="Accu">Add new Accu</a> </div>
 
 
             <div class="col-sm-3">

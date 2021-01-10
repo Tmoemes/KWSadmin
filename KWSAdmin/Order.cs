@@ -37,13 +37,13 @@ namespace KWSAdmin.Application
             this.Done = order.Done;
         }
 
-        public Order(int id, int clientid, Location location, int creatorid, int accuid, string info ,bool done)
+        public Order(int id, Client client, Location location, Account creator, Accu accu, string info ,bool done)
         {
             this.Id = id;
-            this.Client = new Client(_clientDal.GetById(clientid));
+            this.Client = client;
             this.Location = location;
-            this.Creator = new Account(_userDal.GetById(creatorid));
-            this.Accu = new Accu(_accuDal.GetById(accuid));
+            this.Creator = creator;
+            this.Accu = accu;
             this.Info = info;
             this.Done = done;
         }
