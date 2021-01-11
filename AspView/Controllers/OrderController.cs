@@ -83,15 +83,16 @@ namespace AspView.Controllers
         {
             if (!User.IsInRole("Admin")) return RedirectToAction("Login", "Account");
 
+            var oldOrder = new Order().GetById(model.Id);
+
             var client = new Client().GetById(model.ClientId);
             var accu = new Accu().GetById(model.AccuId);
-            var creator = new Account().GetById(model.CreatorId);//todo returned alleen hier null, geen idee waarom
-           
-
-            var order = new Order(model.Id, client, model.Location, creator, accu, model.Info,
+            var creator = oldOrder.Creator;
+            
+            var order = new Order(oldOrder.Id, client, model.Location, creator, accu, model.Info,
                 model.Done); 
             new Order().Update(order);
-            return RedirectToAction("OrderView", model.Id);
+            return RedirectToAction("Index","Home");
         }
 
         private int GetCurrentUserId()
