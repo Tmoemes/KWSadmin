@@ -59,7 +59,7 @@ namespace KWSAdmin.Application
 
         public Order()
         {
-            
+
         }
 
         public void AddOrder()

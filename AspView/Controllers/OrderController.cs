@@ -92,7 +92,7 @@ namespace AspView.Controllers
             var order = new Order(oldOrder.Id, client, model.Location, creator, accu, model.Info,
                 model.Done); 
             new Order().Update(order);
-            return RedirectToAction("Index","Home");
+            return RedirectToAction("OrderView",new {id = model.Id});
         }
 
         private int GetCurrentUserId()

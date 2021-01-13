@@ -1,0 +1,12 @@
+C:\Users\meesv\source\repos\Tmoemes\KWSadmin\DAL\bin\Release\netcoreapp3.1\KWSAdmin.Persistence.deps.json
+C:\Users\meesv\source\repos\Tmoemes\KWSadmin\DAL\bin\Release\netcoreapp3.1\KWSAdmin.Persistence.dll
+C:\Users\meesv\source\repos\Tmoemes\KWSadmin\DAL\bin\Release\netcoreapp3.1\KWSAdmin.Persistence.pdb
+C:\Users\meesv\source\repos\Tmoemes\KWSadmin\DAL\bin\Release\netcoreapp3.1\KWSAdmin.Persistence.Interface.dll
+C:\Users\meesv\source\repos\Tmoemes\KWSadmin\DAL\bin\Release\netcoreapp3.1\KWSAdmin.Persistence.Interface.pdb
+C:\Users\meesv\source\repos\Tmoemes\KWSadmin\DAL\obj\Release\netcoreapp3.1\KWSAdmin.Persistence.csprojAssemblyReference.cache
+C:\Users\meesv\source\repos\Tmoemes\KWSadmin\DAL\obj\Release\netcoreapp3.1\KWSAdmin.Persistence.AssemblyInfoInputs.cache
+C:\Users\meesv\source\repos\Tmoemes\KWSadmin\DAL\obj\Release\netcoreapp3.1\KWSAdmin.Persistence.AssemblyInfo.cs
+C:\Users\meesv\source\repos\Tmoemes\KWSadmin\DAL\obj\Release\netcoreapp3.1\KWSAdmin.Persistence.csproj.CoreCompileInputs.cache
+C:\Users\meesv\source\repos\Tmoemes\KWSadmin\DAL\obj\Release\netcoreapp3.1\KWSAdmin.Persistence.csproj.CopyComplete
+C:\Users\meesv\source\repos\Tmoemes\KWSadmin\DAL\obj\Release\netcoreapp3.1\KWSAdmin.Persistence.dll
+C:\Users\meesv\source\repos\Tmoemes\KWSadmin\DAL\obj\Release\netcoreapp3.1\KWSAdmin.Persistence.pdb

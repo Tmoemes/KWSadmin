@@ -11,9 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KWSAdmin.Persistence.Interf
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KWSAdmin.DALFactory", "KWSAdmin.DALFactory\KWSAdmin.DALFactory.csproj", "{817BBE20-91AE-4D0C-AF72-321B30E546EF}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "dbtest", "dbtest\dbtest.csproj", "{BB4AD996-45B4-482D-B928-A6A525D75B94}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspView", "AspView\AspView.csproj", "{C0ED867E-8034-4EBA-90A0-3BF976DC2E56}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspView", "AspView\AspView.csproj", "{C0ED867E-8034-4EBA-90A0-3BF976DC2E56}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,10 +35,6 @@ Global
 		{817BBE20-91AE-4D0C-AF72-321B30E546EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{817BBE20-91AE-4D0C-AF72-321B30E546EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{817BBE20-91AE-4D0C-AF72-321B30E546EF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BB4AD996-45B4-482D-B928-A6A525D75B94}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BB4AD996-45B4-482D-B928-A6A525D75B94}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BB4AD996-45B4-482D-B928-A6A525D75B94}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BB4AD996-45B4-482D-B928-A6A525D75B94}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C0ED867E-8034-4EBA-90A0-3BF976DC2E56}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C0ED867E-8034-4EBA-90A0-3BF976DC2E56}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C0ED867E-8034-4EBA-90A0-3BF976DC2E56}.Release|Any CPU.ActiveCfg = Release|Any CPU

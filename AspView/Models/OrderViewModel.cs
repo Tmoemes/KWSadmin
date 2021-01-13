@@ -16,6 +16,7 @@ namespace AspView.Models
 
         public int AccuId { get; set; }
 
+        [MaxLength(800)]
         public string Info { get; set; }
 
         public int CreatorId { get; set; }
