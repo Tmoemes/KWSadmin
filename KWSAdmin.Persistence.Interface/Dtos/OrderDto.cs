@@ -11,13 +11,13 @@
         public string Info { get; private set; }
         public bool Done { get; set; }
 
-        public OrderDto(int id, int client, Location location, int creator, int accu, string info, bool done) 
+        public OrderDto(int id, int client, Location location, int creator, int accu, string info, bool done)
         {
             this.Id = id;
             this.Clientid = client;
             this.Location = location;
             this.Creatorid = creator;
-            this.Accuid =  accu;
+            this.Accuid = accu;
             this.Info = info;
             this.Done = done;
         }

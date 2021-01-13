@@ -1,5 +1,4 @@
-﻿using System.Data.SqlClient;
-using KWSAdmin.Persistence.Interface.Dtos;
+﻿using KWSAdmin.Persistence.Interface.Dtos;
 
 
 
@@ -7,13 +6,13 @@ namespace KWSAdmin.Persistence.Interface.Interfaces
 {
     public interface IAccountDal
     {
-         AccountDto GetById(int id);
+        AccountDto GetAccountById(int id);
 
-        void Add(AccountDto account);
+        void AddAccount(AccountDto account);
 
         void UpdateUser(AccountDto account);
 
-        AccountDto GetByName(string name);
+        AccountDto GetAccountByName(string name);
 
         void DeleteAccount(int id);
     }

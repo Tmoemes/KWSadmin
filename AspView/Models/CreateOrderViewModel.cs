@@ -1,10 +1,7 @@
-﻿using System;
+﻿using KWSAdmin.Application;
+using KWSAdmin.Persistence.Interface.Dtos;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
-using KWSAdmin.Application;
-using KWSAdmin.Persistence.Interface.Dtos;
 
 namespace AspView.Models
 {

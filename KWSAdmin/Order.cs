@@ -1,19 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
+﻿using KWSAdmin.DALFactory;
 using KWSAdmin.Persistence.Interface.Dtos;
 using KWSAdmin.Persistence.Interface.Interfaces;
-using KWSAdmin.DALFactory;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace KWSAdmin.Application
 {
     public class Order
     {
         public int Id { get; private set; }
-        public Client Client { get; private set; } 
+        public Client Client { get; private set; }
         public Location Location { get; private set; }
         public Account Creator { get; private set; }
         public Accu Accu { get; private set; }
@@ -21,21 +17,21 @@ namespace KWSAdmin.Application
         public bool Done { get; set; }
 
         private readonly IOrderDal _orderDal = OrderFactory.GetOrderDal();
-        
+
 
 
         public Order(OrderDto order)
         {
             this.Id = order.Id;
-            this.Client = new Client().GetById(order.Clientid); 
+            this.Client = new Client().GetClientById(order.Clientid);
             this.Location = order.Location;
-            this.Creator = new Account().GetById(order.Creatorid); 
-            this.Accu = new Accu().GetById(order.Accuid);
+            this.Creator = new Account().GetAccountById(order.Creatorid);
+            this.Accu = new Accu().GetAccuById(order.Accuid);
             this.Info = order.Info;
             this.Done = order.Done;
         }
 
-        public Order(int id, Client client, Location location, Account creator, Accu accu, string info ,bool done)
+        public Order(int id, Client client, Location location, Account creator, Accu accu, string info, bool done)
         {
             this.Id = id;
             this.Client = client;
@@ -47,12 +43,12 @@ namespace KWSAdmin.Application
         }
 
         //create order ctor
-        public Order(int clientid , Location location , int creatorid , int accuid , string info)
+        public Order(int clientid, Location location, int creatorid, int accuid, string info)
         {
-            this.Client = new Client().GetById(clientid);
+            this.Client = new Client().GetClientById(clientid);
             this.Location = location;
-            this.Creator = new Account().GetById(creatorid);
-            this.Accu = new Accu().GetById(accuid);
+            this.Creator = new Account().GetAccountById(creatorid);
+            this.Accu = new Accu().GetAccuById(accuid);
             this.Info = info;
             this.Done = false;
         }
@@ -62,29 +58,29 @@ namespace KWSAdmin.Application
 
         }
 
-        public void AddOrder()
+        public bool AddOrder()
         {
-            _orderDal.Add(new OrderDto(Client.Id,Location,Creator.Id,Accu.Id,Info,Done));
+            return _orderDal.AddOrder(new OrderDto(Client.Id, Location, Creator.Id, Accu.Id, Info, Done));
         }
 
         public List<Order> GetAllOrders()
         {
-            return _orderDal.GetAllOrders().Select(order => new Order(order)).ToList();
+            return _orderDal.GetAllOrders()?.Select(order => new Order(order)).ToList();
         }
 
-        public Order GetById(int id)
+        public Order GetOrderById(int id)
         {
-            return new Order(_orderDal.GetById(id));
+            return new Order(_orderDal.GetOrderById(id));
         }
 
-        public void Delete(int id)
+        public bool DeleteOrder(int id)
         {
-            _orderDal.DeleteOrder(id);
+            return _orderDal.DeleteOrder(id);
         }
 
-        public void Update(Order order)
+        public bool UpdateOrder(Order order)
         {
-            _orderDal.UpdateOrder(new OrderDto(order.Client.Id, order.Location, order.Creator.Id, order.Accu.Id, order.Info, order.Done));
+            return _orderDal.UpdateOrder(new OrderDto(order.Client.Id, order.Location, order.Creator.Id, order.Accu.Id, order.Info, order.Done));
         }
 
 

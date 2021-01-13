@@ -1,18 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Reflection.Metadata.Ecma335;
-using System.Text;
+﻿using KWSAdmin.DALFactory;
 using KWSAdmin.Persistence.Interface.Dtos;
 using KWSAdmin.Persistence.Interface.Interfaces;
-using KWSAdmin.DALFactory;
 
 namespace KWSAdmin.Application
 {
-    public class Account 
+    public class Account
     {
         public int Id { get; private set; }
-        public string Username { get; private set; } 
+        public string Username { get; private set; }
         public string Password { get; private set; }
         public bool Admin { get; private set; }
 
@@ -24,10 +19,10 @@ namespace KWSAdmin.Application
             this.Admin = account.Admin;
         }
 
-        public Account(int id,string username, string password, bool admin)
+        public Account(int id, string username, string password, bool admin)
         {
             this.Id = id;
-            this.Username = username; 
+            this.Username = username;
             this.Password = password;
             this.Admin = admin;
         }
@@ -41,25 +36,25 @@ namespace KWSAdmin.Application
 
         public Account()
         {
-            
+
         }
 
-        private static readonly IAccountDal _AccountDal = AccountFactory.GetUserDal();
+        private static readonly IAccountDal _accountDal = AccountFactory.GetUserDal();
 
-        public Account GetByName(string name)
+        public Account GetAccountByName(string name)
         {
-            AccountDto accountDto = _AccountDal.GetByName(name);
+            AccountDto accountDto = _accountDal.GetAccountByName(name);
             return accountDto == null ? null : new Account(accountDto);
         }
 
         public void AddAccount()
         {
-            _AccountDal.Add(new AccountDto(0,Username,Password,Admin));
+            _accountDal.AddAccount(new AccountDto(0, Username, Password, Admin));
         }
 
-        public Account GetById(int id)
+        public Account GetAccountById(int id)
         {
-           return new Account(_AccountDal.GetById(id));
+            return new Account(_accountDal.GetAccountById(id));
 
         }
 

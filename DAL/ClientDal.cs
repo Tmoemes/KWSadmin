@@ -1,10 +1,9 @@
-﻿using System;
+﻿using KWSAdmin.Persistence.Interface.Dtos;
+using KWSAdmin.Persistence.Interface.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Data;
-using KWSAdmin.Persistence.Interface.Interfaces;
-using KWSAdmin.Persistence.Interface.Dtos;
 using System.Data.SqlClient;
-using System.Threading.Tasks;
 
 namespace KWSAdmin.Persistence
 {
@@ -19,7 +18,7 @@ namespace KWSAdmin.Persistence
         }
 
 
-        public void Add(ClientDto client)
+        public void AddClient(ClientDto client)
         {
 
             try
@@ -27,14 +26,14 @@ namespace KWSAdmin.Persistence
                 _connection.Open();
 
                 var cmd = new SqlCommand(
-                    "INSERT INTO Client (fname, lname, phone, email, adres) VALUES (@fname, @lname, @phone, @email, @adres)",_connection);
-                //nullable params
+                    "INSERT INTO Client (fname, lname, phone, email, adres) VALUES (@fname, @lname, @phone, @email, @adres)", _connection);
+
                 cmd.Parameters.AddWithValue("@fname", client.FirstName ?? " ");
                 cmd.Parameters.AddWithValue("@phone", client.Phone ?? " ");
                 cmd.Parameters.AddWithValue("@adres", client.Adres ?? " ");
                 cmd.Parameters.AddWithValue("@lname", client.LastName);
                 cmd.Parameters.AddWithValue("@email", client.EMail);
-                
+
                 cmd.ExecuteNonQuery();
             }
             catch (Exception e)
@@ -66,7 +65,7 @@ namespace KWSAdmin.Persistence
                     var email = reader.GetString("email");
                     var adres = reader.GetString("adres");
 
-                    dtolist.Add(new ClientDto(id,fname,lname,phone,email,adres));
+                    dtolist.Add(new ClientDto(id, fname, lname, phone, email, adres));
                 }
 
                 return dtolist;
@@ -86,7 +85,7 @@ namespace KWSAdmin.Persistence
 
 
 
-        public ClientDto GetById(int id)
+        public ClientDto GetClientById(int id)
         {
             try
             {
@@ -99,7 +98,7 @@ namespace KWSAdmin.Persistence
 
                 while (reader.Read())
                 {
-                    var client = new ClientDto(id,reader["fname"].ToString(),reader["lname"].ToString(),reader["phone"].ToString(),reader["email"].ToString(),reader["adres"].ToString());
+                    var client = new ClientDto(id, reader["fname"].ToString(), reader["lname"].ToString(), reader["phone"].ToString(), reader["email"].ToString(), reader["adres"].ToString());
 
                     return client;
                 }
@@ -119,7 +118,7 @@ namespace KWSAdmin.Persistence
 
         }
 
-        public ClientDto GetByLName(string name)
+        public ClientDto GetClientByLName(string name)
         {
             try
             {
@@ -159,7 +158,7 @@ namespace KWSAdmin.Persistence
             {
                 _connection.Open();
                 var cmd = new SqlCommand(
-                    "UPDATE Client SET fname = @fname, lname = @lname, phone = @phone, email = @email, adres = @adres WHERE id = @id",_connection);
+                    "UPDATE Client SET fname = @fname, lname = @lname, phone = @phone, email = @email, adres = @adres WHERE id = @id", _connection);
                 cmd.Parameters.AddWithValue("@id", client.Id);
                 cmd.Parameters.AddWithValue("@fname", client.FirstName ?? " ");
                 cmd.Parameters.AddWithValue("@lname", client.LastName);

@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Microsoft.Extensions.Configuration;
 using System.Data.SqlClient;
 using System.IO;
-using System.Text;
-using Microsoft.Extensions.Configuration;
 
 namespace KWSAdmin.Persistence
 {

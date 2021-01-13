@@ -1,14 +1,14 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using KWSAdmin.Application;
+﻿using KWSAdmin.Application;
 using KWSAdmin.Persistence.Interface.Dtos;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 
 namespace AspView.Models
 {
     public class OrderViewModel
     {
-        public int  Id { get; set; }
+        public int Id { get; set; }
 
         [Required] public Location Location { get; set; }
 

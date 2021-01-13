@@ -1,14 +1,13 @@
-﻿using System.Collections.Generic;
-using KWSAdmin.Persistence.Interface.Dtos;
-using System.Data.SqlClient;
+﻿using KWSAdmin.Persistence.Interface.Dtos;
+using System.Collections.Generic;
 
 namespace KWSAdmin.Persistence.Interface.Interfaces
 {
     public interface IAccuDal
-    { 
-        AccuDto GetById(int id);
+    {
+        AccuDto GetAccuById(int id);
 
-        void Add(AccuDto accu);
+        void AddAccu(AccuDto accu);
 
         void UpdateAccu(AccuDto accu);
 

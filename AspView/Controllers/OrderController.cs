@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using AspView.Models;
+﻿using AspView.Models;
 using KWSAdmin.Application;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using System;
+using System.Linq;
+using System.Security.Claims;
 
 namespace AspView.Controllers
 {
@@ -26,42 +22,70 @@ namespace AspView.Controllers
         public IActionResult CreateOrder()
         {
             if (!User.IsInRole("Admin")) return RedirectToAction("Login", "Account");
-            OrderViewModel model = new OrderViewModel {Accus = new Accu().GetAllAccus(),Clients = new Client().GetAllClients()};
 
+            var clients = new Client().GetAllClients();
+            var accus = new Accu().GetAllAccus();
+
+            if (clients == null || accus == null)
+            {
+                ModelState.AddModelError("", "Something went wrong while trying to connect to the database ");
+                return RedirectToAction("Index", "Home");
+            }
+
+            var model = new OrderViewModel { Accus = accus, Clients = clients };
             return View(model);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CreateOrder(AspView.Models.OrderViewModel model)
+        public ActionResult CreateOrder(OrderViewModel model)
         {
             if (!User.IsInRole("Admin")) return RedirectToAction("Login", "Account");
 
-            new Order(model.ClientId, model.Location, GetCurrentUserId(), model.AccuId, model.Info).AddOrder();
-            return RedirectToAction("Index", "Home");
+            if (new Order(model.ClientId, model.Location, GetCurrentUserId(), model.AccuId, model.Info).AddOrder())
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            ModelState.AddModelError("", "Something went wrong while trying to connect to the database ");
+            return View(model);
         }
 
 
         [HttpGet]
         public IActionResult OrderView(int id)
         {
-            var selectedOrder = new Order().GetById(id);
-            return View(selectedOrder);
+            var selectedOrder = new Order().GetOrderById(id);
+            if (selectedOrder != null) return View(selectedOrder);
+            ModelState.AddModelError("", "Something went wrong while trying to connect to the database ");
+            return RedirectToAction("Index", "Home");
+
         }
 
         public ActionResult DeleteOrder(int id)
         {
-            new Order().Delete(id);
-            return RedirectToAction("Index", "Home");
+            if (new Order().DeleteOrder(id))
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            ModelState.AddModelError("", "Something went wrong while trying to connect to the database ");
+            return RedirectToAction("OrderView", id);
         }
 
 
         public IActionResult UpdateOrder(int id)
         {
 
-            var oldOrder = new Order().GetById(id);
+            var oldOrder = new Order().GetOrderById(id);
 
-            OrderViewModel model = new OrderViewModel
+            if (oldOrder == null)
+            {
+                ModelState.AddModelError("", "Something went wrong while trying to connect to the database ");
+                return RedirectToAction("OrderView", id);
+            }
+
+            var model = new OrderViewModel
             {
                 Id = oldOrder.Id,
                 Location = oldOrder.Location,
@@ -83,16 +107,22 @@ namespace AspView.Controllers
         {
             if (!User.IsInRole("Admin")) return RedirectToAction("Login", "Account");
 
-            var oldOrder = new Order().GetById(model.Id);
+            var oldOrder = new Order().GetOrderById(model.Id);
 
-            var client = new Client().GetById(model.ClientId);
-            var accu = new Accu().GetById(model.AccuId);
+            var client = new Client().GetClientById(model.ClientId);
+            var accu = new Accu().GetAccuById(model.AccuId);
             var creator = oldOrder.Creator;
-            
+
             var order = new Order(oldOrder.Id, client, model.Location, creator, accu, model.Info,
-                model.Done); 
-            new Order().Update(order);
-            return RedirectToAction("OrderView",new {id = model.Id});
+                model.Done);
+
+            if (new Order().UpdateOrder(order))
+            {
+                return RedirectToAction("OrderView", new { id = model.Id });
+            }
+
+            ModelState.AddModelError("", "Something went wrong while trying to connect to the database ");
+            return View(model);
         }
 
         private int GetCurrentUserId()

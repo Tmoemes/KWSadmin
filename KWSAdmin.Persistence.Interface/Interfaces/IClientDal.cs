@@ -1,8 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Data.SqlTypes;
-using KWSAdmin.Persistence.Interface.Dtos;
-using System.Data.SqlClient;
-using System.Threading.Tasks;
+﻿using KWSAdmin.Persistence.Interface.Dtos;
+using System.Collections.Generic;
 
 
 namespace KWSAdmin.Persistence.Interface.Interfaces
@@ -10,11 +7,11 @@ namespace KWSAdmin.Persistence.Interface.Interfaces
     public interface IClientDal
     {
 
-        ClientDto GetById(int id);
+        ClientDto GetClientById(int id);
 
-        ClientDto GetByLName(string name);
+        ClientDto GetClientByLName(string name);
 
-        void Add(ClientDto order);
+        void AddClient(ClientDto order);
 
         void UpdateClient(ClientDto order);
 

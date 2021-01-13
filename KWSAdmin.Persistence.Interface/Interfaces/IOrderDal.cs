@@ -1,21 +1,18 @@
-﻿using System.Collections.Generic;
-using System.Data.SqlTypes;
-using KWSAdmin.Persistence.Interface.Dtos;
-using System.Data.SqlClient;
-using System.Threading.Tasks;
+﻿using KWSAdmin.Persistence.Interface.Dtos;
+using System.Collections.Generic;
 
 namespace KWSAdmin.Persistence.Interface.Interfaces
 {
     public interface IOrderDal
     {
-        OrderDto GetById(int id);
+        OrderDto GetOrderById(int id);
 
-        void Add(OrderDto order);
+        bool AddOrder(OrderDto order);
 
-        void UpdateOrder(OrderDto order);
+        bool UpdateOrder(OrderDto order);
 
         List<OrderDto> GetAllOrders();
 
-        void DeleteOrder(int id);
+        bool DeleteOrder(int id);
     }
 }

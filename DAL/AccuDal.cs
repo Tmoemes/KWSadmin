@@ -1,8 +1,8 @@
-﻿using System;
+﻿using KWSAdmin.Persistence.Interface.Dtos;
+using KWSAdmin.Persistence.Interface.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Data;
-using KWSAdmin.Persistence.Interface.Interfaces;
-using KWSAdmin.Persistence.Interface.Dtos;
 using System.Data.SqlClient;
 
 namespace KWSAdmin.Persistence
@@ -17,14 +17,14 @@ namespace KWSAdmin.Persistence
             _connection = DbConnection.GetConnection();
         }
 
-        public void Add(AccuDto accu)
+        public void AddAccu(AccuDto accu)
         {
 
             try
             {
                 _connection.Open();
 
-                var cmd = new SqlCommand("INSERT INTO Accu (name, creatorid, specs) VALUES (@name, @creatorid, @specs)",_connection);
+                var cmd = new SqlCommand("INSERT INTO Accu (name, creatorid, specs) VALUES (@name, @creatorid, @specs)", _connection);
                 cmd.Parameters.AddWithValue("@name", accu.Name);
                 cmd.Parameters.AddWithValue("@creatorid", accu.Creatorid);
                 cmd.Parameters.AddWithValue("@specs", accu.Specs ?? " ");
@@ -71,12 +71,12 @@ namespace KWSAdmin.Persistence
             finally
             {
                 _connection.Close();
-               
+
             }
         }
 
 
-        public AccuDto GetById(int id)
+        public AccuDto GetAccuById(int id)
         {
             try
             {
@@ -116,7 +116,7 @@ namespace KWSAdmin.Persistence
             {
                 _connection.Open();
                 var cmd = new SqlCommand(
-                    "UPDATE Accu SET name = @name, creatorid = @creatorid, specs = @specs WHERE id = @id",_connection);
+                    "UPDATE Accu SET name = @name, creatorid = @creatorid, specs = @specs WHERE id = @id", _connection);
                 cmd.Parameters.AddWithValue("@id", accu.Id);
                 cmd.Parameters.AddWithValue("@name", accu.Name);
                 cmd.Parameters.AddWithValue("@creatorid", accu.Creatorid);

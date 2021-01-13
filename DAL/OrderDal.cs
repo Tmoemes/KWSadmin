@@ -1,9 +1,9 @@
-﻿using KWSAdmin.Persistence.Interface.Interfaces;
-using KWSAdmin.Persistence.Interface.Dtos;
-using System.Data.SqlClient;
+﻿using KWSAdmin.Persistence.Interface.Dtos;
+using KWSAdmin.Persistence.Interface.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 
 namespace KWSAdmin.Persistence
 {
@@ -18,7 +18,7 @@ namespace KWSAdmin.Persistence
         }
 
 
-        public void Add(OrderDto order)
+        public bool AddOrder(OrderDto order)
         {
             try
             {
@@ -27,7 +27,7 @@ namespace KWSAdmin.Persistence
                 var cmd = new SqlCommand(
                     "INSERT INTO [Order] (locationid, clientid, creatorid, accuid, info, done) VALUES (@locationid, @clientid, @creatorid, @accuid, @info, @done)",
                     _connection);
-                cmd.Parameters.AddWithValue("locationid", (int) order.Location);
+                cmd.Parameters.AddWithValue("locationid", (int)order.Location);
                 cmd.Parameters.AddWithValue("clientid", order.Clientid);
                 cmd.Parameters.AddWithValue("accuid", order.Accuid);
                 cmd.Parameters.AddWithValue("creatorid", order.Creatorid);
@@ -38,15 +38,18 @@ namespace KWSAdmin.Persistence
             }
             catch (Exception e)
             {
-                Console.WriteLine(e); //todo gebruiker ziet hier niks van
+                Console.WriteLine(e);
+                return false;
             }
             finally
             {
                 _connection.Close();
             }
+
+            return true;
         }
 
-        public OrderDto GetById(int id)
+        public OrderDto GetOrderById(int id)
         {
             try
             {
@@ -60,7 +63,7 @@ namespace KWSAdmin.Persistence
 
                 while (reader.Read())
                 {
-                    var order = new OrderDto(id, reader.GetInt32("clientid"), (Location) reader["locationid"],
+                    var order = new OrderDto(id, reader.GetInt32("clientid"), (Location)reader["locationid"],
                         reader.GetInt32("creatorid"), reader.GetInt32("accuid"), reader.GetString("info"),
                         Convert.ToBoolean(reader.GetInt32("done")));
 
@@ -73,7 +76,7 @@ namespace KWSAdmin.Persistence
             catch (Exception noid)
             {
                 Console.WriteLine(noid);
-                throw;
+                return null;
             }
             finally
             {
@@ -81,7 +84,7 @@ namespace KWSAdmin.Persistence
             }
         }
 
-        public void UpdateOrder(OrderDto order)
+        public bool UpdateOrder(OrderDto order)
         {
             try
             {
@@ -89,7 +92,7 @@ namespace KWSAdmin.Persistence
                 var cmd = new SqlCommand(
                     "UPDATE [Order] SET locationid = @locationid, clientid = @clientid, accuid = @accuid, creatorid = @creatorid, info = @info, done = @done WHERE id = @id;", _connection);
                 cmd.Parameters.AddWithValue("@id", order.Id);
-                cmd.Parameters.AddWithValue("@locationid", (int) order.Location);
+                cmd.Parameters.AddWithValue("@locationid", (int)order.Location);
                 cmd.Parameters.AddWithValue("@clientid", order.Clientid);
                 cmd.Parameters.AddWithValue("@accuid", order.Accuid);
                 cmd.Parameters.AddWithValue("@creatorid", order.Creatorid);
@@ -101,14 +104,17 @@ namespace KWSAdmin.Persistence
             catch (Exception e)
             {
                 Console.WriteLine(e);
+                return false;
             }
             finally
             {
                 _connection.Close();
             }
+
+            return true;
         }
 
-        public void DeleteOrder(int id)
+        public bool DeleteOrder(int id)
         {
             try
             {
@@ -122,12 +128,14 @@ namespace KWSAdmin.Persistence
             catch (Exception e)
             {
                 Console.WriteLine(e);
-                throw;
+                return false;
             }
             finally
             {
                 _connection.Close();
             }
+
+            return true;
         }
 
         public List<OrderDto> GetAllOrders()
@@ -137,16 +145,6 @@ namespace KWSAdmin.Persistence
             try
             {
                 _connection.Open();
-
-                /*var ds = new DataSet();
-                var cmd = new SqlCommand("EXEC SelectAllOrders", connection) {CommandType = CommandType.StoredProcedure};
-                var da = new SqlDataAdapter(cmd);
-                da.Fill(ds);
-
-                foreach (var order in ds.Tables["Order"].Columns["id"].)
-                {
-                    
-                }*/
 
                 var cmd = new SqlCommand("SELECT * FROM [Order]", _connection);
                 var reader = cmd.ExecuteReader();
@@ -161,7 +159,7 @@ namespace KWSAdmin.Persistence
                     var info = reader.GetString("info");
                     var done = Convert.ToBoolean(reader.GetInt32("done"));
 
-                    dtolist.Add(new OrderDto(id, clientid, (Location) locationid, userid, accuid, info,
+                    dtolist.Add(new OrderDto(id, clientid, (Location)locationid, userid, accuid, info,
                         done)); //todo kan beter met 1 stored procedure
                 }
 
@@ -170,13 +168,12 @@ namespace KWSAdmin.Persistence
             catch (Exception e)
             {
                 Console.WriteLine(e);
+                return null;
             }
             finally
             {
                 _connection.Close();
             }
-
-            return null;
         }
     }
 }

@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Diagnostics;
-using System.Linq;
+﻿using AspView.Models;
+using KWSAdmin.Application;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using AspView.Models;
-using KWSAdmin.Application;
-using Microsoft.Extensions.Configuration;
+using System.Diagnostics;
+using System.Linq;
 
 namespace AspView.Controllers
 {
@@ -38,20 +34,26 @@ namespace AspView.Controllers
 
             var orders = new Order().GetAllOrders();
 
+            if (orders == null)
+            {
+                ModelState.AddModelError("", "Something went wrong while trying to connect to the database ");
+                return View("Error");
+            }
+
             //Filters the list of order according to the searchString
             if (!string.IsNullOrEmpty(searchString))
             {
                 orders = orders.Where(s =>
                     s.Client.LastName.ToUpper().Contains(searchString.ToUpper()) ||
                     s.Client.FirstName.ToUpper().Contains(searchString.ToUpper()) ||
-                    s.Accu.Name.ToUpper().Contains(searchString.ToUpper()) || 
+                    s.Accu.Name.ToUpper().Contains(searchString.ToUpper()) ||
                     s.Creator.Username.ToUpper().Contains(searchString.ToUpper())
                     ).ToList();
             }
 
             //Filters out any orders with done status of true
             if (hideDone == "true") orders = orders.Where(s => !s.Done).ToList();
-            
+
 
             //Reads out chosen sort order and sorts orders accordingly
             orders = sortOrder switch

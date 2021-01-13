@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using KWSAdmin;
-using KWSAdmin.DALFactory;
+﻿using KWSAdmin.DALFactory;
 using KWSAdmin.Persistence.Interface.Dtos;
 using KWSAdmin.Persistence.Interface.Interfaces;
+using System.Collections.Generic;
+using System.Linq;
 
-namespace KWSAdmin.Application 
+namespace KWSAdmin.Application
 {
     public class Accu
     {
@@ -23,7 +19,7 @@ namespace KWSAdmin.Application
         {
             this.Id = accu.Id;
             this.Name = accu.Name;
-            this.Creator = new Account().GetById(accu.Creatorid);
+            this.Creator = new Account().GetAccountById(accu.Creatorid);
             this.Specs = accu.Specs;
 
         }
@@ -31,35 +27,33 @@ namespace KWSAdmin.Application
         public Accu(string name, int creatorid, string specs)
         {
             this.Name = name;
-            this.Creator = new Account().GetById(creatorid);
+            this.Creator = new Account().GetAccountById(creatorid);
             this.Specs = specs;
 
         }
 
         public Accu()
         {
-            
+
         }
 
         public List<Accu> GetAllAccus()
         {
-            return _accuDal.GetAllAccus().Select(accu => new Accu(accu)).ToList();
+
+            return (_accuDal.GetAllAccus().Select(accu => new Accu(accu)).ToList() ?? null);
+            ;
         }
 
         public void AddAccu(Accu accu)
         {
-            _accuDal.Add(new AccuDto(0,accu.Name,accu.Creator.Id,accu.Specs));
+            _accuDal.AddAccu(new AccuDto(0, accu.Name, accu.Creator.Id, accu.Specs));
 
         }
 
-        public Accu GetById(int id)
+        public Accu GetAccuById(int id)
         {
-            return new Accu(_accuDal.GetById(id));
+            return new Accu(_accuDal.GetAccuById(id));
         }
 
-        public override string ToString()
-        {
-            return Id + ": " + Name  ; 
-        }
     }
 }

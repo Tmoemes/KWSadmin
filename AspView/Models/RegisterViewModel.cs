@@ -3,7 +3,7 @@
 namespace AspView.Models
 {
     public class RegisterViewModel
-    {   
+    {
         [Required]
         public string Username { get; set; }
 

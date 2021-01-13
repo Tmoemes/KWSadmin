@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Net.Http;
-using System.Text;
+﻿using KWSAdmin.DALFactory;
 using KWSAdmin.Persistence.Interface.Dtos;
 using KWSAdmin.Persistence.Interface.Interfaces;
-using KWSAdmin.DALFactory;
-using System.Data.SqlClient;
+using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 
 namespace KWSAdmin.Application
@@ -52,34 +48,30 @@ namespace KWSAdmin.Application
 
         public Client()
         {
-            
+
         }
 
-        public IClientDal _ClientDal = ClientFactory.GetClientDal();
+        public readonly IClientDal _clientDal = ClientFactory.GetClientDal();
 
-        public Client GetByLName(string name)
+        public Client GetClientByLName(string name)
         {
-            return new Client(_ClientDal.GetByLName(name));
+            return new Client(_clientDal.GetClientByLName(name));
         }
 
         public void AddClient(Client client)
         {
-            _ClientDal.Add(new ClientDto(client.FirstName,client.LastName, client.Phone, client.EMail,client.Adres));
+            _clientDal.AddClient(new ClientDto(client.FirstName, client.LastName, client.Phone, client.EMail, client.Adres));
         }
 
         public List<Client> GetAllClients()
         {
-            return _ClientDal.GetAllClients().Select(clientDto => new Client(clientDto)).ToList();
+            return _clientDal.GetAllClients().Select(clientDto => new Client(clientDto)).ToList();
         }
 
-        public Client GetById(int id)
+        public Client GetClientById(int id)
         {
-            return new Client(_ClientDal.GetById(id));
+            return new Client(_clientDal.GetClientById(id));
         }
 
-        public override string ToString()
-        {
-            return Id + ": " + LastName + ", " + FirstName;
-        }
     }
 }
