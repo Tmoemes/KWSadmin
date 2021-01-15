@@ -23,7 +23,7 @@
 
             <div>@Html.DropDownListFor(m => m.AccuId, new SelectList(Model.Accus,"Id","Name")))) <a asp-action="AddAccu", asp-controller="Accu">Add new Accu</a> </div>
             
-            <div>@Html.CheckBoxFor(m => m.Done)</div>
+            <div>Done status: @Html.CheckBoxFor(m => m.Done)</div>
 
             <div class="col-sm-3">
                 <div class="form-group">

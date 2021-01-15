@@ -7,12 +7,12 @@ namespace KWSAdmin.Persistence.Interface.Interfaces
     {
         AccuDto GetAccuById(int id);
 
-        void AddAccu(AccuDto accu);
+        bool AddAccu(AccuDto accu);
 
-        void UpdateAccu(AccuDto accu);
+        bool UpdateAccu(AccuDto accu);
 
         List<AccuDto> GetAllAccus();
 
-        void DeleteAccu(int id);
+        bool DeleteAccu(int id);
     }
 }

@@ -139,3 +139,5 @@ C:\Users\meesv\source\repos\Tmoemes\KWSadmin\AspView\bin\Debug\netcoreapp3.1\Mic
 C:\Users\meesv\source\repos\Tmoemes\KWSadmin\AspView\bin\Debug\netcoreapp3.1\System.Text.Json.dll
 C:\Users\meesv\source\repos\Tmoemes\KWSadmin\AspView\obj\Debug\netcoreapp3.1\AspView.csproj.CoreCompileInputs.cache
 C:\Users\meesv\source\repos\Tmoemes\KWSadmin\AspView\obj\Debug\netcoreapp3.1\AspView.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\meesv\source\repos\Tmoemes\KWSadmin\AspView\obj\Debug\netcoreapp3.1\Razor\Views\Accu\AccuView.cshtml.g.cs
+C:\Users\meesv\source\repos\Tmoemes\KWSadmin\AspView\obj\Debug\netcoreapp3.1\Razor\Views\Accu\UpdateAccu.cshtml.g.cs

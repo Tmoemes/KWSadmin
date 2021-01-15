@@ -17,7 +17,7 @@ namespace KWSAdmin.Persistence
             _connection = DbConnection.GetConnection();
         }
 
-        public void AddAccu(AccuDto accu)
+        public bool AddAccu(AccuDto accu)
         {
 
             try
@@ -34,11 +34,14 @@ namespace KWSAdmin.Persistence
             catch (Exception e)
             {
                 Console.WriteLine(e);
+                return false;
             }
             finally
             {
                 _connection.Close();
             }
+
+            return true;
         }
 
         public List<AccuDto> GetAllAccus()
@@ -66,7 +69,7 @@ namespace KWSAdmin.Persistence
             catch (Exception e)
             {
                 Console.WriteLine(e);
-                throw;
+                return null;
             }
             finally
             {
@@ -99,7 +102,7 @@ namespace KWSAdmin.Persistence
             catch (Exception e)
             {
                 Console.WriteLine(e);
-                throw;
+                return null;
             }
             finally
             {
@@ -109,7 +112,7 @@ namespace KWSAdmin.Persistence
 
         }
 
-        public void UpdateAccu(AccuDto accu)
+        public bool UpdateAccu(AccuDto accu)
         {
 
             try
@@ -127,16 +130,17 @@ namespace KWSAdmin.Persistence
             catch (Exception e)
             {
                 Console.WriteLine(e);
-                throw;
+                return false;
             }
             finally
             {
                 _connection.Close();
             }
 
+            return true;
         }
 
-        public void DeleteAccu(int id)
+        public bool DeleteAccu(int id)
         {
 
             try
@@ -151,13 +155,14 @@ namespace KWSAdmin.Persistence
             catch (Exception e)
             {
                 Console.WriteLine(e);
-                throw;
+                return false;
             }
             finally
             {
                 _connection.Close();
             }
 
+            return true;
         }
 
     }

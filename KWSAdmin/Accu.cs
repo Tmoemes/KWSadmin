@@ -32,6 +32,15 @@ namespace KWSAdmin.Application
 
         }
 
+        public Accu(int id,string name, int creatorid, string specs)
+        {
+            this.Id = id;
+            this.Name = name;
+            this.Creator = new Account().GetAccountById(creatorid);
+            this.Specs = specs;
+
+        }
+
         public Accu()
         {
 
@@ -41,18 +50,22 @@ namespace KWSAdmin.Application
         {
 
             return (_accuDal.GetAllAccus().Select(accu => new Accu(accu)).ToList() ?? null);
-            ;
         }
 
-        public void AddAccu(Accu accu)
+        public bool AddAccu(Accu accu)
         {
-            _accuDal.AddAccu(new AccuDto(0, accu.Name, accu.Creator.Id, accu.Specs));
+            return _accuDal.AddAccu(new AccuDto(0, accu.Name, accu.Creator.Id, accu.Specs));
 
         }
 
         public Accu GetAccuById(int id)
         {
             return new Accu(_accuDal.GetAccuById(id));
+        }
+
+        public bool UpdateAccu(Accu accu)
+        {
+            return _accuDal.UpdateAccu(new AccuDto(accu.Id,accu.Name,accu.Creator.Id,accu.Specs));
         }
 
     }

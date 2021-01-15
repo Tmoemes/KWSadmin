@@ -5,6 +5,7 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Linq;
 using System.Security.Claims;
+using KWSAdmin.Persistence.Interface.Dtos;
 
 namespace AspView.Controllers
 {
@@ -21,7 +22,7 @@ namespace AspView.Controllers
 
         public IActionResult CreateOrder()
         {
-            if (!User.IsInRole("Admin")) return RedirectToAction("Login", "Account");
+            if (!User.IsInRole("Admin")) return RedirectToAction("Index", "Home");
 
             var clients = new Client().GetAllClients();
             var accus = new Accu().GetAllAccus();
@@ -40,7 +41,7 @@ namespace AspView.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult CreateOrder(OrderViewModel model)
         {
-            if (!User.IsInRole("Admin")) return RedirectToAction("Login", "Account");
+            if (!User.IsInRole("Admin")) return RedirectToAction("Index", "Home");
 
             if (new Order(model.ClientId, model.Location, GetCurrentUserId(), model.AccuId, model.Info).AddOrder())
             {
@@ -64,25 +65,21 @@ namespace AspView.Controllers
 
         public ActionResult DeleteOrder(int id)
         {
-            if (new Order().DeleteOrder(id))
-            {
-                return RedirectToAction("Index", "Home");
-            }
-
+            if (new Order().DeleteOrder(id)) return RedirectToAction("Index", "Home");
             ModelState.AddModelError("", "Something went wrong while trying to connect to the database ");
-            return RedirectToAction("OrderView", id);
+            return RedirectToAction("OrderView", new { id = id });
         }
 
 
         public IActionResult UpdateOrder(int id)
         {
-
+            if (!User.IsInRole("Admin")) return RedirectToAction("Index", "Home");
             var oldOrder = new Order().GetOrderById(id);
 
             if (oldOrder == null)
             {
                 ModelState.AddModelError("", "Something went wrong while trying to connect to the database ");
-                return RedirectToAction("OrderView", id);
+                return RedirectToAction("OrderView", new { id = id });
             }
 
             var model = new OrderViewModel
@@ -105,7 +102,7 @@ namespace AspView.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult UpdateOrder(OrderViewModel model)
         {
-            if (!User.IsInRole("Admin")) return RedirectToAction("Login", "Account");
+            if (!User.IsInRole("Admin")) return RedirectToAction("Index", "Home");
 
             var oldOrder = new Order().GetOrderById(model.Id);
 
@@ -124,6 +121,16 @@ namespace AspView.Controllers
             ModelState.AddModelError("", "Something went wrong while trying to connect to the database ");
             return View(model);
         }
+
+
+        public ActionResult UpdateOrderLocation(int id, Location location)//todo krijgt niet de juiste locatie mee
+        {
+            if(!new Order().UpdateOrderLocation(id, location)) ModelState.AddModelError("", "Something went wrong while trying to connect to the database ");
+
+            return RedirectToAction("OrderView", new {id = id});
+        }
+
+
 
         private int GetCurrentUserId()
         {

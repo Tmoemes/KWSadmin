@@ -99,7 +99,7 @@ namespace KWSAdmin.Persistence
                 cmd.Parameters.AddWithValue("@info", order.Info ?? " ");
                 cmd.Parameters.AddWithValue("@done", Convert.ToInt32(order.Done));
 
-                cmd.ExecuteNonQuery();//todo database wordt hier niet geupdate
+                cmd.ExecuteNonQuery();
             }
             catch (Exception e)
             {
@@ -113,6 +113,33 @@ namespace KWSAdmin.Persistence
 
             return true;
         }
+
+        public bool UpdateOrderLocation(int id, Location location)
+        {
+            try
+            {
+                _connection.Open();
+                var cmd = new SqlCommand(
+                    "UPDATE [Order] SET locationid = @locationid WHERE id = @id;", _connection);
+                cmd.Parameters.AddWithValue("@id", id);
+                cmd.Parameters.AddWithValue("@locationid", (int)location);
+                
+
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return false;
+            }
+            finally
+            {
+                _connection.Close();
+            }
+
+            return true;
+        }
+
 
         public bool DeleteOrder(int id)
         {
@@ -160,7 +187,7 @@ namespace KWSAdmin.Persistence
                     var done = Convert.ToBoolean(reader.GetInt32("done"));
 
                     dtolist.Add(new OrderDto(id, clientid, (Location)locationid, userid, accuid, info,
-                        done)); //todo kan beter met 1 stored procedure
+                        done)); //todo kan beter met 1 query
                 }
 
                 return dtolist;

@@ -20,7 +20,7 @@ namespace AspView.Controllers
 
         public IActionResult AddClient()
         {
-            if (!User.IsInRole("Admin")) return RedirectToAction("Login", "Account");
+            if (!User.IsInRole("Admin")) return RedirectToAction("Index", "Home");
             return View();
         }
 

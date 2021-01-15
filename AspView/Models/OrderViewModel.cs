@@ -19,8 +19,6 @@ namespace AspView.Models
         [MaxLength(800)]
         public string Info { get; set; }
 
-        public int CreatorId { get; set; }
-
         public bool Done { get; set; }
 
         public List<Client> Clients { get; set; }

@@ -80,7 +80,12 @@ namespace KWSAdmin.Application
 
         public bool UpdateOrder(Order order)
         {
-            return _orderDal.UpdateOrder(new OrderDto(order.Client.Id, order.Location, order.Creator.Id, order.Accu.Id, order.Info, order.Done));
+            return _orderDal.UpdateOrder(new OrderDto(order.Id,order.Client.Id, order.Location, order.Creator.Id, order.Accu.Id, order.Info, order.Done));
+        }
+
+        public bool UpdateOrderLocation(int id, Location location)
+        {
+            return _orderDal.UpdateOrderLocation(id, location); 
         }
 
 

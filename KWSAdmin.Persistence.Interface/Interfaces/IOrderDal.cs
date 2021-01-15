@@ -14,5 +14,7 @@ namespace KWSAdmin.Persistence.Interface.Interfaces
         List<OrderDto> GetAllOrders();
 
         bool DeleteOrder(int id);
+
+        bool UpdateOrderLocation(int id, Location location);
     }
 }
