@@ -139,3 +139,7 @@ C:\Users\meesv\source\repos\Tmoemes\KWSadmin\AspView\obj\Release\netcoreapp3.1\s
 C:\Users\meesv\source\repos\Tmoemes\KWSadmin\AspView\obj\Release\netcoreapp3.1\AspView.dll
 C:\Users\meesv\source\repos\Tmoemes\KWSadmin\AspView\obj\Release\netcoreapp3.1\AspView.pdb
 C:\Users\meesv\source\repos\Tmoemes\KWSadmin\AspView\obj\Release\netcoreapp3.1\AspView.genruntimeconfig.cache
+C:\Users\meesv\source\repos\Tmoemes\KWSadmin\AspView\obj\Release\netcoreapp3.1\Razor\Views\Accu\AccuView.cshtml.g.cs
+C:\Users\meesv\source\repos\Tmoemes\KWSadmin\AspView\obj\Release\netcoreapp3.1\Razor\Views\Accu\UpdateAccu.cshtml.g.cs
+C:\Users\meesv\source\repos\Tmoemes\KWSadmin\AspView\obj\Release\netcoreapp3.1\Razor\Views\Client\ClientView.cshtml.g.cs
+C:\Users\meesv\source\repos\Tmoemes\KWSadmin\AspView\obj\Release\netcoreapp3.1\Razor\Views\Client\UpdateClient.cshtml.g.cs

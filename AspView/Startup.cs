@@ -24,9 +24,9 @@ namespace AspView
 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
             {
-                options.Cookie.HttpOnly = true;
+                /*options.Cookie.HttpOnly = true;
                 options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
-                options.Cookie.SameSite = SameSiteMode.Lax;
+                options.Cookie.SameSite = SameSiteMode.Lax;*/
                 options.Cookie.Name = "AspView.AuthCookieAspNetCore";
                 options.LoginPath = "/Account/Login";
             });
