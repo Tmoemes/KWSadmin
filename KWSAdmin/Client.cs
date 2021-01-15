@@ -73,5 +73,11 @@ namespace KWSAdmin.Application
             return new Client(_clientDal.GetClientById(id));
         }
 
+        public bool UpdateClient(Client client)
+        {
+            return _clientDal.UpdateClient(new ClientDto(client.Id, client.FirstName, client.LastName, client.Phone,
+                client.EMail, client.Adres));
+        }
+
     }
 }

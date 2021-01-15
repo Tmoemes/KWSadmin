@@ -67,7 +67,7 @@ namespace AspView.Controllers
         {
             if (new Order().DeleteOrder(id)) return RedirectToAction("Index", "Home");
             ModelState.AddModelError("", "Something went wrong while trying to connect to the database ");
-            return RedirectToAction("OrderView", new { id = id });
+            return RedirectToAction("OrderView", new {id });
         }
 
 
@@ -79,7 +79,7 @@ namespace AspView.Controllers
             if (oldOrder == null)
             {
                 ModelState.AddModelError("", "Something went wrong while trying to connect to the database ");
-                return RedirectToAction("OrderView", new { id = id });
+                return RedirectToAction("OrderView", new {id });
             }
 
             var model = new OrderViewModel
@@ -127,7 +127,7 @@ namespace AspView.Controllers
         {
             if(!new Order().UpdateOrderLocation(id, location)) ModelState.AddModelError("", "Something went wrong while trying to connect to the database ");
 
-            return RedirectToAction("OrderView", new {id = id});
+            return RedirectToAction("OrderView", new {id});
         }
 
 

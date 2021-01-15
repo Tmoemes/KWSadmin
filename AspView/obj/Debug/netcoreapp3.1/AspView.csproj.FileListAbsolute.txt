@@ -141,3 +141,5 @@ C:\Users\meesv\source\repos\Tmoemes\KWSadmin\AspView\obj\Debug\netcoreapp3.1\Asp
 C:\Users\meesv\source\repos\Tmoemes\KWSadmin\AspView\obj\Debug\netcoreapp3.1\AspView.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\meesv\source\repos\Tmoemes\KWSadmin\AspView\obj\Debug\netcoreapp3.1\Razor\Views\Accu\AccuView.cshtml.g.cs
 C:\Users\meesv\source\repos\Tmoemes\KWSadmin\AspView\obj\Debug\netcoreapp3.1\Razor\Views\Accu\UpdateAccu.cshtml.g.cs
+C:\Users\meesv\source\repos\Tmoemes\KWSadmin\AspView\obj\Debug\netcoreapp3.1\Razor\Views\Client\ClientView.cshtml.g.cs
+C:\Users\meesv\source\repos\Tmoemes\KWSadmin\AspView\obj\Debug\netcoreapp3.1\Razor\Views\Client\UpdateClient.cshtml.g.cs

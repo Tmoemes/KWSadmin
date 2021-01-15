@@ -112,6 +112,14 @@ namespace AspView.Controllers
             if (!User.IsInRole("Admin")) return RedirectToAction("Login", "Account");
             if (!ModelState.IsValid) return View(model);
 
+
+            if (new Account().GetAccountByName(model.Username) != null)
+            {
+                ModelState.AddModelError(nameof(model.Username), "Username already exists");
+                return View(model);
+            }
+
+
             if (model.Password == model.PasswordCheck)
             {
                 var hasher = new PasswordHasher<Account>();

@@ -18,7 +18,7 @@ namespace KWSAdmin.Persistence
         }
 
 
-        public void AddClient(ClientDto client)
+        public bool AddClient(ClientDto client)
         {
 
             try
@@ -39,11 +39,14 @@ namespace KWSAdmin.Persistence
             catch (Exception e)
             {
                 Console.WriteLine(e);
+                return false;
             }
             finally
             {
                 _connection.Close();
             }
+
+            return true;
         }
 
         public List<ClientDto> GetAllClients()
@@ -73,15 +76,13 @@ namespace KWSAdmin.Persistence
             catch (Exception e)
             {
                 Console.WriteLine(e);
-                throw;
+                return null;
             }
             finally
             {
                 _connection.Close();
             }
         }
-
-
 
 
 
@@ -109,7 +110,7 @@ namespace KWSAdmin.Persistence
             catch (Exception noid)
             {
                 Console.WriteLine(noid);
-                throw;
+                return null;
             }
             finally
             {
@@ -142,7 +143,7 @@ namespace KWSAdmin.Persistence
             catch (Exception e)
             {
                 Console.WriteLine(e);
-                throw;
+                return null;
             }
             finally
             {
@@ -151,7 +152,7 @@ namespace KWSAdmin.Persistence
 
         }
 
-        public void UpdateClient(ClientDto client)
+        public bool UpdateClient(ClientDto client)
         {
 
             try
@@ -171,17 +172,18 @@ namespace KWSAdmin.Persistence
             catch (Exception e)
             {
                 Console.WriteLine(e);
-                throw;
+                return false;
             }
             finally
             {
                 _connection.Close();
             }
 
+            return true;
         }
 
 
-        public void DeleteClient(int id)
+        public bool DeleteClient(int id)
         {
 
             try
@@ -196,13 +198,14 @@ namespace KWSAdmin.Persistence
             catch (Exception e)
             {
                 Console.WriteLine(e);
-                throw;
+                return false;
             }
             finally
             {
                 _connection.Close();
             }
 
+            return true;
         }
 
     }

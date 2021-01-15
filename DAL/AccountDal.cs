@@ -16,7 +16,7 @@ namespace KWSAdmin.Persistence
             _connection = DbConnection.GetConnection();
         }
 
-        public void AddAccount(AccountDto account)
+        public bool AddAccount(AccountDto account)
         {
             try
             {
@@ -32,11 +32,14 @@ namespace KWSAdmin.Persistence
             catch (Exception e)
             {
                 Console.WriteLine(e);
+                return false;
             }
             finally
             {
                 _connection.Close();
             }
+
+            return true;
         }
 
         public AccountDto GetAccountById(int id)
@@ -66,7 +69,7 @@ namespace KWSAdmin.Persistence
             catch (Exception noid)
             {
                 Console.WriteLine(noid);
-                throw;
+                return null;
             }
             finally
             {
@@ -98,7 +101,7 @@ namespace KWSAdmin.Persistence
             catch (Exception noid)
             {
                 Console.WriteLine(noid);
-                throw;
+                return null;    
             }
             finally
             {
@@ -107,7 +110,7 @@ namespace KWSAdmin.Persistence
 
         }
 
-        public void UpdateUser(AccountDto account)
+        public bool UpdateUser(AccountDto account)
         {
 
             try
@@ -124,15 +127,17 @@ namespace KWSAdmin.Persistence
             catch (Exception e)
             {
                 Console.WriteLine(e);
-                throw;
+                return false;
             }
             finally
             {
                 _connection.Close();
             }
+
+            return true;
         }
 
-        public void DeleteAccount(int id)
+        public bool DeleteAccount(int id)
         {
 
             try
@@ -147,13 +152,14 @@ namespace KWSAdmin.Persistence
             catch (Exception e)
             {
                 Console.WriteLine(e);
-                throw;
+                return false;
             }
             finally
             {
                 _connection.Close();
             }
 
+            return true;
         }
 
     }

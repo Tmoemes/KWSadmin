@@ -8,12 +8,12 @@ namespace KWSAdmin.Persistence.Interface.Interfaces
     {
         AccountDto GetAccountById(int id);
 
-        void AddAccount(AccountDto account);
+        bool AddAccount(AccountDto account);
 
-        void UpdateUser(AccountDto account);
+        bool UpdateUser(AccountDto account);
 
         AccountDto GetAccountByName(string name);
 
-        void DeleteAccount(int id);
+        bool DeleteAccount(int id);
     }
 }

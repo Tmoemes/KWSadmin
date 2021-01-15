@@ -11,12 +11,12 @@ namespace KWSAdmin.Persistence.Interface.Interfaces
 
         ClientDto GetClientByLName(string name);
 
-        void AddClient(ClientDto order);
+        bool AddClient(ClientDto order);
 
-        void UpdateClient(ClientDto order);
+        bool UpdateClient(ClientDto order);
 
         List<ClientDto> GetAllClients();
 
-        void DeleteClient(int id);
+        bool DeleteClient(int id);
     }
 }

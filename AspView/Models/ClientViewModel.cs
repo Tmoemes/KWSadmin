@@ -3,12 +3,13 @@
 
 namespace AspView.Models
 {
-    public class CientViewModel
+    public class ClientViewModel
     {
-        public string FName { get; set; }
+        public int id { get; set; }
+        public string FirstName { get; set; }
 
         [Required]
-        public string LName { get; set; }
+        public string LastName { get; set; }
 
         public string Phone { get; set; }
         [Required]
